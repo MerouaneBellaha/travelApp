@@ -9,23 +9,31 @@
 /* Begin PBXBuildFile section */
 		CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */; };
 		CB6BF2BE24BDDBE40065F64E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BD24BDDBE40065F64E /* SceneDelegate.swift */; };
-		CB6BF2C024BDDBE40065F64E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BF24BDDBE40065F64E /* ViewController.swift */; };
+		CB6BF2C024BDDBE40065F64E /* ConvertorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BF24BDDBE40065F64E /* ConvertorVC.swift */; };
 		CB6BF2C324BDDBE40065F64E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6BF2C124BDDBE40065F64E /* Main.storyboard */; };
 		CB6BF2C624BDDBE40065F64E /* travelApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2C424BDDBE40065F64E /* travelApp.xcdatamodeld */; };
 		CB6BF2C824BDDBE60065F64E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6BF2C724BDDBE60065F64E /* Assets.xcassets */; };
 		CB6BF2CB24BDDBE60065F64E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6BF2C924BDDBE60065F64E /* LaunchScreen.storyboard */; };
+		CB6BF2D624BDE4340065F64E /* TranslatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2D524BDE4340065F64E /* TranslatorVC.swift */; };
+		CB6BF2D824BDE5090065F64E /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2D724BDE5090065F64E /* WeatherVC.swift */; };
+		CB6BF2DA24BDE52F0065F64E /* ToDoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2D924BDE52F0065F64E /* ToDoVC.swift */; };
+		CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2DB24BDE54D0065F64E /* SettingsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CB6BF2B824BDDBE40065F64E /* travelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB6BF2BD24BDDBE40065F64E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CB6BF2BF24BDDBE40065F64E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CB6BF2BF24BDDBE40065F64E /* ConvertorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorVC.swift; sourceTree = "<group>"; };
 		CB6BF2C224BDDBE40065F64E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB6BF2C524BDDBE40065F64E /* travelApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = travelApp.xcdatamodel; sourceTree = "<group>"; };
 		CB6BF2C724BDDBE60065F64E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB6BF2CA24BDDBE60065F64E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB6BF2CC24BDDBE60065F64E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB6BF2D524BDE4340065F64E /* TranslatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorVC.swift; sourceTree = "<group>"; };
+		CB6BF2D724BDE5090065F64E /* WeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVC.swift; sourceTree = "<group>"; };
+		CB6BF2D924BDE52F0065F64E /* ToDoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoVC.swift; sourceTree = "<group>"; };
+		CB6BF2DB24BDE54D0065F64E /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +66,44 @@
 		CB6BF2BA24BDDBE40065F64E /* travelApp */ = {
 			isa = PBXGroup;
 			children = (
+				CB6BF2D424BDDC7A0065F64E /* Controller */,
+				CB6BF2D324BDDC6D0065F64E /* View */,
+				CB6BF2D224BDDC660065F64E /* Model */,
 				CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */,
 				CB6BF2BD24BDDBE40065F64E /* SceneDelegate.swift */,
-				CB6BF2BF24BDDBE40065F64E /* ViewController.swift */,
-				CB6BF2C124BDDBE40065F64E /* Main.storyboard */,
 				CB6BF2C724BDDBE60065F64E /* Assets.xcassets */,
 				CB6BF2C924BDDBE60065F64E /* LaunchScreen.storyboard */,
 				CB6BF2CC24BDDBE60065F64E /* Info.plist */,
 				CB6BF2C424BDDBE40065F64E /* travelApp.xcdatamodeld */,
 			);
 			path = travelApp;
+			sourceTree = "<group>";
+		};
+		CB6BF2D224BDDC660065F64E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CB6BF2D324BDDC6D0065F64E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CB6BF2C124BDDBE40065F64E /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CB6BF2D424BDDC7A0065F64E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CB6BF2BF24BDDBE40065F64E /* ConvertorVC.swift */,
+				CB6BF2D524BDE4340065F64E /* TranslatorVC.swift */,
+				CB6BF2D724BDE5090065F64E /* WeatherVC.swift */,
+				CB6BF2D924BDE52F0065F64E /* ToDoVC.swift */,
+				CB6BF2DB24BDE54D0065F64E /* SettingsVC.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,9 +177,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB6BF2C024BDDBE40065F64E /* ViewController.swift in Sources */,
+				CB6BF2C024BDDBE40065F64E /* ConvertorVC.swift in Sources */,
+				CB6BF2D824BDE5090065F64E /* WeatherVC.swift in Sources */,
 				CB6BF2C624BDDBE40065F64E /* travelApp.xcdatamodeld in Sources */,
 				CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */,
+				CB6BF2DA24BDE52F0065F64E /* ToDoVC.swift in Sources */,
+				CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */,
+				CB6BF2D624BDE4340065F64E /* TranslatorVC.swift in Sources */,
 				CB6BF2BE24BDDBE40065F64E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +331,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8M973GY56;
 				INFOPLIST_FILE = travelApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,7 +339,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.merouanebellaha.travelApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -309,6 +350,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8M973GY56;
 				INFOPLIST_FILE = travelApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,7 +358,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.merouanebellaha.travelApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
