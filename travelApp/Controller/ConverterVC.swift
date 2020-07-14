@@ -1,5 +1,5 @@
 //
-//  ConvertorVC.swift
+//  ConverterVC.swift
 //  travelApp
 //
 //  Created by Merouane Bellaha on 14/07/2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConvertorVC: UIViewController {
+class ConverterVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

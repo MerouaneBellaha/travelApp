@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */; };
 		CB6BF2BE24BDDBE40065F64E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BD24BDDBE40065F64E /* SceneDelegate.swift */; };
-		CB6BF2C024BDDBE40065F64E /* ConvertorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BF24BDDBE40065F64E /* ConvertorVC.swift */; };
+		CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */; };
 		CB6BF2C324BDDBE40065F64E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6BF2C124BDDBE40065F64E /* Main.storyboard */; };
 		CB6BF2C624BDDBE40065F64E /* travelApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2C424BDDBE40065F64E /* travelApp.xcdatamodeld */; };
 		CB6BF2C824BDDBE60065F64E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6BF2C724BDDBE60065F64E /* Assets.xcassets */; };
@@ -24,7 +24,7 @@
 		CB6BF2B824BDDBE40065F64E /* travelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB6BF2BD24BDDBE40065F64E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CB6BF2BF24BDDBE40065F64E /* ConvertorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorVC.swift; sourceTree = "<group>"; };
+		CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterVC.swift; sourceTree = "<group>"; };
 		CB6BF2C224BDDBE40065F64E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB6BF2C524BDDBE40065F64E /* travelApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = travelApp.xcdatamodel; sourceTree = "<group>"; };
 		CB6BF2C724BDDBE60065F64E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		CB6BF2D424BDDC7A0065F64E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CB6BF2BF24BDDBE40065F64E /* ConvertorVC.swift */,
+				CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */,
 				CB6BF2D524BDE4340065F64E /* TranslatorVC.swift */,
 				CB6BF2D724BDE5090065F64E /* WeatherVC.swift */,
 				CB6BF2D924BDE52F0065F64E /* ToDoVC.swift */,
@@ -177,7 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB6BF2C024BDDBE40065F64E /* ConvertorVC.swift in Sources */,
+				CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */,
 				CB6BF2D824BDE5090065F64E /* WeatherVC.swift in Sources */,
 				CB6BF2C624BDDBE40065F64E /* travelApp.xcdatamodeld in Sources */,
 				CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */,
