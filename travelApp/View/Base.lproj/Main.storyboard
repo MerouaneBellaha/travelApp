@@ -70,6 +70,9 @@
                                                 <rect key="frame" x="92" y="0.0" width="222" height="80"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                                <connections>
+                                                    <action selector="textFieldDidChange:" destination="Hoj-fk-EDa" eventType="editingChanged" id="mLT-L9-sfu"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -94,10 +97,13 @@
                                                 <color key="textColor" red="0.99372535939999995" green="0.99383682009999996" blue="0.99366122479999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="or here :)" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bti-cj-vNE">
+                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="or here :)" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bti-cj-vNE">
                                                 <rect key="frame" x="90" y="0.0" width="224" height="80"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                                <connections>
+                                                    <action selector="textFieldDidChange:" destination="Hoj-fk-EDa" eventType="editingChanged" id="TQK-MF-bIi"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -120,6 +126,13 @@
                         <viewLayoutGuide key="safeArea" id="xNm-Mg-Y8E"/>
                     </view>
                     <navigationItem key="navigationItem" title="Converter" id="k4p-LO-v4A"/>
+                    <connections>
+                        <outletCollection property="textFields" destination="Kd1-XN-NWk" collectionClass="NSMutableArray" id="izC-Vr-cJ3"/>
+                        <outletCollection property="textFields" destination="Kd1-XN-NWk" collectionClass="NSMutableArray" id="qlL-f4-Xm2"/>
+                        <outletCollection property="textFields" destination="bti-cj-vNE" collectionClass="NSMutableArray" id="BeV-UD-1sX"/>
+                        <outletCollection property="currencies" destination="rtH-He-C26" collectionClass="NSMutableArray" id="qOC-7K-0dL"/>
+                        <outletCollection property="currencies" destination="nh3-Em-SGJ" collectionClass="NSMutableArray" id="Il2-KP-cTn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kza-0l-zCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -248,14 +261,33 @@
                     <view key="view" contentMode="scaleToFill" id="5FF-ga-FgM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y1K-jE-lne">
+                                <rect key="frame" x="81" y="278" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DiL-Ta-8Nd">
+                                <rect key="frame" x="201" y="313" width="46" height="97"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="G6b-Bv-j7I" eventType="touchUpInside" id="Zjq-Wc-D5Z"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="0ni-VF-mJi"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="U6G-wZ-5Wg"/>
+                    <connections>
+                        <outlet property="textField" destination="y1K-jE-lne" id="PbM-og-RL9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ff3-mi-6pe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2222" y="1921"/>
+            <point key="canvasLocation" x="2221.739130434783" y="1920.5357142857142"/>
         </scene>
     </scenes>
     <resources>
