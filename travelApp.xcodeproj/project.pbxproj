@@ -18,6 +18,12 @@
 		CB6BF2D824BDE5090065F64E /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2D724BDE5090065F64E /* WeatherVC.swift */; };
 		CB6BF2DA24BDE52F0065F64E /* ToDoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2D924BDE52F0065F64E /* ToDoVC.swift */; };
 		CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2DB24BDE54D0065F64E /* SettingsVC.swift */; };
+		CB8F7C4524BE37D20080570D /* NetworkingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4424BE37D20080570D /* NetworkingRequest.swift */; };
+		CB8F7C4724BE38950080570D /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4624BE38950080570D /* RequestError.swift */; };
+		CB8F7C4924BE38C80080570D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4824BE38C80080570D /* Data.swift */; };
+		CB925B3624BF14F20049774F /* ConvertedCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3524BF14F20049774F /* ConvertedCurrencyModel.swift */; };
+		CB925B3924BF36E20049774F /* UIViewController + setAlertVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */; };
+		CB925B3B24BF60B90049774F /* UIViewController+Nofitications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3A24BF60B90049774F /* UIViewController+Nofitications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +40,12 @@
 		CB6BF2D724BDE5090065F64E /* WeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVC.swift; sourceTree = "<group>"; };
 		CB6BF2D924BDE52F0065F64E /* ToDoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoVC.swift; sourceTree = "<group>"; };
 		CB6BF2DB24BDE54D0065F64E /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		CB8F7C4424BE37D20080570D /* NetworkingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingRequest.swift; sourceTree = "<group>"; };
+		CB8F7C4624BE38950080570D /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		CB8F7C4824BE38C80080570D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		CB925B3524BF14F20049774F /* ConvertedCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertedCurrencyModel.swift; sourceTree = "<group>"; };
+		CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + setAlertVc.swift"; sourceTree = "<group>"; };
+		CB925B3A24BF60B90049774F /* UIViewController+Nofitications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Nofitications.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +85,8 @@
 				CB6BF2BD24BDDBE40065F64E /* SceneDelegate.swift */,
 				CB6BF2C724BDDBE60065F64E /* Assets.xcassets */,
 				CB6BF2C924BDDBE60065F64E /* LaunchScreen.storyboard */,
-				CB6BF2CC24BDDBE60065F64E /* Info.plist */,
 				CB6BF2C424BDDBE40065F64E /* travelApp.xcdatamodeld */,
+				CB6BF2CC24BDDBE60065F64E /* Info.plist */,
 			);
 			path = travelApp;
 			sourceTree = "<group>";
@@ -82,6 +94,10 @@
 		CB6BF2D224BDDC660065F64E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CB8F7C4424BE37D20080570D /* NetworkingRequest.swift */,
+				CB8F7C4624BE38950080570D /* RequestError.swift */,
+				CB8F7C4824BE38C80080570D /* Data.swift */,
+				CB925B3524BF14F20049774F /* ConvertedCurrencyModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -97,6 +113,7 @@
 		CB6BF2D424BDDC7A0065F64E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CB925B3724BF36C40049774F /* Extensions */,
 				CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */,
 				CB6BF2D524BDE4340065F64E /* TranslatorVC.swift */,
 				CB6BF2D724BDE5090065F64E /* WeatherVC.swift */,
@@ -104,6 +121,15 @@
 				CB6BF2DB24BDE54D0065F64E /* SettingsVC.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		CB925B3724BF36C40049774F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */,
+				CB925B3A24BF60B90049774F /* UIViewController+Nofitications.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,13 +204,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */,
+				CB925B3924BF36E20049774F /* UIViewController + setAlertVc.swift in Sources */,
 				CB6BF2D824BDE5090065F64E /* WeatherVC.swift in Sources */,
 				CB6BF2C624BDDBE40065F64E /* travelApp.xcdatamodeld in Sources */,
 				CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */,
+				CB8F7C4924BE38C80080570D /* Data.swift in Sources */,
 				CB6BF2DA24BDE52F0065F64E /* ToDoVC.swift in Sources */,
 				CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */,
+				CB8F7C4724BE38950080570D /* RequestError.swift in Sources */,
 				CB6BF2D624BDE4340065F64E /* TranslatorVC.swift in Sources */,
+				CB925B3624BF14F20049774F /* ConvertedCurrencyModel.swift in Sources */,
+				CB8F7C4524BE37D20080570D /* NetworkingRequest.swift in Sources */,
 				CB6BF2BE24BDDBE40065F64E /* SceneDelegate.swift in Sources */,
+				CB925B3B24BF60B90049774F /* UIViewController+Nofitications.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
