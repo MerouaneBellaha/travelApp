@@ -19,6 +19,10 @@ struct ConvertedCurrencyModel {
         convertedCurrencyData.rates[currency] ?? 0
     }
 
+    var currencies: String {
+        convertedCurrencyData.rates.map { $0.key }.joined(separator: "-")
+    }
+
     // MARK: - Init
 
     init(convertedCurrencyData: ConvertedCurrency, currency: String) {
