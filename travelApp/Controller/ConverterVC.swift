@@ -18,6 +18,7 @@ class ConverterVC: UIViewController {
 
     // MARK: - Properties
 
+    var coreDataManager: CoreDataManager?
     private var networkingRequest = NetworkingRequest()
     private let defaults = UserDefaults.standard
 
@@ -35,7 +36,7 @@ class ConverterVC: UIViewController {
     // MARK: - IBAction methods
 
     @IBAction func textFieldDidChange(_ sender: UITextField) {
-        guard textFieldTextController(sender) else { return }
+        guard textFieldIsUsable(sender) else { return }
         guard let amount = Double(sender.text!) else { return }
 
         var result: String {
@@ -58,7 +59,7 @@ class ConverterVC: UIViewController {
 
     // MARK: - Methods
 
-    private func textFieldTextController(_ sender: UITextField) -> Bool {
+    private func textFieldIsUsable(_ sender: UITextField) -> Bool {
         guard sender.text?.isEmpty == false,
             let text = sender.text else {
                 textFields.forEach { $0.text?.removeAll() }
@@ -101,6 +102,8 @@ class ConverterVC: UIViewController {
                 self.defaults.set(convertedCurrency.rate, forKey: "rate")
                 self.defaults.set(convertedCurrency.convertedCurrencyData.timestamp, forKey: "timestamp")
                 self.rate = self.defaults.double(forKey: "rate")
+                self.defaults.set(convertedCurrency.currencies, forKey: "currencies")
+
             }
         }
     }

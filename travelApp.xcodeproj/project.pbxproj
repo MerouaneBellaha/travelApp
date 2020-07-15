@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */; };
-		CB6BF2BE24BDDBE40065F64E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BD24BDDBE40065F64E /* SceneDelegate.swift */; };
 		CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */; };
 		CB6BF2C324BDDBE40065F64E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6BF2C124BDDBE40065F64E /* Main.storyboard */; };
 		CB6BF2C624BDDBE40065F64E /* travelApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2C424BDDBE40065F64E /* travelApp.xcdatamodeld */; };
@@ -24,12 +23,13 @@
 		CB925B3624BF14F20049774F /* ConvertedCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3524BF14F20049774F /* ConvertedCurrencyModel.swift */; };
 		CB925B3924BF36E20049774F /* UIViewController + setAlertVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */; };
 		CB925B3B24BF60B90049774F /* UIViewController+Nofitications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3A24BF60B90049774F /* UIViewController+Nofitications.swift */; };
+		CB925B3D24BF80B60049774F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3C24BF80B60049774F /* CoreDataManager.swift */; };
+		CB925B3F24BF80D70049774F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3E24BF80D70049774F /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CB6BF2B824BDDBE40065F64E /* travelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CB6BF2BD24BDDBE40065F64E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterVC.swift; sourceTree = "<group>"; };
 		CB6BF2C224BDDBE40065F64E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB6BF2C524BDDBE40065F64E /* travelApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = travelApp.xcdatamodel; sourceTree = "<group>"; };
@@ -46,6 +46,8 @@
 		CB925B3524BF14F20049774F /* ConvertedCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertedCurrencyModel.swift; sourceTree = "<group>"; };
 		CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + setAlertVc.swift"; sourceTree = "<group>"; };
 		CB925B3A24BF60B90049774F /* UIViewController+Nofitications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Nofitications.swift"; sourceTree = "<group>"; };
+		CB925B3C24BF80B60049774F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		CB925B3E24BF80D70049774F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,14 +80,12 @@
 		CB6BF2BA24BDDBE40065F64E /* travelApp */ = {
 			isa = PBXGroup;
 			children = (
-				CB6BF2D424BDDC7A0065F64E /* Controller */,
-				CB6BF2D324BDDC6D0065F64E /* View */,
 				CB6BF2D224BDDC660065F64E /* Model */,
+				CB6BF2D324BDDC6D0065F64E /* View */,
+				CB6BF2D424BDDC7A0065F64E /* Controller */,
 				CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */,
-				CB6BF2BD24BDDBE40065F64E /* SceneDelegate.swift */,
 				CB6BF2C724BDDBE60065F64E /* Assets.xcassets */,
 				CB6BF2C924BDDBE60065F64E /* LaunchScreen.storyboard */,
-				CB6BF2C424BDDBE40065F64E /* travelApp.xcdatamodeld */,
 				CB6BF2CC24BDDBE60065F64E /* Info.plist */,
 			);
 			path = travelApp;
@@ -94,10 +94,13 @@
 		CB6BF2D224BDDC660065F64E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CB6BF2C424BDDBE40065F64E /* travelApp.xcdatamodeld */,
 				CB8F7C4424BE37D20080570D /* NetworkingRequest.swift */,
 				CB8F7C4624BE38950080570D /* RequestError.swift */,
 				CB8F7C4824BE38C80080570D /* Data.swift */,
 				CB925B3524BF14F20049774F /* ConvertedCurrencyModel.swift */,
+				CB925B3C24BF80B60049774F /* CoreDataManager.swift */,
+				CB925B3E24BF80D70049774F /* CoreDataStack.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -113,12 +116,12 @@
 		CB6BF2D424BDDC7A0065F64E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CB925B3724BF36C40049774F /* Extensions */,
 				CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */,
 				CB6BF2D524BDE4340065F64E /* TranslatorVC.swift */,
 				CB6BF2D724BDE5090065F64E /* WeatherVC.swift */,
 				CB6BF2D924BDE52F0065F64E /* ToDoVC.swift */,
 				CB6BF2DB24BDE54D0065F64E /* SettingsVC.swift */,
+				CB925B3724BF36C40049774F /* Extensions */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -206,16 +209,17 @@
 				CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */,
 				CB925B3924BF36E20049774F /* UIViewController + setAlertVc.swift in Sources */,
 				CB6BF2D824BDE5090065F64E /* WeatherVC.swift in Sources */,
+				CB925B3D24BF80B60049774F /* CoreDataManager.swift in Sources */,
 				CB6BF2C624BDDBE40065F64E /* travelApp.xcdatamodeld in Sources */,
 				CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */,
 				CB8F7C4924BE38C80080570D /* Data.swift in Sources */,
+				CB925B3F24BF80D70049774F /* CoreDataStack.swift in Sources */,
 				CB6BF2DA24BDE52F0065F64E /* ToDoVC.swift in Sources */,
 				CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */,
 				CB8F7C4724BE38950080570D /* RequestError.swift in Sources */,
 				CB6BF2D624BDE4340065F64E /* TranslatorVC.swift in Sources */,
 				CB925B3624BF14F20049774F /* ConvertedCurrencyModel.swift in Sources */,
 				CB8F7C4524BE37D20080570D /* NetworkingRequest.swift in Sources */,
-				CB6BF2BE24BDDBE40065F64E /* SceneDelegate.swift in Sources */,
 				CB925B3B24BF60B90049774F /* UIViewController+Nofitications.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
