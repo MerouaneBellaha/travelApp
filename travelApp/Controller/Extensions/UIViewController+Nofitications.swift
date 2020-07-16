@@ -10,4 +10,5 @@ import UIKit
 
 extension Notification.Name {
     static let updateCurrency = Notification.Name("updateCurrency")
+    static let updateRateList = Notification.Name("updateRateList")
 }

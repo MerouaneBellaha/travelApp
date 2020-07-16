@@ -12,7 +12,3 @@ struct ConvertedCurrency: Codable {
     var rates: [String: Double]
     var timestamp: Int
 }
-
-//struct Rates: Codable {
-//    var USD: Double
-//}

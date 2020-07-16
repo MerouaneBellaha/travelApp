@@ -11,19 +11,16 @@ import UIKit
 class SettingsVC: UIViewController {
 
     @IBOutlet weak var textField: UITextField!
+    var coreDataManager: CoreDataManager?
 
-    var currencies: [String] {
-        guard let currencies = UserDefaults.standard.string(forKey: "currencies")?.components(separatedBy: "-") else { return ["USD"] }
-        return currencies
-    }
+    var currencies: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        guard let currencies = (coreDataManager?.loadItems().compactMap { $0.currency }) else { return }
+        self.currencies = currencies
     }
-
-
+    
     @IBAction func buttonTapped(_ sender: UIButton) {
         guard let currency = textField.text?.uppercased() else {
             return
