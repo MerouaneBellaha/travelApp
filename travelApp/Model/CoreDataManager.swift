@@ -20,6 +20,10 @@ final class CoreDataManager {
     func loadItems(containing text: String? = nil) -> [Rate] {
         let request: NSFetchRequest<Rate> = Rate.fetchRequest()
 
+        if let text = text {
+            request.predicate = NSPredicate(format: "currency CONTAINS[cd] %@", text)
+        }
+
         guard let items = try? context.fetch(request) else { return [] }
         return items
     }
@@ -34,9 +38,10 @@ final class CoreDataManager {
         coreDataStack.saveContext()
     }
 
-//    func createItem(named name: String) {
-//        let newItem = Rate(context: context)
-//        newItem.taskName = name
-//        coreDataStack.saveContext()
-//    }
+    func createItem(currency: String, rate: Double) {
+        let newItem = Rate(context: context)
+        newItem.currency = currency
+        newItem.rate = rate
+        coreDataStack.saveContext()
+    }
 }

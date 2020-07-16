@@ -20,7 +20,6 @@
 		CB8F7C4524BE37D20080570D /* NetworkingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4424BE37D20080570D /* NetworkingRequest.swift */; };
 		CB8F7C4724BE38950080570D /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4624BE38950080570D /* RequestError.swift */; };
 		CB8F7C4924BE38C80080570D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4824BE38C80080570D /* Data.swift */; };
-		CB925B3624BF14F20049774F /* ConvertedCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3524BF14F20049774F /* ConvertedCurrencyModel.swift */; };
 		CB925B3924BF36E20049774F /* UIViewController + setAlertVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */; };
 		CB925B3B24BF60B90049774F /* UIViewController+Nofitications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3A24BF60B90049774F /* UIViewController+Nofitications.swift */; };
 		CB925B3D24BF80B60049774F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3C24BF80B60049774F /* CoreDataManager.swift */; };
@@ -43,7 +42,6 @@
 		CB8F7C4424BE37D20080570D /* NetworkingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingRequest.swift; sourceTree = "<group>"; };
 		CB8F7C4624BE38950080570D /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		CB8F7C4824BE38C80080570D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		CB925B3524BF14F20049774F /* ConvertedCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertedCurrencyModel.swift; sourceTree = "<group>"; };
 		CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + setAlertVc.swift"; sourceTree = "<group>"; };
 		CB925B3A24BF60B90049774F /* UIViewController+Nofitications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Nofitications.swift"; sourceTree = "<group>"; };
 		CB925B3C24BF80B60049774F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 				CB8F7C4424BE37D20080570D /* NetworkingRequest.swift */,
 				CB8F7C4624BE38950080570D /* RequestError.swift */,
 				CB8F7C4824BE38C80080570D /* Data.swift */,
-				CB925B3524BF14F20049774F /* ConvertedCurrencyModel.swift */,
 				CB925B3C24BF80B60049774F /* CoreDataManager.swift */,
 				CB925B3E24BF80D70049774F /* CoreDataStack.swift */,
 			);
@@ -218,7 +215,6 @@
 				CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */,
 				CB8F7C4724BE38950080570D /* RequestError.swift in Sources */,
 				CB6BF2D624BDE4340065F64E /* TranslatorVC.swift in Sources */,
-				CB925B3624BF14F20049774F /* ConvertedCurrencyModel.swift in Sources */,
 				CB8F7C4524BE37D20080570D /* NetworkingRequest.swift in Sources */,
 				CB925B3B24BF60B90049774F /* UIViewController+Nofitications.swift in Sources */,
 			);

@@ -10,11 +10,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         guard let tabBarController = window?.rootViewController as? UITabBarController,
             let navController = tabBarController.viewControllers?.first as? UINavigationController,
-            let mainVC = navController.topViewController as? ConverterVC else{
+            let mainVC = navController.topViewController as? ConverterVC,
+            let secondNavController = tabBarController.viewControllers?.last as? UINavigationController,
+            let settingsVc = secondNavController.topViewController as? SettingsVC else {
             fatalError("Can't reach the Storyboard")
         }
+
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
         mainVC.coreDataManager = CoreDataManager(with: appDelegate.coreDataStack)
+        settingsVc.coreDataManager = CoreDataManager(with: appDelegate.coreDataStack)
         return true
     }
 

@@ -28,9 +28,16 @@ class ConverterVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        rate = defaults.double(forKey: "rate")
         currencies.first?.text = defaults.string(forKey: "currency") ?? "USD"
         setUpRate()
+
         NotificationCenter.default.addObserver(self, selector: #selector(updateCurrency(notification:)), name: .updateCurrency, object: nil)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        textFields.forEach { $0.text?.removeAll() }
     }
 
     // MARK: - IBAction methods
@@ -51,9 +58,9 @@ class ConverterVC: UIViewController {
 
     @objc
     func updateCurrency(notification: Notification) {
-         guard let currency = notification.userInfo?["currency"] as? String else { return }
+        guard let currency = notification.userInfo?["currency"] as? String else { return }
         currencies.first?.text = currency
-        setUpRate(currencyDidUpdate: true)
+        setUpRate()
         defaults.set(currency, forKey: "currency")
     }
 
@@ -78,20 +85,24 @@ class ConverterVC: UIViewController {
         return true
     }
 
-    private func setUpRate(currencyDidUpdate: Bool = false) {
-           let timeInterval = Int(Date().timeIntervalSince1970)
-           let timeStamp = defaults.integer(forKey: "timestamp")
+    private func shouldNetworkRequest() {
+        let timeInterval = Int(Date().timeIntervalSince1970)
+        let timeStamp = defaults.integer(forKey: "timestamp")
+        let dayInSeconds = 86400
+        if rate == 0 || timeInterval == 0 || (timeInterval - timeStamp) > dayInSeconds {
+            networkingRequest.getConversionRate() { self.manageResult(with: $0) }
+        }
+    }
 
-           let dayInSeconds = 86400
-           guard let currency = currencies.first?.text else { return }
+    private func setUpRate() {
+        shouldNetworkRequest()
+        let currentCurrency = currencies.first?.text
+        rate = coreDataManager?.loadItems(containing: currentCurrency).first?.rate
+        defaults.set(rate, forKey: "rate")
 
-           if currencyDidUpdate || timeInterval == 0 || (timeInterval - timeStamp) > dayInSeconds {
-               networkingRequest.getConversionRate(of: currency) { self.manageResult(with: $0) }
-           }
-           rate = defaults.double(forKey: "rate")
-       }
+    }
 
-    private func manageResult(with result: Result<ConvertedCurrencyModel, RequestError>) {
+    private func manageResult(with result: Result<ConvertedCurrency, RequestError>) {
         switch result {
         case .failure(let error):
             DispatchQueue.main.async {
@@ -99,11 +110,10 @@ class ConverterVC: UIViewController {
             }
         case .success(let convertedCurrency):
             DispatchQueue.main.async {
-                self.defaults.set(convertedCurrency.rate, forKey: "rate")
-                self.defaults.set(convertedCurrency.convertedCurrencyData.timestamp, forKey: "timestamp")
-                self.rate = self.defaults.double(forKey: "rate")
-                self.defaults.set(convertedCurrency.currencies, forKey: "currencies")
-
+                self.defaults.set(convertedCurrency.timestamp, forKey: "timestamp")
+                convertedCurrency.rates.forEach { self.coreDataManager?.createItem(currency: $0.key, rate: $0.value) }
+                let currentCurrency = self.currencies.first?.text
+                self.rate = self.coreDataManager?.loadItems(containing: currentCurrency).first?.rate
             }
         }
     }
