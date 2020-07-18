@@ -12,6 +12,7 @@ class ConverterVC: UIViewController {
     
     // MARK: - IBOutlet properties
 
+    @IBOutlet weak var timeStampLabel: UILabel!
     @IBOutlet var textFields: [UITextField]!
     @IBOutlet var currencies: [UILabel]!
 
@@ -22,15 +23,19 @@ class ConverterVC: UIViewController {
     private var networkingRequest = NetworkingRequest()
     private let defaults = UserDefaults.standard
 
-    var rate: Double!
-
+    private var rate: Double!
+    private var timeStamp: Int { defaults.integer(forKey: "timestamp") }
+    private var date: Int { Int(Date().timeIntervalSince1970) }
+    
     // MARK: - ViewLifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         rate = defaults.double(forKey: "rate")
         currencies.first?.text = defaults.string(forKey: "currency") ?? "USD"
         setUpRate()
+        setTimeStampLabel()
 
         NotificationCenter.default.addObserver(self, selector: #selector(updateCurrency(notification:)), name: .updateCurrency, object: nil)
     }
@@ -52,7 +57,14 @@ class ConverterVC: UIViewController {
         self.textFields.first(where: { $0.tag != sender.tag })?.text = result
     }
 
-
+    @IBAction func refreshRatesTapped(_ sender: UIBarButtonItem) {
+        let hourInSeconds = 3600
+        guard (date - timeStamp) > hourInSeconds else {
+            setAlertVc(with: "One update / hour only allowed")
+            return
+        }
+        networkingRequest.getConversionRate() { self.manageResult(with: $0) }
+    }
     // MARK: - @objc method
 
 
@@ -86,10 +98,8 @@ class ConverterVC: UIViewController {
     }
 
     private func shouldNetworkRequest() {
-        let timeInterval = Int(Date().timeIntervalSince1970)
-        let timeStamp = defaults.integer(forKey: "timestamp")
         let dayInSeconds = 86400
-        if rate == 0 || timeInterval == 0 || (timeInterval - timeStamp) > dayInSeconds {
+        if rate == 0 || timeStamp == 0 || (date - timeStamp) > dayInSeconds {
             networkingRequest.getConversionRate() { self.manageResult(with: $0) }
         }
     }
@@ -97,8 +107,20 @@ class ConverterVC: UIViewController {
     private func setUpRate() {
         shouldNetworkRequest()
         let currentCurrency = currencies.first?.text
-        rate = coreDataManager?.loadItems(containing: currentCurrency).first?.rate
+        rate = coreDataManager?.loadItems(entity: Rate.self, containing: currentCurrency).first?.rate
         defaults.set(rate, forKey: "rate")
+    }
+
+    /// Fixer.io free plan allows only hourly update 
+    private func setTimeStampLabel() {
+        guard timeStamp != 0 else { return }
+        let lastUpdate = Date(timeIntervalSince1970: TimeInterval(timeStamp))
+
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let dateString = formatter.string(from: lastUpdate)
+        self.timeStampLabel.text = "last rates update: " + dateString + ". Refresh to get latest rates. (one refresh / hour)"
 
     }
 
@@ -111,10 +133,16 @@ class ConverterVC: UIViewController {
         case .success(let convertedCurrency):
             DispatchQueue.main.async {
                 self.defaults.set(convertedCurrency.timestamp, forKey: "timestamp")
-                convertedCurrency.rates.forEach { self.coreDataManager?.createItem(currency: $0.key, rate: $0.value) }
+                convertedCurrency.rates.forEach { object in
+                    self.coreDataManager?.createItem(entity: Rate.self) { rate in
+                        rate.currency = object.key
+                        rate.rate = object.value
+                    }}
                 let currentCurrency = self.currencies.first?.text
-                self.rate = self.coreDataManager?.loadItems(containing: currentCurrency).first?.rate
+                self.rate = self.coreDataManager?.loadItems(entity: Rate.self, containing: currentCurrency).first?.rate
+                self.setTimeStampLabel()
             }
         }
     }
 }
+

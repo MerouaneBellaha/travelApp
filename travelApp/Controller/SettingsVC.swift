@@ -8,28 +8,39 @@
 
 import UIKit
 
-class SettingsVC: UIViewController {
+final class SettingsVC: UIViewController {
 
     @IBOutlet weak var textField: UITextField!
     var coreDataManager: CoreDataManager?
 
-    var currencies: [String] = []
+    private var currencies: [String] {
+        guard let currencies = (coreDataManager?.loadItems(entity: Rate.self).compactMap { $0.currency }) else { return [] }
+        return currencies
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let currencies = (coreDataManager?.loadItems().compactMap { $0.currency }) else { return }
-        self.currencies = currencies
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
+        let result = currencyIsAvailable()
+        guard result.0, let currency = result.1 else { return }
+        NotificationCenter.default.post(name: .updateCurrency, object: nil, userInfo: ["currency": currency])
+    }
+
+    private func currencyIsAvailable() -> (Bool, String?) {
         guard let currency = textField.text?.uppercased() else {
-            return
+            return (false, nil)
+        }
+        guard textField.text?.count == 3 else {
+            setAlertVc(with: "Devise doit comporter 3 lettres")
+            return (false, nil)
         }
         guard currencies.contains(currency) else {
             setAlertVc(with: "Currency non valable")
             textField.text?.removeAll()
-            return
+            return (false, nil)
         }
-        NotificationCenter.default.post(name: .updateCurrency, object: nil, userInfo: ["currency": currency])
+        return (true, currency)
     }
 }
