@@ -20,7 +20,7 @@ class ConverterVC: UIViewController {
     // MARK: - Properties
 
     var coreDataManager: CoreDataManager?
-    private var networkingRequest = NetworkingRequest()
+    private var httpClient = HTTPClient()
     private let defaults = UserDefaults.standard
 
     private var rate: Double!
@@ -63,7 +63,7 @@ class ConverterVC: UIViewController {
             setAlertVc(with: "One update / hour only allowed")
             return
         }
-        networkingRequest.getConversionRate() { self.manageResult(with: $0) }
+        httpClient.request(baseUrl: (K.baseURLfixer+K.fixerAPI)) { self.manageResult(with: $0) }
     }
     // MARK: - @objc method
 
@@ -99,7 +99,7 @@ class ConverterVC: UIViewController {
     private func shouldNetworkRequest() {
         let dayInSeconds = 86400
         if rate == 0 || timeStamp == 0 || (date - timeStamp) > dayInSeconds {
-            networkingRequest.getConversionRate() { self.manageResult(with: $0) }
+        httpClient.request(baseUrl: (K.baseURLfixer+K.fixerAPI)) { self.manageResult(with: $0) }
         }
     }
 
@@ -131,6 +131,7 @@ class ConverterVC: UIViewController {
             }
         case .success(let convertedCurrency):
             DispatchQueue.main.async {
+                print(convertedCurrency.rates)
                 self.defaults.set(convertedCurrency.timestamp, forKey: "timestamp")
                 convertedCurrency.rates.forEach { object in
                     self.coreDataManager?.createItem(entity: Rate.self) { rate in
