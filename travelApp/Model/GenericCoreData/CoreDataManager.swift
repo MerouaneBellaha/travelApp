@@ -29,13 +29,13 @@ final class CoreDataManager {
 
         // Must be refacto
         if let currency = currency {
-            request.predicate = NSPredicate(format: "currency CONTAINS[cd] %@", currency)
+            request.predicate = NSPredicate(format: K.currencyFormat, currency)
         }
         if let text = text {
-            request.predicate = NSPredicate(format: "taskName CONTAINS[cd] %@", text)
+            request.predicate = NSPredicate(format: K.taskFormat, text)
         }
         if T.self == Task.self {
-             request.sortDescriptors = [NSSortDescriptor(key: "taskName", ascending: true)]
+            request.sortDescriptors = [NSSortDescriptor(key: K.taskName, ascending: true)]
         }
 
         guard let items = try? (context.fetch(request).compactMap { $0 as? T }) else { return [] }

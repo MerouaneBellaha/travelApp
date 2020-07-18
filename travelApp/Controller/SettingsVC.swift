@@ -25,7 +25,7 @@ final class SettingsVC: UIViewController {
     @IBAction func buttonTapped(_ sender: UIButton) {
         let result = currencyIsAvailable()
         guard result.0, let currency = result.1 else { return }
-        NotificationCenter.default.post(name: .updateCurrency, object: nil, userInfo: ["currency": currency])
+        NotificationCenter.default.post(name: .updateCurrency, object: nil, userInfo: [K.currency: currency])
     }
 
     private func currencyIsAvailable() -> (Bool, String?) {
@@ -33,11 +33,11 @@ final class SettingsVC: UIViewController {
             return (false, nil)
         }
         guard textField.text?.count == 3 else {
-            setAlertVc(with: "Devise doit comporter 3 lettres")
+            setAlertVc(with: K.minThreeLetters)
             return (false, nil)
         }
         guard currencies.contains(currency) else {
-            setAlertVc(with: "Currency non valable")
+            setAlertVc(with: K.unvailableCurrency)
             textField.text?.removeAll()
             return (false, nil)
         }
