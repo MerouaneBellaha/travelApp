@@ -36,7 +36,10 @@ final class CoreDataManager {
         }
         if T.self == Task.self {
             request.sortDescriptors = [NSSortDescriptor(key: K.taskName, ascending: true)]
+        } else if T.self == Rate.self {
+            request.sortDescriptors = [NSSortDescriptor(key: K.currency, ascending: true)]
         }
+        // --
 
         guard let items = try? (context.fetch(request).compactMap { $0 as? T }) else { return [] }
         return items
