@@ -10,7 +10,11 @@ import CoreData
 
 open class CoreDataStack {
 
+    // MARK: - Properties
+
     let containerName: String
+
+    // MARK: - Init
 
     public init(containerName: String) {
         self.containerName = containerName
