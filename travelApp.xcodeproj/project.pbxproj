@@ -19,7 +19,9 @@
 		CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2DB24BDE54D0065F64E /* SettingsVC.swift */; };
 		CB7F046724C3093C0084D64E /* CoreDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F046624C3093C0084D64E /* CoreDataManagerTest.swift */; };
 		CB7F047124C309F60084D64E /* FakeCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F047024C309F60084D64E /* FakeCoreDataStack.swift */; };
-		CB8F7C4524BE37D20080570D /* NetworkingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4424BE37D20080570D /* NetworkingRequest.swift */; };
+		CB7F047324C310390084D64E /* HTTPEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F047224C310390084D64E /* HTTPEngine.swift */; };
+		CB7F047524C318550084D64E /* HTTPclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F047424C318550084D64E /* HTTPclient.swift */; };
+		CB7F047724C318B90084D64E /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F047624C318B90084D64E /* Constant.swift */; };
 		CB8F7C4724BE38950080570D /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4624BE38950080570D /* RequestError.swift */; };
 		CB8F7C4924BE38C80080570D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4824BE38C80080570D /* Data.swift */; };
 		CB925B3924BF36E20049774F /* UIViewController + setAlertVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */; };
@@ -55,7 +57,9 @@
 		CB7F046624C3093C0084D64E /* CoreDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTest.swift; sourceTree = "<group>"; };
 		CB7F046824C3093C0084D64E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB7F047024C309F60084D64E /* FakeCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCoreDataStack.swift; sourceTree = "<group>"; };
-		CB8F7C4424BE37D20080570D /* NetworkingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingRequest.swift; sourceTree = "<group>"; };
+		CB7F047224C310390084D64E /* HTTPEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEngine.swift; sourceTree = "<group>"; };
+		CB7F047424C318550084D64E /* HTTPclient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPclient.swift; sourceTree = "<group>"; };
+		CB7F047624C318B90084D64E /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		CB8F7C4624BE38950080570D /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		CB8F7C4824BE38C80080570D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + setAlertVc.swift"; sourceTree = "<group>"; };
@@ -117,12 +121,10 @@
 		CB6BF2D224BDDC660065F64E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CB6BF2C424BDDBE40065F64E /* travelApp.xcdatamodeld */,
-				CB8F7C4424BE37D20080570D /* NetworkingRequest.swift */,
-				CB8F7C4624BE38950080570D /* RequestError.swift */,
 				CB8F7C4824BE38C80080570D /* Data.swift */,
-				CB925B3C24BF80B60049774F /* CoreDataManager.swift */,
-				CB925B3E24BF80D70049774F /* CoreDataStack.swift */,
+				CB7F047624C318B90084D64E /* Constant.swift */,
+				CB7F047924C31C010084D64E /* GenericCoreData */,
+				CB7F047824C31BFB0084D64E /* GenericNetworking */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -156,6 +158,26 @@
 				CB7F046824C3093C0084D64E /* Info.plist */,
 			);
 			path = travelAppTests;
+			sourceTree = "<group>";
+		};
+		CB7F047824C31BFB0084D64E /* GenericNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				CB7F047224C310390084D64E /* HTTPEngine.swift */,
+				CB7F047424C318550084D64E /* HTTPclient.swift */,
+				CB8F7C4624BE38950080570D /* RequestError.swift */,
+			);
+			path = GenericNetworking;
+			sourceTree = "<group>";
+		};
+		CB7F047924C31C010084D64E /* GenericCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CB6BF2C424BDDBE40065F64E /* travelApp.xcdatamodeld */,
+				CB925B3C24BF80B60049774F /* CoreDataManager.swift */,
+				CB925B3E24BF80D70049774F /* CoreDataStack.swift */,
+			);
+			path = GenericCoreData;
 			sourceTree = "<group>";
 		};
 		CB925B3724BF36C40049774F /* Extensions */ = {
@@ -269,18 +291,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */,
+				CB7F047724C318B90084D64E /* Constant.swift in Sources */,
 				CB925B3924BF36E20049774F /* UIViewController + setAlertVc.swift in Sources */,
 				CB6BF2D824BDE5090065F64E /* WeatherVC.swift in Sources */,
+				CB7F047324C310390084D64E /* HTTPEngine.swift in Sources */,
 				CB925B3D24BF80B60049774F /* CoreDataManager.swift in Sources */,
 				CB6BF2C624BDDBE40065F64E /* travelApp.xcdatamodeld in Sources */,
 				CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */,
 				CB8F7C4924BE38C80080570D /* Data.swift in Sources */,
 				CB925B3F24BF80D70049774F /* CoreDataStack.swift in Sources */,
 				CB6BF2DA24BDE52F0065F64E /* ToDoVC.swift in Sources */,
+				CB7F047524C318550084D64E /* HTTPclient.swift in Sources */,
 				CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */,
 				CB8F7C4724BE38950080570D /* RequestError.swift in Sources */,
 				CB6BF2D624BDE4340065F64E /* TranslatorVC.swift in Sources */,
-				CB8F7C4524BE37D20080570D /* NetworkingRequest.swift in Sources */,
 				CB925B3B24BF60B90049774F /* UIViewController+Nofitications.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
