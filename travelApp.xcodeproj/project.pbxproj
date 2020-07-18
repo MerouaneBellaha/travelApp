@@ -17,6 +17,8 @@
 		CB6BF2D824BDE5090065F64E /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2D724BDE5090065F64E /* WeatherVC.swift */; };
 		CB6BF2DA24BDE52F0065F64E /* ToDoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2D924BDE52F0065F64E /* ToDoVC.swift */; };
 		CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2DB24BDE54D0065F64E /* SettingsVC.swift */; };
+		CB7F046724C3093C0084D64E /* CoreDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F046624C3093C0084D64E /* CoreDataManagerTest.swift */; };
+		CB7F047124C309F60084D64E /* FakeCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F047024C309F60084D64E /* FakeCoreDataStack.swift */; };
 		CB8F7C4524BE37D20080570D /* NetworkingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4424BE37D20080570D /* NetworkingRequest.swift */; };
 		CB8F7C4724BE38950080570D /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4624BE38950080570D /* RequestError.swift */; };
 		CB8F7C4924BE38C80080570D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4824BE38C80080570D /* Data.swift */; };
@@ -25,6 +27,16 @@
 		CB925B3D24BF80B60049774F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3C24BF80B60049774F /* CoreDataManager.swift */; };
 		CB925B3F24BF80D70049774F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3E24BF80D70049774F /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CB7F046924C3093C0084D64E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB6BF2B024BDDBE40065F64E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB6BF2B724BDDBE40065F64E;
+			remoteInfo = travelApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		CB6BF2B824BDDBE40065F64E /* travelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +51,10 @@
 		CB6BF2D724BDE5090065F64E /* WeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVC.swift; sourceTree = "<group>"; };
 		CB6BF2D924BDE52F0065F64E /* ToDoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoVC.swift; sourceTree = "<group>"; };
 		CB6BF2DB24BDE54D0065F64E /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		CB7F046424C3093C0084D64E /* travelAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = travelAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB7F046624C3093C0084D64E /* CoreDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTest.swift; sourceTree = "<group>"; };
+		CB7F046824C3093C0084D64E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB7F047024C309F60084D64E /* FakeCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCoreDataStack.swift; sourceTree = "<group>"; };
 		CB8F7C4424BE37D20080570D /* NetworkingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingRequest.swift; sourceTree = "<group>"; };
 		CB8F7C4624BE38950080570D /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		CB8F7C4824BE38C80080570D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -56,6 +72,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CB7F046124C3093C0084D64E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -63,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				CB6BF2BA24BDDBE40065F64E /* travelApp */,
+				CB7F046524C3093C0084D64E /* travelAppTests */,
 				CB6BF2B924BDDBE40065F64E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				CB6BF2B824BDDBE40065F64E /* travelApp.app */,
+				CB7F046424C3093C0084D64E /* travelAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +148,16 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		CB7F046524C3093C0084D64E /* travelAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				CB7F046624C3093C0084D64E /* CoreDataManagerTest.swift */,
+				CB7F047024C309F60084D64E /* FakeCoreDataStack.swift */,
+				CB7F046824C3093C0084D64E /* Info.plist */,
+			);
+			path = travelAppTests;
+			sourceTree = "<group>";
+		};
 		CB925B3724BF36C40049774F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +187,24 @@
 			productReference = CB6BF2B824BDDBE40065F64E /* travelApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CB7F046324C3093C0084D64E /* travelAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB7F046D24C3093C0084D64E /* Build configuration list for PBXNativeTarget "travelAppTests" */;
+			buildPhases = (
+				CB7F046024C3093C0084D64E /* Sources */,
+				CB7F046124C3093C0084D64E /* Frameworks */,
+				CB7F046224C3093C0084D64E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB7F046A24C3093C0084D64E /* PBXTargetDependency */,
+			);
+			name = travelAppTests;
+			productName = travelAppTests;
+			productReference = CB7F046424C3093C0084D64E /* travelAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -164,6 +217,10 @@
 				TargetAttributes = {
 					CB6BF2B724BDDBE40065F64E = {
 						CreatedOnToolsVersion = 11.3;
+					};
+					CB7F046324C3093C0084D64E = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = CB6BF2B724BDDBE40065F64E;
 					};
 				};
 			};
@@ -181,6 +238,7 @@
 			projectRoot = "";
 			targets = (
 				CB6BF2B724BDDBE40065F64E /* travelApp */,
+				CB7F046324C3093C0084D64E /* travelAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -193,6 +251,13 @@
 				CB6BF2CB24BDDBE60065F64E /* LaunchScreen.storyboard in Resources */,
 				CB6BF2C824BDDBE60065F64E /* Assets.xcassets in Resources */,
 				CB6BF2C324BDDBE40065F64E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB7F046224C3093C0084D64E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +285,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CB7F046024C3093C0084D64E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB7F047124C309F60084D64E /* FakeCoreDataStack.swift in Sources */,
+				CB7F046724C3093C0084D64E /* CoreDataManagerTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CB7F046A24C3093C0084D64E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CB6BF2B724BDDBE40065F64E /* travelApp */;
+			targetProxy = CB7F046924C3093C0084D64E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CB6BF2C124BDDBE40065F64E /* Main.storyboard */ = {
@@ -394,6 +476,46 @@
 			};
 			name = Release;
 		};
+		CB7F046B24C3093C0084D64E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K8M973GY56;
+				INFOPLIST_FILE = travelAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.merouanebellaha.travelAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/travelApp.app/travelApp";
+			};
+			name = Debug;
+		};
+		CB7F046C24C3093C0084D64E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K8M973GY56;
+				INFOPLIST_FILE = travelAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.merouanebellaha.travelAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/travelApp.app/travelApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -411,6 +533,15 @@
 			buildConfigurations = (
 				CB6BF2D024BDDBE60065F64E /* Debug */,
 				CB6BF2D124BDDBE60065F64E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB7F046D24C3093C0084D64E /* Build configuration list for PBXNativeTarget "travelAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB7F046B24C3093C0084D64E /* Debug */,
+				CB7F046C24C3093C0084D64E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

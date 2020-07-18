@@ -9,25 +9,34 @@
 import CoreData
 
 final class CoreDataManager {
+
+    // MARK: - Properties
+
     var context: NSManagedObjectContext
     var coreDataStack: CoreDataStack
+
+    // MARK: - Init
 
     init(with coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
         self.context = coreDataStack.context
     }
 
+    // MARK: - Methods
+
     func loadItems<T: NSManagedObject>(entity: T.Type, currency: String? = nil, text: String? = nil) -> [T] {
         let request = T.fetchRequest()
 
+        // Must be refacto
         if let currency = currency {
             request.predicate = NSPredicate(format: "currency CONTAINS[cd] %@", currency)
         }
         if let text = text {
             request.predicate = NSPredicate(format: "taskName CONTAINS[cd] %@", text)
         }
-        
-//        request.sortDescriptors = [NSSortDescriptor(key: "taskName", ascending: true)]
+        if T.self == Task.self {
+             request.sortDescriptors = [NSSortDescriptor(key: "taskName", ascending: true)]
+        }
 
         guard let items = try? (context.fetch(request).compactMap { $0 as? T }) else { return [] }
         return items

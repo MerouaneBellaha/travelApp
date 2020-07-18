@@ -67,7 +67,6 @@ class ConverterVC: UIViewController {
     }
     // MARK: - @objc method
 
-
     @objc
     func updateCurrency(notification: Notification) {
         guard let currency = notification.userInfo?["currency"] as? String else { return }

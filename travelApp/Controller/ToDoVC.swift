@@ -10,15 +10,21 @@ import UIKit
 
 class ToDoVC: UIViewController {
 
+    // MARK: - IBOutlet properties
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noTaskLabel: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
 
+    // MARK: - Properties
+
     var coreDataManager: CoreDataManager?
-    var searchText: String = "" { didSet { tableView.reloadData() }}
-    var loadedItems: [Task] {
+    private var searchText: String = "" { didSet { tableView.reloadData() }}
+    private var loadedItems: [Task] {
         (searchBar.text?.isEmpty == true ? coreDataManager?.loadItems(entity: Task.self) : coreDataManager?.loadItems(entity: Task.self, text: searchText)) ?? []
     }
+
+    // MARK: - ViewLifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +33,7 @@ class ToDoVC: UIViewController {
         searchBar.delegate = self
     }
 
+    // MARK: - IBAction methods
 
     @IBAction func addTaskTapped(_ sender: UIBarButtonItem) {
         setAlertTextField { [unowned self] text in
@@ -34,11 +41,14 @@ class ToDoVC: UIViewController {
             self.tableView.reloadData()
         }
     }
+
     @IBAction func resetTapped(_ sender: UIBarButtonItem) {
         coreDataManager?.deleteItems(entity: Task.self)
         tableView.reloadData()
     }
 }
+
+    // MARK: - UITableViewDataSource
 
 extension ToDoVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,6 +63,8 @@ extension ToDoVC: UITableViewDataSource {
     }
 }
 
+    // MARK: - UITableViewDelegate
+
 extension ToDoVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -61,6 +73,8 @@ extension ToDoVC: UITableViewDelegate {
         }
     }
 }
+
+    // MARK: - UISearchBarDelegate
 
 extension ToDoVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

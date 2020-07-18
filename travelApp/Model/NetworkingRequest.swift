@@ -50,7 +50,6 @@ class NetworkingRequest {
             
             guard let responseJson = try? JSONDecoder().decode(ConvertedCurrency.self, from: data) else {
                 callBack(.failure(.noData))
-
                 return
             }
             callBack(.success(responseJson))
