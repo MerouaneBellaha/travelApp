@@ -32,6 +32,7 @@ struct K {
     // MARK: - cells
 
     static let taskCell = "taskCell"
+    static let rateCell = "rateCell"
 
     // MARK: - Basic
 

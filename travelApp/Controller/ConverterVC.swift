@@ -14,8 +14,10 @@ class ConverterVC: UIViewController {
 
     @IBOutlet weak var timeStampLabel: UILabel!
     @IBOutlet var textFields: [UITextField]!
-    @IBOutlet var currencies: [UILabel]!
-
+    @IBOutlet var currencyLabels: [UILabel]!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
 
     // MARK: - Properties
 
@@ -26,14 +28,28 @@ class ConverterVC: UIViewController {
     private var rate: Double!
     private var timeStamp: Int { defaults.integer(forKey: K.timeStamp) }
     private var date: Int { Int(Date().timeIntervalSince1970) }
+    private var currencyList: [Rate] {
+        switch searchBar.text?.isEmpty {
+        case true:
+            guard let currencies = (coreDataManager?.loadItems(entity: Rate.self)) else { return [] }
+            return currencies
+            case false:
+            guard let currencies = (coreDataManager?.loadItems(entity: Rate.self, currency: searchBar.text)) else { return [] }
+            return currencies
+        default: return []
+        }
+    }
     
     // MARK: - ViewLifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        searchBar.delegate = self
 
         rate = defaults.double(forKey: K.rate)
-        currencies.first?.text = defaults.string(forKey: K.currency) ?? K.USD
+        currencyLabels.first?.text = defaults.string(forKey: K.currency) ?? K.USD
         setUpRate()
         setTimeStampLabel()
 
@@ -70,7 +86,7 @@ class ConverterVC: UIViewController {
     @objc
     func updateCurrency(notification: Notification) {
         guard let currency = notification.userInfo?[K.currency] as? String else { return }
-        currencies.first?.text = currency
+        currencyLabels.first?.text = currency
         setUpRate()
         defaults.set(currency, forKey: K.currency)
     }
@@ -105,7 +121,7 @@ class ConverterVC: UIViewController {
 
     private func setUpRate() {
         shouldNetworkRequest()
-        let currentCurrency = currencies.first?.text
+        let currentCurrency = currencyLabels.first?.text
         rate = coreDataManager?.loadItems(entity: Rate.self, currency: currentCurrency).first?.rate
         defaults.set(rate, forKey: K.rate)
     }
@@ -132,17 +148,52 @@ class ConverterVC: UIViewController {
         case .success(let convertedCurrency):
             DispatchQueue.main.async {
                 print(convertedCurrency.rates)
+                self.coreDataManager?.deleteItems(entity: Rate.self)
                 self.defaults.set(convertedCurrency.timestamp, forKey: K.timeStamp)
                 convertedCurrency.rates.forEach { object in
                     self.coreDataManager?.createItem(entity: Rate.self) { rate in
                         rate.currency = object.key
                         rate.rate = object.value
                     }}
-                let currentCurrency = self.currencies.first?.text
+                let currentCurrency = self.currencyLabels.first?.text
                 self.rate = self.coreDataManager?.loadItems(entity: Rate.self, currency: currentCurrency).first?.rate
                 self.setTimeStampLabel()
+                self.tableView.reloadData()
             }
         }
     }
 }
 
+    // MARK: - UITableViewDelegate
+
+extension ConverterVC: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.animateCellBackground()
+        currencyLabels.first?.text = currencyList[indexPath.row].currency
+        setUpRate()
+        defaults.set(currencyList[indexPath.row].currency, forKey: K.currency)
+        textFields.forEach { $0.text?.removeAll() }
+    }
+}
+
+    // MARK: - UITableViewDataSource
+
+extension ConverterVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return currencyList.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.rateCell, for: indexPath)
+        cell.detailTextLabel?.text = (String(currencyList[indexPath.row].rate))
+        cell.textLabel?.text = currencyList[indexPath.row].currency
+        return cell
+    }
+}
+
+extension ConverterVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        tableView.reloadData()
+    }
+}
