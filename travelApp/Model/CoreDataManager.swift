@@ -17,14 +17,17 @@ final class CoreDataManager {
         self.context = coreDataStack.context
     }
 
-    func loadItems<T: NSManagedObject>(entity: T.Type, containing text: String? = nil) -> [T] {
+    func loadItems<T: NSManagedObject>(entity: T.Type, currency: String? = nil, text: String? = nil) -> [T] {
         let request = T.fetchRequest()
 
+        if let currency = currency {
+            request.predicate = NSPredicate(format: "currency CONTAINS[cd] %@", currency)
+        }
         if let text = text {
-            request.predicate = NSPredicate(format: "currency CONTAINS[cd] %@", text)
+            request.predicate = NSPredicate(format: "taskName CONTAINS[cd] %@", text)
         }
         
-        request.sortDescriptors = [NSSortDescriptor(key: "taskName", ascending: true)]
+//        request.sortDescriptors = [NSSortDescriptor(key: "taskName", ascending: true)]
 
         guard let items = try? (context.fetch(request).compactMap { $0 as? T }) else { return [] }
         return items
@@ -35,4 +38,15 @@ final class CoreDataManager {
         callBack(newItem)
         coreDataStack.saveContext()
     }
+
+    func deleteItems<T: NSManagedObject>(entity: T.Type) {
+        loadItems(entity: entity).forEach { context.delete($0)}
+        coreDataStack.saveContext()
+    }
+
+    func deleteItem<T: NSManagedObject>(item: T) {
+        context.delete(item)
+        coreDataStack.saveContext()
+    }
+
 }
