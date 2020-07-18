@@ -326,8 +326,16 @@
                         <viewLayoutGuide key="safeArea" id="HZQ-0h-1Fd"/>
                     </view>
                     <navigationItem key="navigationItem" title="To do" id="hlP-3r-eXU">
-                        <barButtonItem key="leftBarButtonItem" title="Reset" id="r3K-WA-xfz"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wla-dX-sUZ"/>
+                        <barButtonItem key="leftBarButtonItem" title="Reset" id="r3K-WA-xfz">
+                            <connections>
+                                <action selector="resetTapped:" destination="N8U-FK-Hmr" id="QlV-de-RIy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wla-dX-sUZ">
+                            <connections>
+                                <action selector="addTaskTapped:" destination="N8U-FK-Hmr" id="kUZ-t0-7cg"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="noTaskLabel" destination="zec-QG-J3U" id="BWX-UO-DVy"/>

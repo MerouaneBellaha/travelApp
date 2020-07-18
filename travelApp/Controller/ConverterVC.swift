@@ -107,7 +107,7 @@ class ConverterVC: UIViewController {
     private func setUpRate() {
         shouldNetworkRequest()
         let currentCurrency = currencies.first?.text
-        rate = coreDataManager?.loadItems(entity: Rate.self, containing: currentCurrency).first?.rate
+        rate = coreDataManager?.loadItems(entity: Rate.self, currency: currentCurrency).first?.rate
         defaults.set(rate, forKey: "rate")
     }
 
@@ -139,7 +139,7 @@ class ConverterVC: UIViewController {
                         rate.rate = object.value
                     }}
                 let currentCurrency = self.currencies.first?.text
-                self.rate = self.coreDataManager?.loadItems(entity: Rate.self, containing: currentCurrency).first?.rate
+                self.rate = self.coreDataManager?.loadItems(entity: Rate.self, currency: currentCurrency).first?.rate
                 self.setTimeStampLabel()
             }
         }
