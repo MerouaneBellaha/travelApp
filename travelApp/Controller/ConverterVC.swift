@@ -24,7 +24,7 @@ class ConverterVC: UIViewController {
     private let defaults = UserDefaults.standard
 
     private var rate: Double!
-    private var timeStamp: Int { defaults.integer(forKey: "timestamp") }
+    private var timeStamp: Int { defaults.integer(forKey: K.timeStamp) }
     private var date: Int { Int(Date().timeIntervalSince1970) }
     
     // MARK: - ViewLifeCycle
@@ -32,8 +32,8 @@ class ConverterVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        rate = defaults.double(forKey: "rate")
-        currencies.first?.text = defaults.string(forKey: "currency") ?? "USD"
+        rate = defaults.double(forKey: K.rate)
+        currencies.first?.text = defaults.string(forKey: K.currency) ?? K.USD
         setUpRate()
         setTimeStampLabel()
 
@@ -52,7 +52,7 @@ class ConverterVC: UIViewController {
         guard let amount = Double(sender.text!) else { return }
 
         var result: String {
-            sender.tag == 0 ? String(format: "%.2f", amount / rate) : String(format: "%.2f", amount * rate)
+            sender.tag == 0 ? String(format: K.twoDecimals, amount / rate) : String(format: K.twoDecimals, amount * rate)
         }
         self.textFields.first(where: { $0.tag != sender.tag })?.text = result
     }
@@ -60,7 +60,7 @@ class ConverterVC: UIViewController {
     @IBAction func refreshRatesTapped(_ sender: UIBarButtonItem) {
         let hourInSeconds = 3600
         guard (date - timeStamp) > hourInSeconds else {
-            setAlertVc(with: "One update / hour only allowed")
+            setAlertVc(with: K.oneByHour)
             return
         }
         httpClient.request(baseUrl: (K.baseURLfixer+K.fixerAPI)) { self.manageResult(with: $0) }
@@ -69,10 +69,10 @@ class ConverterVC: UIViewController {
 
     @objc
     func updateCurrency(notification: Notification) {
-        guard let currency = notification.userInfo?["currency"] as? String else { return }
+        guard let currency = notification.userInfo?[K.currency] as? String else { return }
         currencies.first?.text = currency
         setUpRate()
-        defaults.set(currency, forKey: "currency")
+        defaults.set(currency, forKey: K.currency)
     }
 
     // MARK: - Methods
@@ -83,13 +83,13 @@ class ConverterVC: UIViewController {
                 textFields.forEach { $0.text?.removeAll() }
                 return false
         }
-        guard text != "." else {
-            setAlertVc(with: "Vous ne pouvez pas démarrer avec un point")
+        guard text != K.point else {
+            setAlertVc(with: K.startWithPoint)
             sender.text?.removeAll()
             return false
         }
-        guard (text.filter { $0 == "." }.count) < 2 else {
-            setAlertVc(with: "Vous ne pouvez pas ajouter un second point")
+        guard (text.filter { $0 == Character(K.point) }.count) < 2 else {
+            setAlertVc(with: K.twoPoints)
             sender.text?.removeLast()
             return false
         }
@@ -107,7 +107,7 @@ class ConverterVC: UIViewController {
         shouldNetworkRequest()
         let currentCurrency = currencies.first?.text
         rate = coreDataManager?.loadItems(entity: Rate.self, currency: currentCurrency).first?.rate
-        defaults.set(rate, forKey: "rate")
+        defaults.set(rate, forKey: K.rate)
     }
 
     /// Fixer.io free plan allows only hourly update 
@@ -117,9 +117,9 @@ class ConverterVC: UIViewController {
 
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        formatter.dateFormat = K.dateFormat
         let dateString = formatter.string(from: lastUpdate)
-        self.timeStampLabel.text = "last rates update: " + dateString + ". Refresh to get latest rates. (one refresh / hour)"
+        self.timeStampLabel.text = K.lastUpdate + dateString + K.refresh
 
     }
 
@@ -132,7 +132,7 @@ class ConverterVC: UIViewController {
         case .success(let convertedCurrency):
             DispatchQueue.main.async {
                 print(convertedCurrency.rates)
-                self.defaults.set(convertedCurrency.timestamp, forKey: "timestamp")
+                self.defaults.set(convertedCurrency.timestamp, forKey: K.timeStamp)
                 convertedCurrency.rates.forEach { object in
                     self.coreDataManager?.createItem(entity: Rate.self) { rate in
                         rate.currency = object.key

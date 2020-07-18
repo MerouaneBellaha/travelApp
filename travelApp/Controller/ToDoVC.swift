@@ -52,12 +52,12 @@ class ToDoVC: UIViewController {
 
 extension ToDoVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        noTaskLabel.text = coreDataManager?.loadItems(entity: Task.self).isEmpty ?? true ? "no task" : .none
+        noTaskLabel.text = coreDataManager?.loadItems(entity: Task.self).isEmpty ?? true ? K.noTask : .none
         return loadedItems.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.taskCell, for: indexPath)
         cell.textLabel?.text = loadedItems[indexPath.row].taskName
         return cell
     }
