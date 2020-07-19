@@ -25,10 +25,11 @@
 		CB8F7C4724BE38950080570D /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4624BE38950080570D /* RequestError.swift */; };
 		CB8F7C4924BE38C80080570D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4824BE38C80080570D /* Data.swift */; };
 		CB925B3924BF36E20049774F /* UIViewController + setAlertVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */; };
-		CB925B3B24BF60B90049774F /* UIViewController+Nofitications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3A24BF60B90049774F /* UIViewController+Nofitications.swift */; };
+		CB925B3B24BF60B90049774F /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3A24BF60B90049774F /* NotificationName.swift */; };
 		CB925B3D24BF80B60049774F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3C24BF80B60049774F /* CoreDataManager.swift */; };
 		CB925B3F24BF80D70049774F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3E24BF80D70049774F /* CoreDataStack.swift */; };
 		CBC5FE7E24C3920C00B671A3 /* UIView + animateCellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5FE7D24C3920C00B671A3 /* UIView + animateCellBackground.swift */; };
+		CBFB8BA924C3C4E000318370 /* UIViewController + setKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB8BA824C3C4E000318370 /* UIViewController + setKeyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,10 +65,11 @@
 		CB8F7C4624BE38950080570D /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		CB8F7C4824BE38C80080570D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + setAlertVc.swift"; sourceTree = "<group>"; };
-		CB925B3A24BF60B90049774F /* UIViewController+Nofitications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Nofitications.swift"; sourceTree = "<group>"; };
+		CB925B3A24BF60B90049774F /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		CB925B3C24BF80B60049774F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		CB925B3E24BF80D70049774F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		CBC5FE7D24C3920C00B671A3 /* UIView + animateCellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + animateCellBackground.swift"; sourceTree = "<group>"; };
+		CBFB8BA824C3C4E000318370 /* UIViewController + setKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + setKeyboard.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,8 +188,9 @@
 			isa = PBXGroup;
 			children = (
 				CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */,
-				CB925B3A24BF60B90049774F /* UIViewController+Nofitications.swift */,
+				CB925B3A24BF60B90049774F /* NotificationName.swift */,
 				CBC5FE7D24C3920C00B671A3 /* UIView + animateCellBackground.swift */,
+				CBFB8BA824C3C4E000318370 /* UIViewController + setKeyboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -307,8 +310,9 @@
 				CB7F047524C318550084D64E /* HTTPclient.swift in Sources */,
 				CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */,
 				CB8F7C4724BE38950080570D /* RequestError.swift in Sources */,
+				CBFB8BA924C3C4E000318370 /* UIViewController + setKeyboard.swift in Sources */,
 				CB6BF2D624BDE4340065F64E /* TranslatorVC.swift in Sources */,
-				CB925B3B24BF60B90049774F /* UIViewController+Nofitications.swift in Sources */,
+				CB925B3B24BF60B90049774F /* NotificationName.swift in Sources */,
 				CBC5FE7E24C3920C00B671A3 /* UIView + animateCellBackground.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
