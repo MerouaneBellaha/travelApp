@@ -11,7 +11,10 @@ import UIKit
 final class SettingsVC: UIViewController {
 
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var cityTextField: UITextField!
+
     var coreDataManager: CoreDataManager?
+    var defaults = UserDefaults.standard
 
     private var currencies: [String] {
         guard let currencies = (coreDataManager?.loadItems(entity: Rate.self).compactMap { $0.currency }) else { return [] }
@@ -22,10 +25,14 @@ final class SettingsVC: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func buttonTapped(_ sender: UIButton) {
+    @IBAction func currencyButtonTapped(_ sender: UIButton) {
         let result = currencyIsAvailable()
         guard result.0, let currency = result.1 else { return }
         NotificationCenter.default.post(name: .updateCurrency, object: nil, userInfo: [K.currency: currency])
+    }
+
+    @IBAction func cityButtonTapped(_ sender: UIButton) {
+        defaults.set(cityTextField.text, forKey: "city")
     }
 
     private func currencyIsAvailable() -> (Bool, String?) {

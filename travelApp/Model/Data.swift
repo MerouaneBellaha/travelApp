@@ -8,7 +8,29 @@
 
 import Foundation
 
-struct ConvertedCurrency: Codable {
+struct CurrencyData: Codable {
     var rates: [String: Double]
     var timestamp: Int
+}
+
+
+struct WeatherData: Decodable {
+    let main: Main
+    let weather: [Weather]
+    let name: String
+    let coord: Coord
+}
+
+struct Main: Decodable {
+    var temp: Double
+}
+
+struct Weather: Decodable {
+    var id: Int
+    var description: String
+}
+
+struct Coord: Decodable {
+    var lon: Double
+    var lat: Double
 }

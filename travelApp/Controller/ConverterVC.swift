@@ -142,7 +142,7 @@ class ConverterVC: UIViewController {
 
     }
 
-    private func manageResult(with result: Result<ConvertedCurrency, RequestError>) {
+    private func manageResult(with result: Result<CurrencyData, RequestError>) {
         switch result {
         case .failure(let error):
             DispatchQueue.main.async {

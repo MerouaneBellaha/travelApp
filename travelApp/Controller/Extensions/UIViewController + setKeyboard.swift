@@ -29,8 +29,9 @@ extension UIViewController {
         textFields.forEach { $0.inputAccessoryView = bar }
     }
 
-    func setUpKeyboard(textFields: [UITextField]) {
+    func setUpKeyboard(textFields: [UITextField]? = []) {
         hideKeyboardWhenTappedAround()
+        guard let textFields = textFields else { return }
         setUpToolbar(textFields: textFields)
     }
 }
