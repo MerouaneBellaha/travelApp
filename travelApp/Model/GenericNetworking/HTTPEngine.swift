@@ -25,7 +25,8 @@ final class HTTPEngine {
 
     // MARK: - Methods
     func request(baseUrl: String, parameters: [String] = [], callback: @escaping HTTPResponse) {
-        guard let url = URL(string: baseUrl + parameters.joined()) else { return }
+        let parameters = parameters.joined().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        guard let url = URL(string: baseUrl + (parameters ?? "")) else { return }
         task?.cancel()
         task = session.dataTask(with: url) { data, response, error in
             guard let response = response as? HTTPURLResponse else {
