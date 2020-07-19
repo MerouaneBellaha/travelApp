@@ -167,8 +167,8 @@
 		CB7F047824C31BFB0084D64E /* GenericNetworking */ = {
 			isa = PBXGroup;
 			children = (
-				CB7F047224C310390084D64E /* HTTPEngine.swift */,
 				CB7F047424C318550084D64E /* HTTPclient.swift */,
+				CB7F047224C310390084D64E /* HTTPEngine.swift */,
 				CB8F7C4624BE38950080570D /* RequestError.swift */,
 			);
 			path = GenericNetworking;
