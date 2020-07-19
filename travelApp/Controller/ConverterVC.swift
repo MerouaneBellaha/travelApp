@@ -33,7 +33,7 @@ class ConverterVC: UIViewController {
         case true:
             guard let currencies = (coreDataManager?.loadItems(entity: Rate.self)) else { return [] }
             return currencies
-            case false:
+        case false:
             guard let currencies = (coreDataManager?.loadItems(entity: Rate.self, currency: searchBar.text)) else { return [] }
             return currencies
         default: return []
@@ -47,6 +47,10 @@ class ConverterVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+
+        hideKeyboardWhenTappedAround()
+        tableView.keyboardDismissMode = .onDrag
+        setupToolbar(textFields: textFields)
 
         rate = defaults.double(forKey: K.rate)
         currencyLabels.first?.text = defaults.string(forKey: K.currency) ?? K.USD
@@ -115,7 +119,7 @@ class ConverterVC: UIViewController {
     private func shouldNetworkRequest() {
         let dayInSeconds = 86400
         if rate == 0 || timeStamp == 0 || (date - timeStamp) > dayInSeconds {
-        httpClient.request(baseUrl: (K.baseURLfixer+K.fixerAPI)) { self.manageResult(with: $0) }
+            httpClient.request(baseUrl: (K.baseURLfixer+K.fixerAPI)) { self.manageResult(with: $0) }
         }
     }
 
@@ -164,7 +168,8 @@ class ConverterVC: UIViewController {
     }
 }
 
-    // MARK: - UITableViewDelegate
+
+// MARK: - UITableViewDelegate
 
 extension ConverterVC: UITableViewDelegate {
 
@@ -177,7 +182,7 @@ extension ConverterVC: UITableViewDelegate {
     }
 }
 
-    // MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ConverterVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -195,5 +200,9 @@ extension ConverterVC: UITableViewDataSource {
 extension ConverterVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         tableView.reloadData()
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
     }
 }

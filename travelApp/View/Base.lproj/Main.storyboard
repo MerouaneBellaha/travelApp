@@ -11,12 +11,12 @@
         <!--Tab Bar Controller-->
         <scene sceneID="6cl-H4-SaH">
             <objects>
-                <tabBarController id="N5g-h3-nF8" sceneMemberID="viewController">
+                <tabBarController interfaceStyle="light" id="N5g-h3-nF8" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="LAV-8K-TIr"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="centered" itemSpacing="10" itemWidth="60" id="bgu-Ub-Ctd">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="bgu-Ub-Ctd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="099-Ba-wNw" kind="relationship" relationship="viewControllers" id="qhb-Jw-REd"/>
@@ -34,7 +34,8 @@
         <scene sceneID="BcD-81-DIJ">
             <objects>
                 <navigationController id="099-Ba-wNw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="eurosign.circle" catalog="system" selectedImage="eurosign.circle.fill" id="5lo-A0-iNf"/>
+                    <tabBarItem key="tabBarItem" image="settings" id="vbF-sM-Cfj"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="osv-wS-RUo">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -45,6 +46,9 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ydL-ag-0em">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="Hoj-fk-EDa" kind="relationship" relationship="rootViewController" id="tAd-Cx-kE8"/>
                     </connections>
@@ -128,7 +132,7 @@
                             </label>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="search for a currency..." translatesAutoresizingMaskIntoConstraints="NO" id="HoI-h0-7jH">
                                 <rect key="frame" x="20" y="337.5" width="374" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kvk-TQ-G3m">
                                 <rect key="frame" x="0.0" y="393.5" width="414" height="419.5"/>
@@ -292,7 +296,7 @@
             <objects>
                 <viewController id="Lxc-ot-PJ8" customClass="TranslatorVC" customModule="travelApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dYv-YY-Hnx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="hTp-cQ-D3D"/>
@@ -308,7 +312,7 @@
             <objects>
                 <viewController id="irc-Kg-K3e" customClass="WeatherVC" customModule="travelApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fnc-Ae-205">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="pAL-Qv-LqJ"/>
@@ -324,7 +328,7 @@
             <objects>
                 <viewController id="N8U-FK-Hmr" customClass="ToDoVC" customModule="travelApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W98-gv-bx0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ee1-gr-dXy">
@@ -409,7 +413,7 @@
             <objects>
                 <viewController id="G6b-Bv-j7I" customClass="SettingsVC" customModule="travelApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5FF-ga-FgM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OV1-Ba-TPX">
@@ -472,10 +476,9 @@
     <resources>
         <image name="cloud.sun" catalog="system" width="64" height="44"/>
         <image name="cloud.sun.fill" catalog="system" width="64" height="44"/>
-        <image name="eurosign.circle" catalog="system" width="64" height="60"/>
-        <image name="eurosign.circle.fill" catalog="system" width="64" height="60"/>
         <image name="gear" catalog="system" width="64" height="58"/>
         <image name="list.bullet" catalog="system" width="64" height="44"/>
+        <image name="settings" width="17" height="17"/>
         <image name="t.bubble" catalog="system" width="64" height="54"/>
         <image name="t.bubble.fill" catalog="system" width="64" height="54"/>
     </resources>
