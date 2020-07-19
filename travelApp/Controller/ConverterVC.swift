@@ -48,9 +48,8 @@ class ConverterVC: UIViewController {
         tableView.dataSource = self
         searchBar.delegate = self
 
-        hideKeyboardWhenTappedAround()
         tableView.keyboardDismissMode = .onDrag
-        setupToolbar(textFields: textFields)
+        setUpKeyboard(textFields: textFields)
 
         rate = defaults.double(forKey: K.rate)
         currencyLabels.first?.text = defaults.string(forKey: K.currency) ?? K.USD
@@ -196,6 +195,8 @@ extension ConverterVC: UITableViewDataSource {
         return cell
     }
 }
+
+    // MARK: - UISearchBarDelegate
 
 extension ConverterVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

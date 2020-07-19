@@ -17,6 +17,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="bgu-Ub-Ctd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="099-Ba-wNw" kind="relationship" relationship="viewControllers" id="qhb-Jw-REd"/>
@@ -34,7 +35,7 @@
         <scene sceneID="BcD-81-DIJ">
             <objects>
                 <navigationController id="099-Ba-wNw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" image="settings" id="vbF-sM-Cfj"/>
+                    <tabBarItem key="tabBarItem" title="" image="converter" id="vbF-sM-Cfj"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="osv-wS-RUo">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -227,7 +228,7 @@
         <scene sceneID="I2V-Fa-fcU">
             <objects>
                 <navigationController id="kpq-OV-vxR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="t.bubble" catalog="system" selectedImage="t.bubble.fill" id="Shs-xt-hgC"/>
+                    <tabBarItem key="tabBarItem" title="" image="translator" id="Shs-xt-hgC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cxv-ba-cTz">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -244,7 +245,7 @@
         <scene sceneID="nt3-Ga-aGH">
             <objects>
                 <navigationController id="pV6-WZ-pFH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="cloud.sun" catalog="system" selectedImage="cloud.sun.fill" id="DDU-0l-vu7"/>
+                    <tabBarItem key="tabBarItem" title="" image="weather" id="DDU-0l-vu7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Rk-OQ-E1i">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -261,7 +262,7 @@
         <scene sceneID="vMJ-ro-AEL">
             <objects>
                 <navigationController id="UpB-wI-GCV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="list.bullet" catalog="system" id="x6P-nU-j6l"/>
+                    <tabBarItem key="tabBarItem" title="" image="todo" id="x6P-nU-j6l"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kIS-sB-uDG">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -278,7 +279,7 @@
         <scene sceneID="uZR-tM-CaQ">
             <objects>
                 <navigationController id="T69-5T-V1c" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="gear" catalog="system" id="CA6-Ff-eJD"/>
+                    <tabBarItem key="tabBarItem" title="" image="settings" id="CA6-Ff-eJD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jSo-db-iwd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -474,12 +475,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud.sun" catalog="system" width="64" height="44"/>
-        <image name="cloud.sun.fill" catalog="system" width="64" height="44"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
-        <image name="list.bullet" catalog="system" width="64" height="44"/>
-        <image name="settings" width="17" height="17"/>
-        <image name="t.bubble" catalog="system" width="64" height="54"/>
-        <image name="t.bubble.fill" catalog="system" width="64" height="54"/>
+        <image name="converter" width="19" height="19"/>
+        <image name="settings" width="19" height="19"/>
+        <image name="todo" width="19" height="14"/>
+        <image name="translator" width="19" height="19"/>
+        <image name="weather" width="20" height="20"/>
     </resources>
 </document>
