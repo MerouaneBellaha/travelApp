@@ -30,6 +30,7 @@
 		CB925B3F24BF80D70049774F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3E24BF80D70049774F /* CoreDataStack.swift */; };
 		CBC5FE7E24C3920C00B671A3 /* UIView + animateCellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5FE7D24C3920C00B671A3 /* UIView + animateCellBackground.swift */; };
 		CBEF0C4824C472F9008535E1 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEF0C4724C472F9008535E1 /* WeatherModel.swift */; };
+		CBEF0C4A24C49D4A008535E1 /* WeatherModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEF0C4924C49D4A008535E1 /* WeatherModelTest.swift */; };
 		CBFB8BA924C3C4E000318370 /* UIViewController + setKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB8BA824C3C4E000318370 /* UIViewController + setKeyboard.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		CB925B3E24BF80D70049774F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		CBC5FE7D24C3920C00B671A3 /* UIView + animateCellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + animateCellBackground.swift"; sourceTree = "<group>"; };
 		CBEF0C4724C472F9008535E1 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		CBEF0C4924C49D4A008535E1 /* WeatherModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModelTest.swift; sourceTree = "<group>"; };
 		CBFB8BA824C3C4E000318370 /* UIViewController + setKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + setKeyboard.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +164,7 @@
 			children = (
 				CB7F046624C3093C0084D64E /* CoreDataManagerTest.swift */,
 				CB7F047024C309F60084D64E /* FakeCoreDataStack.swift */,
+				CBEF0C4924C49D4A008535E1 /* WeatherModelTest.swift */,
 				CB7F046824C3093C0084D64E /* Info.plist */,
 			);
 			path = travelAppTests;
@@ -325,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBEF0C4A24C49D4A008535E1 /* WeatherModelTest.swift in Sources */,
 				CB7F047124C309F60084D64E /* FakeCoreDataStack.swift in Sources */,
 				CB7F046724C3093C0084D64E /* CoreDataManagerTest.swift in Sources */,
 			);

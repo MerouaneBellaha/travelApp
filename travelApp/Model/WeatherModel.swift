@@ -8,27 +8,29 @@
 
 import Foundation
 
-struct WeatherModel {
+class WeatherModel {
 
     let weatherData: WeatherData!
-    let conditionId: Int
-    let cityName: String
-    let temperature: Double
-    let description: String
+    var conditionId: Int?
+    let cityName: String?
+    var temperature: Double?
+    let description: String?
 
-    init(weatherData: WeatherData) {
+    init(weatherData: WeatherData?) {
         self.weatherData = weatherData
-        self.conditionId = weatherData.weather.first?.id ?? 0
-        self.cityName = weatherData.name
-        self.temperature = weatherData.main.temp
-        self.description = weatherData.weather.first?.description ?? "N/A"
+        self.conditionId = self.weatherData?.weather.first?.id ?? 0
+        self.cityName = self.weatherData?.name
+        self.temperature = self.weatherData?.main.temp
+        self.description = self.weatherData?.weather.first?.description ?? "N/A"
     }
 
     var temperatureString: String {
+        guard let temperature = temperature else { return "N/A" }
         return String(format: "%.1f", temperature)
     }
 
     var conditionName: String {
+        guard let conditionId = conditionId else { return "cloud" }
         switch conditionId {
         case 0..<300:
             return "cloud.bolt"
