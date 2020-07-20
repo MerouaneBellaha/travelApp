@@ -28,7 +28,7 @@
 		CB925B3B24BF60B90049774F /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3A24BF60B90049774F /* NotificationName.swift */; };
 		CB925B3D24BF80B60049774F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3C24BF80B60049774F /* CoreDataManager.swift */; };
 		CB925B3F24BF80D70049774F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3E24BF80D70049774F /* CoreDataStack.swift */; };
-		CBC5FE7E24C3920C00B671A3 /* UIView + animateCellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5FE7D24C3920C00B671A3 /* UIView + animateCellBackground.swift */; };
+		CBC5FE7E24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5FE7D24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift */; };
 		CBEF0C4824C472F9008535E1 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEF0C4724C472F9008535E1 /* WeatherModel.swift */; };
 		CBEF0C4A24C49D4A008535E1 /* WeatherModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEF0C4924C49D4A008535E1 /* WeatherModelTest.swift */; };
 		CBFB8BA924C3C4E000318370 /* UIViewController + setKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB8BA824C3C4E000318370 /* UIViewController + setKeyboard.swift */; };
@@ -70,7 +70,7 @@
 		CB925B3A24BF60B90049774F /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		CB925B3C24BF80B60049774F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		CB925B3E24BF80D70049774F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		CBC5FE7D24C3920C00B671A3 /* UIView + animateCellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + animateCellBackground.swift"; sourceTree = "<group>"; };
+		CBC5FE7D24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell + animateCellBackground.swift"; sourceTree = "<group>"; };
 		CBEF0C4724C472F9008535E1 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		CBEF0C4924C49D4A008535E1 /* WeatherModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModelTest.swift; sourceTree = "<group>"; };
 		CBFB8BA824C3C4E000318370 /* UIViewController + setKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + setKeyboard.swift"; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 			children = (
 				CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */,
 				CB925B3A24BF60B90049774F /* NotificationName.swift */,
-				CBC5FE7D24C3920C00B671A3 /* UIView + animateCellBackground.swift */,
+				CBC5FE7D24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift */,
 				CBFB8BA824C3C4E000318370 /* UIViewController + setKeyboard.swift */,
 			);
 			path = Extensions;
@@ -320,7 +320,7 @@
 				CBFB8BA924C3C4E000318370 /* UIViewController + setKeyboard.swift in Sources */,
 				CB6BF2D624BDE4340065F64E /* TranslatorVC.swift in Sources */,
 				CB925B3B24BF60B90049774F /* NotificationName.swift in Sources */,
-				CBC5FE7E24C3920C00B671A3 /* UIView + animateCellBackground.swift in Sources */,
+				CBC5FE7E24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

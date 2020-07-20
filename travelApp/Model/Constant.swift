@@ -19,6 +19,8 @@ struct K {
     static let weatherAPI = "&appid=74545f40e1c347860514c74fe580b0a4"
 
     static let query = "&q="
+    static let queryLat = "&lat="
+    static let queryLon = "&lon="
 
     // MARK: - Predicate
 
