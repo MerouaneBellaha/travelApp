@@ -327,7 +327,7 @@
                                         </constraints>
                                     </activityIndicatorView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.77492465099999996" green="0.77492465099999996" blue="0.77492465099999996" alpha="0.30527611300000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Sx3-oW-TNl" firstAttribute="centerX" secondItem="D5y-8Y-7cn" secondAttribute="centerX" id="4AJ-Rc-DFB"/>
                                     <constraint firstItem="Sx3-oW-TNl" firstAttribute="centerY" secondItem="D5y-8Y-7cn" secondAttribute="centerY" id="yBk-Nb-DPp"/>
@@ -337,15 +337,15 @@
                                 <rect key="frame" x="20" y="98" width="374" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPa-EL-C5s">
-                                        <rect key="frame" x="0.0" y="5.5" width="40" height="39"/>
+                                        <rect key="frame" x="0.0" y="5" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="hHS-sM-hrN"/>
                                             <constraint firstAttribute="width" secondItem="KPa-EL-C5s" secondAttribute="height" multiplier="1:1" id="vGC-Vy-Com"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" backgroundImage="location.circle" catalog="system"/>
+                                        <state key="normal" backgroundImage="location.circle"/>
                                         <connections>
-                                            <action selector="getLocationPressed:" destination="3Wx-jJ-Olk" eventType="touchUpInside" id="ais-iW-jSj"/>
+                                            <action selector="getLocationPressed:" destination="3Wx-jJ-Olk" eventType="touchUpInside" id="5yT-KT-WtF"/>
                                         </connections>
                                     </button>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="search for a city..." translatesAutoresizingMaskIntoConstraints="NO" id="3Gj-gu-k1c">
@@ -353,15 +353,15 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0F-mI-bEG">
-                                        <rect key="frame" x="334" y="6" width="40" height="38"/>
+                                        <rect key="frame" x="334" y="5" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="e0F-mI-bEG" secondAttribute="height" multiplier="1:1" id="Wxt-rN-uq8"/>
                                             <constraint firstAttribute="height" constant="40" id="kPv-pr-HCv"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" backgroundImage="magnifyingglass" catalog="system"/>
+                                        <state key="normal" backgroundImage="search.icon"/>
                                         <connections>
-                                            <action selector="searchPressed:" destination="3Wx-jJ-Olk" eventType="touchUpInside" id="gz2-no-ivO"/>
+                                            <action selector="searchPressed:" destination="3Wx-jJ-Olk" eventType="touchUpInside" id="YHj-B6-bxB"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -698,8 +698,8 @@
     <resources>
         <image name="cloud" width="147" height="98"/>
         <image name="converter" width="19" height="19"/>
-        <image name="location.circle" catalog="system" width="64" height="60"/>
-        <image name="magnifyingglass" catalog="system" width="64" height="56"/>
+        <image name="location.circle" width="24" height="24"/>
+        <image name="search.icon" width="24" height="24"/>
         <image name="settings" width="19" height="19"/>
         <image name="todo" width="19" height="14"/>
         <image name="translator" width="19" height="19"/>

@@ -35,6 +35,9 @@ struct K {
     static let timeStamp = "timestamp"
     static let rate = "rate"
     static let currency = "currency"
+    static let city = "city"
+    static let defaultCity = "New york"
+
 
     // MARK: - cells
 
@@ -60,9 +63,9 @@ struct K {
     /// "One update / hour only allowed"
     static let oneByHour = "One update / hour only allowed"
     /// "Vous ne pouvez pas démarrer avec un point"
-    static let startWithPoint = "Vous ne pouvez pas démarrer avec un point"
+    static let startWithPoint = "Can't start with a point."
     /// "Vous ne pouvez pas ajouter un second point"
-    static let twoPoints = "Vous ne pouvez pas ajouter un second point"
+    static let twoPoints = "Can't add another point."
     /// "last rates update: "
     static let lastUpdate = "last rates update: "
     /// ". Refresh to get latest rates. (one refresh / hour)"
@@ -71,5 +74,9 @@ struct K {
     static let minThreeLetters = "Devise doit comporter 3 lettres"
     /// "Currency non valable"
     static let unvailableCurrency = "Currency non valable"
+    /// ""City entered in settings page doesn't exist. Please try again."
+    static let cityErrorSettings = "City entered in settings page doesn't exist. Please try again."
+    /// "Searched city doesn't exist. Please try again"
+    static let cityErrorSearched = "Searched city doesn't exist. Please try again"
 
 }

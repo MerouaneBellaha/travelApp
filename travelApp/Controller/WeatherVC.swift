@@ -31,9 +31,7 @@
             super.viewDidLoad()
             locationManager.delegate = self
             locationManager.requestWhenInUseAuthorization()
-
             searchBar.delegate = self
-
             setUpKeyboard()
         }
 
@@ -41,8 +39,7 @@
 
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-
-            let userCity = defaults.string(forKey: "city") ?? "New york"
+            let userCity = defaults.string(forKey: K.city) ?? K.defaultCity
             self.httpClient.request(baseUrl: (K.baseURLweather + K.weatherAPI), parameters: [K.query + userCity]) { self.manageResult(with: $0, forUserCity: true) }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                 self.getLocationPressed()
@@ -51,12 +48,12 @@
 
         // MARK: - IBAction methods
 
-        @IBAction func getLocationPressed() {
+        @IBAction func getLocationPressed(_ sender: UIButton? = nil) {
             self.overlay.isHidden = false
             locationManager.requestLocation()
         }
 
-        @IBAction func searchPressed() {
+        @IBAction func searchPressed(_ sender: UIButton) {
             guard let city = searchBar.text else { return }
             httpClient.request(baseUrl: (K.baseURLweather + K.weatherAPI), parameters: [K.query + city]) { self.manageResult(with: $0) }
         }
@@ -69,7 +66,7 @@
                 DispatchQueue.main.async {
                     var message: String {
                         if error == .incorrectResponse {
-                            return forUserCity ? "Ville inconnu, veuillez verifier la ville entré dans settings" : "Impossible de trouver cette ville, vérifier l'orthographe"
+                            return forUserCity ? K.cityErrorSettings : K.cityErrorSearched
                         } else { return error.description }
                     }
                     self.overlay.isHidden = true
