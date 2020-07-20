@@ -27,6 +27,8 @@
         private var weatherData: WeatherModel!
         private var defaults = UserDefaults.standard
 
+        // MARK: - ViewLifeCycle
+
         override func viewDidLoad() {
             super.viewDidLoad()
             locationManager.delegate = self
@@ -34,8 +36,6 @@
             searchBar.delegate = self
             setUpKeyboard()
         }
-
-        // MARK: - ViewLifeCycle
 
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
