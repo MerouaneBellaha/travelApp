@@ -32,17 +32,7 @@ class ConverterVC: UIViewController {
     }
 
     private var rate: Double!
-    private var currencyList: [Rate] {
-        switch searchBar.text?.isEmpty {
-        case true:
-            guard let currencies = (coreDataManager?.loadItems(entity: Rate.self)) else { return [] }
-            return currencies
-        case false:
-            guard let currencies = (coreDataManager?.loadItems(entity: Rate.self, currency: searchBar.text)) else { return [] }
-            return currencies
-        default: return []
-        }
-    }
+    private var currencyList: [Rate] { getCurrencyList() }
     
     // MARK: - ViewLifeCycle
 
@@ -57,6 +47,7 @@ class ConverterVC: UIViewController {
 
         rate = defaults.double(forKey: K.rate)
         currencyLabels.first?.text = defaults.string(forKey: K.currency) ?? K.USD
+
         setUpRate()
         setTimeStampLabel()
 
@@ -132,12 +123,23 @@ class ConverterVC: UIViewController {
         defaults.set(rate, forKey: K.rate)
     }
 
-    /// Fixer.io free plan allows only hourly update 
     private func setTimeStampLabel() {
         guard dateManager.timeStamp != 0 else { return }
         let date = dateManager.lastUpdateDate
         self.timeStampLabel.text = K.lastUpdate + date + K.refresh
 
+    }
+
+    private func getCurrencyList() -> [Rate] {
+        switch searchBar.text?.isEmpty {
+        case true:
+            guard let currencies = (coreDataManager?.loadItems(entity: Rate.self)) else { return [] }
+            return currencies
+        case false:
+            guard let currencies = (coreDataManager?.loadItems(entity: Rate.self, currency: searchBar.text)) else { return [] }
+            return currencies
+        default: return []
+        }
     }
 
     private func manageResult(with result: Result<CurrencyData, RequestError>) {

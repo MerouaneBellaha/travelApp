@@ -20,7 +20,7 @@ final class HTTPClient {
         self.httpEngine = httpEngine
     }
 
-    func request<T: Decodable>(baseUrl: String, parameters: [String] = [], callback: @escaping (Result<T, RequestError>) -> Void) {
+    func request<T: Decodable>(baseUrl: String, parameters: [(String, Any)]? = nil, callback: @escaping (Result<T, RequestError>) -> Void) {
         httpEngine.request(baseUrl: baseUrl, parameters: parameters) { data, response, error in
             guard let data = data, error == nil else {
                 callback(.failure(.undecodableData))

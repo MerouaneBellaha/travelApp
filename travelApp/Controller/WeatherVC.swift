@@ -40,7 +40,8 @@
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             let userCity = defaults.string(forKey: K.city) ?? K.defaultCity
-            self.httpClient.request(baseUrl: (K.baseURLweather + K.weatherAPI), parameters: [K.query + userCity]) { self.manageResult(with: $0, forUserCity: true) }
+            self.httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherAPI, K.metric, (K.query, userCity)]) { self.manageResult(with: $0, forUserCity: true) }
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.getLocationPressed()
             }
@@ -55,7 +56,7 @@
 
         @IBAction func searchPressed(_ sender: UIButton) {
             guard let city = searchBar.text else { return }
-            httpClient.request(baseUrl: (K.baseURLweather + K.weatherAPI), parameters: [K.query + city]) { self.manageResult(with: $0) }
+            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherAPI, K.metric, (K.query, city)]) { self.manageResult(with: $0) }
         }
 
         // MARK: - Methods
@@ -92,7 +93,7 @@
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
             view.endEditing(true)
             guard let city = searchBar.text else { return }
-            httpClient.request(baseUrl: (K.baseURLweather + K.weatherAPI), parameters: [K.query + city]) { self.manageResult(with: $0) }
+            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherAPI, K.metric, (K.query, city)]) { self.manageResult(with: $0) }
         }
     }
 
@@ -105,7 +106,7 @@
             locationManager.stopUpdatingLocation()
             let currentLocationLon = currentLocation.coordinate.longitude
             let currentLocationLat = currentLocation.coordinate.latitude
-            httpClient.request(baseUrl: (K.baseURLweather + K.weatherAPI), parameters: [(K.queryLat + String(currentLocationLat)), (K.queryLon + String(currentLocationLon))]) { self.manageResult(with: $0) }
+            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherAPI, K.metric, (K.queryLat, String(currentLocationLat)), (K.queryLon, String(currentLocationLon))]) { self.manageResult(with: $0) }
         }
 
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
