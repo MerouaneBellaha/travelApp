@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CB05346D24C70F13005AF631 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05346C24C70F13005AF631 /* DateManager.swift */; };
 		CB05346F24C72A8C005AF631 /* DateManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05346E24C72A8C005AF631 /* DateManagerTest.swift */; };
+		CB05347124C740FD005AF631 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB05347024C740FD005AF631 /* ApiKeys.plist */; };
 		CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */; };
 		CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */; };
 		CB6BF2C324BDDBE40065F64E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6BF2C124BDDBE40065F64E /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		CB05346C24C70F13005AF631 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		CB05346E24C72A8C005AF631 /* DateManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerTest.swift; sourceTree = "<group>"; };
+		CB05347024C740FD005AF631 /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		CB6BF2B824BDDBE40065F64E /* travelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterVC.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				CB6BF2C724BDDBE60065F64E /* Assets.xcassets */,
 				CB6BF2C924BDDBE60065F64E /* LaunchScreen.storyboard */,
 				CB6BF2CC24BDDBE60065F64E /* Info.plist */,
+				CB05347024C740FD005AF631 /* ApiKeys.plist */,
 			);
 			path = travelApp;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB6BF2CB24BDDBE60065F64E /* LaunchScreen.storyboard in Resources */,
+				CB05347124C740FD005AF631 /* ApiKeys.plist in Resources */,
 				CB6BF2C824BDDBE60065F64E /* Assets.xcassets in Resources */,
 				CB6BF2C324BDDBE40065F64E /* Main.storyboard in Resources */,
 			);

@@ -6,6 +6,8 @@
 build/
 DerivedData/
 
+ApiKeys.*
+
 ## Various settings
 *.pbxuser
 !default.pbxuser
