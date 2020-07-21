@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB05346D24C70F13005AF631 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05346C24C70F13005AF631 /* DateManager.swift */; };
+		CB05346F24C72A8C005AF631 /* DateManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05346E24C72A8C005AF631 /* DateManagerTest.swift */; };
 		CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */; };
 		CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */; };
 		CB6BF2C324BDDBE40065F64E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6BF2C124BDDBE40065F64E /* Main.storyboard */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB05346C24C70F13005AF631 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		CB05346E24C72A8C005AF631 /* DateManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerTest.swift; sourceTree = "<group>"; };
 		CB6BF2B824BDDBE40065F64E /* travelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterVC.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 				CB8F7C4824BE38C80080570D /* Data.swift */,
 				CB7F047624C318B90084D64E /* Constant.swift */,
 				CBEF0C4724C472F9008535E1 /* WeatherModel.swift */,
+				CB05346C24C70F13005AF631 /* DateManager.swift */,
 				CB7F047924C31C010084D64E /* GenericCoreData */,
 				CB7F047824C31BFB0084D64E /* GenericNetworking */,
 			);
@@ -165,6 +170,7 @@
 				CB7F046624C3093C0084D64E /* CoreDataManagerTest.swift */,
 				CB7F047024C309F60084D64E /* FakeCoreDataStack.swift */,
 				CBEF0C4924C49D4A008535E1 /* WeatherModelTest.swift */,
+				CB05346E24C72A8C005AF631 /* DateManagerTest.swift */,
 				CB7F046824C3093C0084D64E /* Info.plist */,
 			);
 			path = travelAppTests;
@@ -303,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */,
+				CB05346D24C70F13005AF631 /* DateManager.swift in Sources */,
 				CB7F047724C318B90084D64E /* Constant.swift in Sources */,
 				CB925B3924BF36E20049774F /* UIViewController + setAlertVc.swift in Sources */,
 				CB6BF2D824BDE5090065F64E /* WeatherVC.swift in Sources */,
@@ -329,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBEF0C4A24C49D4A008535E1 /* WeatherModelTest.swift in Sources */,
+				CB05346F24C72A8C005AF631 /* DateManagerTest.swift in Sources */,
 				CB7F047124C309F60084D64E /* FakeCoreDataStack.swift in Sources */,
 				CB7F046724C3093C0084D64E /* CoreDataManagerTest.swift in Sources */,
 			);

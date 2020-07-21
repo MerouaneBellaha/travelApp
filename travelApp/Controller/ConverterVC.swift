@@ -24,10 +24,14 @@ class ConverterVC: UIViewController {
     var coreDataManager: CoreDataManager?
     private var httpClient = HTTPClient()
     private let defaults = UserDefaults.standard
+    private var dateManager: DateManager {
+        var dateManager = DateManager()
+        dateManager.timeStamp = defaults.integer(forKey: K.timeStamp)
+        dateManager.date = Int(Date().timeIntervalSince1970)
+        return dateManager
+    }
 
     private var rate: Double!
-    private var timeStamp: Int { defaults.integer(forKey: K.timeStamp) }
-    private var date: Int { Int(Date().timeIntervalSince1970) }
     private var currencyList: [Rate] {
         switch searchBar.text?.isEmpty {
         case true:
@@ -77,13 +81,13 @@ class ConverterVC: UIViewController {
     }
 
     @IBAction func refreshRatesTapped(_ sender: UIBarButtonItem) {
-        let hourInSeconds = 3600
-        guard (date - timeStamp) > hourInSeconds else {
+        guard dateManager.didOneHourPassed else {
             setAlertVc(with: K.oneByHour)
             return
         }
         httpClient.request(baseUrl: (K.baseURLfixer+K.fixerAPI)) { self.manageResult(with: $0) }
-    }
+        }
+
     // MARK: - @objc method
 
     @objc
@@ -116,8 +120,7 @@ class ConverterVC: UIViewController {
     }
 
     private func shouldNetworkRequest() {
-        let dayInSeconds = 86400
-        if rate == 0 || timeStamp == 0 || (date - timeStamp) > dayInSeconds {
+        if rate == 0 || dateManager.didOneDayPassed {
             httpClient.request(baseUrl: (K.baseURLfixer+K.fixerAPI)) { self.manageResult(with: $0) }
         }
     }
@@ -131,14 +134,9 @@ class ConverterVC: UIViewController {
 
     /// Fixer.io free plan allows only hourly update 
     private func setTimeStampLabel() {
-        guard timeStamp != 0 else { return }
-        let lastUpdate = Date(timeIntervalSince1970: TimeInterval(timeStamp))
-
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone.current
-        formatter.dateFormat = K.dateFormat
-        let dateString = formatter.string(from: lastUpdate)
-        self.timeStampLabel.text = K.lastUpdate + dateString + K.refresh
+        guard dateManager.timeStamp != 0 else { return }
+        let date = dateManager.lastUpdateDate
+        self.timeStampLabel.text = K.lastUpdate + date + K.refresh
 
     }
 
