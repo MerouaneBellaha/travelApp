@@ -28,9 +28,9 @@ struct K {
 
     // MARK: - Networking
 
-    static let baseURLfixer = "http://data.fixer.io/api/latest"
+    static let baseURLfixer = "http://data.fixer.io/api/latest?"
     static var fixerQuery: (String, String) {
-        ("?access_key=", fixerKey)
+        ("access_key", fixerKey)
     }
     static let baseURLweather = "https://api.openweathermap.org/data/2.5/weather?"
     static var weatherQuery: (String, String) {
