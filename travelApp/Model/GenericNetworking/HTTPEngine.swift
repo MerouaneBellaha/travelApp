@@ -24,6 +24,7 @@ final class HTTPEngine {
     }
 
     // MARK: - Methods
+    
     func request(baseUrl: String, parameters: [(String, Any)]?, callback: @escaping HTTPResponse) {
         guard let baseUrl = URL(string: baseUrl) else { return }
         let url = encode(baseUrl: baseUrl, with: parameters)

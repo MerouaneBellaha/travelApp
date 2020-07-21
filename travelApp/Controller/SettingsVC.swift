@@ -26,8 +26,7 @@ final class SettingsVC: UIViewController {
     }
     
     @IBAction func currencyButtonTapped(_ sender: UIButton) {
-        let result = currencyIsAvailable()
-        guard result.0, let currency = result.1 else { return }
+        guard let currency = currencyIsAvailable() else { return }
         NotificationCenter.default.post(name: .updateCurrency, object: nil, userInfo: [K.currency: currency])
     }
 
@@ -35,19 +34,19 @@ final class SettingsVC: UIViewController {
         defaults.set(cityTextField.text, forKey: "city")
     }
 
-    private func currencyIsAvailable() -> (Bool, String?) {
+    private func currencyIsAvailable() -> String? {
         guard let currency = textField.text?.uppercased() else {
-            return (false, nil)
+            return nil
         }
         guard textField.text?.count == 3 else {
             setAlertVc(with: K.minThreeLetters)
-            return (false, nil)
+            return nil
         }
         guard currencies.contains(currency) else {
             setAlertVc(with: K.unvailableCurrency)
             textField.text?.removeAll()
-            return (false, nil)
+            return nil
         }
-        return (true, currency)
+        return currency
     }
 }

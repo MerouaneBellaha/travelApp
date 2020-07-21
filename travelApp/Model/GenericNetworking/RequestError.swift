@@ -14,13 +14,13 @@ enum RequestError: Error {
     var description: String {
         switch self {
         case .incorrectUrl:
-            return "incorrect URL"
+            return "Incorrect URL"
         case .noData:
-            return "Found no data"
+            return "Can't reach the server, please retry."
         case .incorrectResponse:
-            return "incorrect response"
+            return "Incorrect response"
         case .undecodableData:
-            return "undecodable data"
+            return "Undecodable data"
         }
     }
 }

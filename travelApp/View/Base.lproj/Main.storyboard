@@ -100,7 +100,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="u66-MO-fhn">
                                         <rect key="frame" x="20" y="90" width="334" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nh3-Em-SGJ">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nh3-Em-SGJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="167" height="50"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -125,18 +125,18 @@
                                     <constraint firstAttribute="trailing" secondItem="7Hz-om-IzE" secondAttribute="trailing" constant="20" id="akW-ly-vFm"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your currency" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wE-ce-cU2">
-                                <rect key="frame" x="0.0" y="278" width="414" height="39.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current rates for 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wE-ce-cU2">
+                                <rect key="frame" x="20" y="278" width="374" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="search for a currency..." translatesAutoresizingMaskIntoConstraints="NO" id="HoI-h0-7jH">
-                                <rect key="frame" x="20" y="337.5" width="374" height="56"/>
+                                <rect key="frame" x="20" y="318" width="374" height="56"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kvk-TQ-G3m">
-                                <rect key="frame" x="0.0" y="393.5" width="414" height="419.5"/>
+                                <rect key="frame" x="0.0" y="374" width="414" height="439"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="y4T-Zi-1Nd">
                                     <rect key="frame" x="0.0" y="99.5" width="414" height="128"/>
@@ -187,12 +187,12 @@
                         <constraints>
                             <constraint firstItem="s1Z-wy-zxd" firstAttribute="top" secondItem="xNm-Mg-Y8E" secondAttribute="top" constant="20" id="ITv-qD-oj9"/>
                             <constraint firstItem="6wE-ce-cU2" firstAttribute="top" secondItem="s1Z-wy-zxd" secondAttribute="bottom" constant="30" id="JFi-GS-Dia"/>
-                            <constraint firstItem="xNm-Mg-Y8E" firstAttribute="trailing" secondItem="6wE-ce-cU2" secondAttribute="trailing" id="Sbd-uh-ieG"/>
+                            <constraint firstItem="xNm-Mg-Y8E" firstAttribute="trailing" secondItem="6wE-ce-cU2" secondAttribute="trailing" constant="20" id="Sbd-uh-ieG"/>
                             <constraint firstItem="s1Z-wy-zxd" firstAttribute="leading" secondItem="JSz-yB-5gp" secondAttribute="leadingMargin" id="UNk-lX-hnB"/>
                             <constraint firstItem="xNm-Mg-Y8E" firstAttribute="bottom" secondItem="Kvk-TQ-G3m" secondAttribute="bottom" id="VLe-a5-XeL"/>
-                            <constraint firstItem="HoI-h0-7jH" firstAttribute="top" secondItem="6wE-ce-cU2" secondAttribute="bottom" constant="20" id="YmG-61-xbA"/>
+                            <constraint firstItem="HoI-h0-7jH" firstAttribute="top" secondItem="6wE-ce-cU2" secondAttribute="bottom" constant="10" id="YmG-61-xbA"/>
                             <constraint firstItem="HoI-h0-7jH" firstAttribute="leading" secondItem="xNm-Mg-Y8E" secondAttribute="leading" constant="20" id="ecX-NX-HZu"/>
-                            <constraint firstItem="6wE-ce-cU2" firstAttribute="leading" secondItem="xNm-Mg-Y8E" secondAttribute="leading" id="fdZ-5J-nNV"/>
+                            <constraint firstItem="6wE-ce-cU2" firstAttribute="leading" secondItem="xNm-Mg-Y8E" secondAttribute="leading" constant="20" id="fdZ-5J-nNV"/>
                             <constraint firstItem="xNm-Mg-Y8E" firstAttribute="trailing" secondItem="Kvk-TQ-G3m" secondAttribute="trailing" id="pUc-gB-QGU"/>
                             <constraint firstItem="Kvk-TQ-G3m" firstAttribute="leading" secondItem="xNm-Mg-Y8E" secondAttribute="leading" id="qqe-nR-QeG"/>
                             <constraint firstItem="Kvk-TQ-G3m" firstAttribute="top" secondItem="HoI-h0-7jH" secondAttribute="bottom" id="rVe-LA-NOx"/>
@@ -210,6 +210,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="currentRatesLabel" destination="6wE-ce-cU2" id="nDT-I1-zCo"/>
                         <outlet property="searchBar" destination="HoI-h0-7jH" id="Qil-6N-gOn"/>
                         <outlet property="tableView" destination="Kvk-TQ-G3m" id="1fI-oK-GRG"/>
                         <outlet property="timeStampLabel" destination="gRd-db-vdU" id="1ja-3W-qXx"/>
@@ -299,6 +300,13 @@
                     <view key="view" contentMode="scaleToFill" id="dYv-YY-Hnx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Vz-L3-ubP">
+                                <rect key="frame" x="180" y="286" width="54" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="hTp-cQ-D3D"/>
                     </view>
