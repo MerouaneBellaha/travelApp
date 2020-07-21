@@ -37,7 +37,7 @@ extension UIViewController {
         activityIndicator.startAnimating()
         alertController.view.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.centerXAnchor.constraint(equalTo:        alertController.view.centerXAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: alertController.view.centerXAnchor).isActive = true
         activityIndicator.bottomAnchor.constraint(equalTo: alertController.view.bottomAnchor, constant: -8.0).isActive = true
         alertController.view.layoutIfNeeded()
         present(alertController, animated: true)
