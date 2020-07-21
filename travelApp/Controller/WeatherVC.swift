@@ -26,6 +26,7 @@
         private var httpClient = HTTPClient()
         private var weatherData: WeatherModel!
         private var defaults = UserDefaults.standard
+        private var activityIndicator: UIAlertController!
 
         // MARK: - ViewLifeCycle
 
@@ -52,7 +53,7 @@
         @IBAction func getLocation(_ sender: UIButton? = nil) {
             setActivityAlert(withTitle: "Please wait...", message: "We're getting your local forecast.") { alertController in
                 self.locationManager.requestLocation()
-                alertController.dismiss(animated: true)
+                self.activityIndicator = alertController
             }
         }
 
@@ -107,13 +108,13 @@
             locationManager.stopUpdatingLocation()
             let currentLocationLon = currentLocation.coordinate.longitude
             let currentLocationLat = currentLocation.coordinate.latitude
+            activityIndicator.dismiss(animated: true)
             httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.queryLat, String(currentLocationLat)), (K.queryLon, String(currentLocationLon))]) { [unowned self] result in
                 self.manageResult(with: result)
             }
         }
 
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            print("ON EST LA ")
             print(error)
         }
     }
