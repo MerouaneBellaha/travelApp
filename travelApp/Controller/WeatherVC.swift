@@ -50,9 +50,10 @@
         // MARK: - IBAction methods
 
         @IBAction func getLocation(_ sender: UIButton? = nil) {
-//            self.overlay.isHidden = false
-            setActivityAlert(withTitle: "Please wait...", message: "We're getting your local forecast.")
-            locationManager.requestLocation()
+            setActivityAlert(withTitle: "Please wait...", message: "We're getting your local forecast.") { alertController in
+                self.locationManager.requestLocation()
+                alertController.dismiss(animated: true)
+            }
         }
 
         @IBAction func searchPressed(_ sender: UIButton) {
@@ -63,6 +64,7 @@
         // MARK: - Methods
 
         private func manageResult(with result: Result<WeatherData, RequestError>, forUserCity: Bool = false) {
+
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -71,8 +73,6 @@
                             return forUserCity ? K.cityErrorSettings : K.cityErrorSearched
                         } else { return error.description }
                     }
-//                    self.overlay.isHidden = true
-                    self.dismiss(animated: true)
                     self.setAlertVc(with: message)
                 }
             case .success(let weatherData):
@@ -83,10 +83,6 @@
                     self.cityLabels[index].text = self.weatherData.cityName
                     self.temperaturesLabels[index].text = self.weatherData.temperatureString
                     self.conditionLabels[index].text = self.weatherData.description
-                    if index == 0 {
-//                        self.overlay.isHidden = true
-                        self.dismiss(animated: true)
-                    }
                 }
             }
         }
@@ -111,10 +107,13 @@
             locationManager.stopUpdatingLocation()
             let currentLocationLon = currentLocation.coordinate.longitude
             let currentLocationLat = currentLocation.coordinate.latitude
-            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.queryLat, String(currentLocationLat)), (K.queryLon, String(currentLocationLon))]) { self.manageResult(with: $0) }
+            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.queryLat, String(currentLocationLat)), (K.queryLon, String(currentLocationLon))]) { [unowned self] result in
+                self.manageResult(with: result)
+            }
         }
 
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+            print("ON EST LA ")
             print(error)
         }
     }
