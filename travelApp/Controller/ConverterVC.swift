@@ -76,7 +76,7 @@ class ConverterVC: UIViewController {
             setAlertVc(with: K.oneByHour)
             return
         }
-        httpClient.request(baseUrl: (K.baseURLfixer+K.fixerAPI)) { self.manageResult(with: $0) }
+        httpClient.request(baseUrl: K.baseURLfixer, parameters: [K.fixerQuery]){ self.manageResult(with: $0) }
         }
 
     // MARK: - @objc method
@@ -112,7 +112,7 @@ class ConverterVC: UIViewController {
 
     private func shouldNetworkRequest() {
         if rate == 0 || dateManager.didOneDayPassed {
-            httpClient.request(baseUrl: (K.baseURLfixer+K.fixerAPI)) { self.manageResult(with: $0) }
+            httpClient.request(baseUrl: K.baseURLfixer, parameters: [K.fixerQuery]) { self.manageResult(with: $0) }
         }
     }
 

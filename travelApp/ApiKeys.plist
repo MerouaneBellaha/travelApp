@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fixerAPI</key>
+	<string>873a90d1ce1ba971ee5c9051fd3039e6</string>
+	<key>weatherAPI</key>
+	<string>74545f40e1c347860514c74fe580b0a4</string>
+</dict>
+</plist>

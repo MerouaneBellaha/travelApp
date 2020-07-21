@@ -10,13 +10,32 @@ import Foundation
 
 struct K {
 
+    private func getAPIKey(named keyname:String) -> String {
+        let filePath = Bundle.main.path(forResource: "ApiKeys", ofType: "plist")
+        let plist = NSDictionary(contentsOfFile: filePath!)
+        let value = plist?.object(forKey: keyname) as! String
+        return value
+    }
+
+    static var fixerKey: String {
+        K().getAPIKey(named: "fixerAPI")
+    }
+
+    static var weatherKey: String {
+        K().getAPIKey(named: "weatherAPI")
+    }
+
+
     // MARK: - Networking
 
     static let baseURLfixer = "http://data.fixer.io/api/latest"
-    static let fixerAPI = "?access_key=873a90d1ce1ba971ee5c9051fd3039e6"
-
+    static var fixerQuery: (String, String) {
+        ("?access_key=", fixerKey)
+    }
     static let baseURLweather = "https://api.openweathermap.org/data/2.5/weather?"
-    static let weatherAPI = ("appId", "74545f40e1c347860514c74fe580b0a4")
+    static var weatherQuery: (String, String) {
+        ("appId", weatherKey)
+    }
     static let metric = ("units", "metric")
 
     static let query = "q"
