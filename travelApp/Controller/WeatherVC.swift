@@ -41,7 +41,7 @@
             super.viewWillAppear(animated)
             let userCity = defaults.string(forKey: K.city) ?? K.defaultCity
             self.httpClient.request(baseUrl: (K.baseURLweather + K.weatherAPI), parameters: [K.query + userCity]) { self.manageResult(with: $0, forUserCity: true) }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.getLocationPressed()
             }
         }

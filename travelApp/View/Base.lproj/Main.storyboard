@@ -317,29 +317,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5y-8Y-7cn">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="107" y="306.5" width="200" height="200"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Sx3-oW-TNl">
-                                        <rect key="frame" x="177" y="332.5" width="60" height="60"/>
+                                        <rect key="frame" x="70" y="70" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Sx3-oW-TNl" secondAttribute="height" multiplier="1:1" id="Efq-wn-dl1"/>
                                             <constraint firstAttribute="height" constant="60" id="wzy-Vq-bbT"/>
                                         </constraints>
-                                        <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4J-K2-81G">
-                                        <rect key="frame" x="20" y="378.5" width="374" height="24"/>
+                                        <rect key="frame" x="20" y="116" width="160" height="24"/>
                                         <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.77492465099999996" green="0.77492465099999996" blue="0.77492465099999996" alpha="0.30527611300000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.72565282534246578" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Sx3-oW-TNl" firstAttribute="centerX" secondItem="D5y-8Y-7cn" secondAttribute="centerX" id="4AJ-Rc-DFB"/>
                                     <constraint firstAttribute="trailing" secondItem="v4J-K2-81G" secondAttribute="trailing" constant="20" symbolic="YES" id="Azu-B1-fa4"/>
+                                    <constraint firstAttribute="width" constant="200" id="IhX-BE-FDf"/>
                                     <constraint firstItem="v4J-K2-81G" firstAttribute="bottom" secondItem="Sx3-oW-TNl" secondAttribute="bottom" constant="10" id="eNV-ck-e4u"/>
                                     <constraint firstItem="v4J-K2-81G" firstAttribute="leading" secondItem="D5y-8Y-7cn" secondAttribute="leading" constant="20" symbolic="YES" id="h9r-vM-AeP"/>
+                                    <constraint firstAttribute="height" constant="200" id="xHH-Sa-eAW"/>
                                     <constraint firstItem="Sx3-oW-TNl" firstAttribute="centerY" secondItem="D5y-8Y-7cn" secondAttribute="centerY" id="yBk-Nb-DPp"/>
                                 </constraints>
                             </view>
@@ -490,16 +492,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="HE9-rP-rUH" firstAttribute="bottom" secondItem="Zwx-TW-wRc" secondAttribute="bottom" constant="20" id="0fV-Ua-73s"/>
-                            <constraint firstItem="D5y-8Y-7cn" firstAttribute="leading" secondItem="HE9-rP-rUH" secondAttribute="leading" id="7Tg-da-bgj"/>
+                            <constraint firstItem="D5y-8Y-7cn" firstAttribute="centerY" secondItem="6YU-9k-JUe" secondAttribute="centerY" id="A8v-aS-sEa"/>
                             <constraint firstItem="TIM-bi-uCn" firstAttribute="leading" secondItem="HE9-rP-rUH" secondAttribute="leading" constant="20" id="Bj8-ab-FUs"/>
                             <constraint firstItem="TIM-bi-uCn" firstAttribute="top" secondItem="HE9-rP-rUH" secondAttribute="top" constant="10" id="FCm-wi-Suh"/>
                             <constraint firstItem="Zwx-TW-wRc" firstAttribute="top" secondItem="TIM-bi-uCn" secondAttribute="bottom" constant="8" symbolic="YES" id="GhZ-Hr-6Fm"/>
+                            <constraint firstItem="D5y-8Y-7cn" firstAttribute="centerX" secondItem="6YU-9k-JUe" secondAttribute="centerX" id="HvG-2x-gIv"/>
                             <constraint firstItem="HE9-rP-rUH" firstAttribute="trailing" secondItem="TIM-bi-uCn" secondAttribute="trailing" constant="20" id="L0a-r5-NUq"/>
                             <constraint firstItem="HE9-rP-rUH" firstAttribute="trailing" secondItem="Zwx-TW-wRc" secondAttribute="trailing" constant="40" id="PN1-Gi-Iuy"/>
-                            <constraint firstItem="D5y-8Y-7cn" firstAttribute="top" secondItem="6YU-9k-JUe" secondAttribute="topMargin" id="WJr-5Y-Bqi"/>
                             <constraint firstItem="Zwx-TW-wRc" firstAttribute="leading" secondItem="HE9-rP-rUH" secondAttribute="leading" constant="20" id="pfJ-5x-Z6J"/>
-                            <constraint firstItem="HE9-rP-rUH" firstAttribute="bottom" secondItem="D5y-8Y-7cn" secondAttribute="bottom" id="uXI-70-2Ll"/>
-                            <constraint firstItem="HE9-rP-rUH" firstAttribute="trailing" secondItem="D5y-8Y-7cn" secondAttribute="trailing" id="v5i-cB-Lh1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HE9-rP-rUH"/>
                     </view>
