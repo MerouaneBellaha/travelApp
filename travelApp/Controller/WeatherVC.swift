@@ -50,7 +50,8 @@
         // MARK: - IBAction methods
 
         @IBAction func getLocation(_ sender: UIButton? = nil) {
-            self.overlay.isHidden = false
+//            self.overlay.isHidden = false
+            setActivityAlert(withTitle: "Please wait...", message: "We're getting your local forecast.")
             locationManager.requestLocation()
         }
 
@@ -70,7 +71,8 @@
                             return forUserCity ? K.cityErrorSettings : K.cityErrorSearched
                         } else { return error.description }
                     }
-                    self.overlay.isHidden = true
+//                    self.overlay.isHidden = true
+                    self.dismiss(animated: true)
                     self.setAlertVc(with: message)
                 }
             case .success(let weatherData):
@@ -81,7 +83,10 @@
                     self.cityLabels[index].text = self.weatherData.cityName
                     self.temperaturesLabels[index].text = self.weatherData.temperatureString
                     self.conditionLabels[index].text = self.weatherData.description
-                    if index == 0 { self.overlay.isHidden = true }
+                    if index == 0 {
+//                        self.overlay.isHidden = true
+                        self.dismiss(animated: true)
+                    }
                 }
             }
         }
