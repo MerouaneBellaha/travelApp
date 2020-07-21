@@ -24,9 +24,9 @@ final class HTTPEngine {
     }
 
     // MARK: - Methods
-    func request(baseUrl: String, parameters: [String] = [], callback: @escaping HTTPResponse) {
-        let parameters = parameters.joined().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        guard let url = URL(string: baseUrl + (parameters ?? "")) else { return }
+    func request(baseUrl: String, parameters: [(String, Any)]?, callback: @escaping HTTPResponse) {
+        guard let baseUrl = URL(string: baseUrl) else { return }
+        let url = encode(baseUrl: baseUrl, with: parameters)
         task?.cancel()
         task = session.dataTask(with: url) { data, response, error in
             guard let response = response as? HTTPURLResponse else {
@@ -36,5 +36,16 @@ final class HTTPEngine {
             callback(data, response, error)
         }
         task?.resume()
+    }
+
+    private func encode(baseUrl: URL, with parameters: [(String, Any)]?) -> URL {
+        guard var urlComponents = URLComponents(url: baseUrl, resolvingAgainstBaseURL: false), let parameters = parameters, !parameters.isEmpty else { return baseUrl }
+        urlComponents.queryItems = [URLQueryItem]()
+        for (key, value) in parameters {
+            let queryItem = URLQueryItem(name: key, value: "\(value)")
+            urlComponents.queryItems?.append(queryItem)
+        }
+        guard let url = urlComponents.url else { return baseUrl }
+        return url
     }
 }

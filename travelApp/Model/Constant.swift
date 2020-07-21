@@ -15,12 +15,13 @@ struct K {
     static let baseURLfixer = "http://data.fixer.io/api/latest"
     static let fixerAPI = "?access_key=873a90d1ce1ba971ee5c9051fd3039e6"
 
-    static let baseURLweather = "https://api.openweathermap.org/data/2.5/weather?&units=metric"
-    static let weatherAPI = "&appid=74545f40e1c347860514c74fe580b0a4"
+    static let baseURLweather = "https://api.openweathermap.org/data/2.5/weather?"
+    static let weatherAPI = ("appId", "74545f40e1c347860514c74fe580b0a4")
+    static let metric = ("units", "metric")
 
-    static let query = "&q="
-    static let queryLat = "&lat="
-    static let queryLon = "&lon="
+    static let query = "q"
+    static let queryLat = "lat"
+    static let queryLon = "lon"
 
     // MARK: - Predicate
 
