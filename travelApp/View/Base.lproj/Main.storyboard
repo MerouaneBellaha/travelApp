@@ -211,9 +211,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="currentRatesLabel" destination="6wE-ce-cU2" id="nDT-I1-zCo"/>
+                        <outlet property="lastUpdateLabel" destination="gRd-db-vdU" id="1ja-3W-qXx"/>
                         <outlet property="searchBar" destination="HoI-h0-7jH" id="Qil-6N-gOn"/>
                         <outlet property="tableView" destination="Kvk-TQ-G3m" id="1fI-oK-GRG"/>
-                        <outlet property="timeStampLabel" destination="gRd-db-vdU" id="1ja-3W-qXx"/>
                         <outletCollection property="textFields" destination="Kd1-XN-NWk" collectionClass="NSMutableArray" id="izC-Vr-cJ3"/>
                         <outletCollection property="textFields" destination="Kd1-XN-NWk" collectionClass="NSMutableArray" id="qlL-f4-Xm2"/>
                         <outletCollection property="textFields" destination="bti-cj-vNE" collectionClass="NSMutableArray" id="BeV-UD-1sX"/>

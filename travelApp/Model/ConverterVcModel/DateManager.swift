@@ -16,13 +16,13 @@ struct DateManager {
     private let dayInSeconds = 86400
 
 
-    var didOneHourPassed: Bool {
+    var didOneHourHasPass: Bool {
         guard let timeStamp = timeStamp else { return false }
         guard let date = date else { return false }
         return (date - timeStamp) > hourInSeconds ? true : false
     }
 
-    var didOneDayPassed: Bool {
+    var didOneDayHasPass: Bool {
         guard let timeStamp = timeStamp else { return false }
         guard let date = date else { return false }
         if timeStamp == 0 || (date - timeStamp) > dayInSeconds {

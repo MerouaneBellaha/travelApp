@@ -12,12 +12,13 @@ class ConverterVC: UIViewController {
     
     // MARK: - IBOutlet properties
 
-    @IBOutlet weak var timeStampLabel: UILabel!
-    @IBOutlet var textFields: [UITextField]!
+    @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet var currencyLabels: [UILabel]!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet var textFields: [UITextField]!
     @IBOutlet weak var currentRatesLabel: UILabel!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+
     
 
     // MARK: - Properties
@@ -32,27 +33,19 @@ class ConverterVC: UIViewController {
         dateManager.date = Int(Date().timeIntervalSince1970)
         return dateManager
     }
-    private var currencyList: [Rate] { getCurrencyList() }
+    private var currencyList: [Rate] { setCurrencyList() }
     
     // MARK: - ViewLifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        searchBar.delegate = self
+        setDelegates()
+        setUpKeyboardBehaviour()
+        setLabels()
+        performRequestDaily()
+        setLastUpdateLabel()
 
-        tableView.keyboardDismissMode = .onDrag
-        setUpKeyboard(textFields: textFields)
-
-        currencyLabels.last?.text = defaults.string(forKey: K.currency) ?? K.USD
-        currentRatesLabel.text = K.currentRates + (currencyLabels.last?.text)!
-
-        shouldNetworkRequest()
-
-        setTimeStampLabel()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(updateCurrency(notification:)), name: .updateCurrency, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDefaultCurrency(notification:)), name: .updateCurrency, object: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -63,13 +56,14 @@ class ConverterVC: UIViewController {
     // MARK: - IBAction methods
 
     @IBAction func textFieldDidChange(_ sender: UITextField) {
-        guard textFieldIsUsable(sender) else { return }
+        guard isTextUsable(from: sender) else { return }
         guard let amount = Double(sender.text!) else { return }
-        updateResult(with: amount, senderTag: sender.tag)
+        let result = performConversion(with: amount, senderTag: sender.tag)
+        textFields.first(where: { $0.tag != sender.tag })?.text = result
     }
 
     @IBAction func refreshRatesTapped(_ sender: UIBarButtonItem) {
-        guard dateManager.didOneHourPassed else {
+        guard dateManager.didOneHourHasPass else {
             setAlertVc(with: K.oneByHour)
             return
         }
@@ -78,21 +72,21 @@ class ConverterVC: UIViewController {
 
     // MARK: - @objc method
 
+    // retrieve currency chosen in settings tab
     @objc
-    func updateCurrency(notification: Notification) {
+    func updateDefaultCurrency(notification: Notification) {
         guard let currency = notification.userInfo?[K.currency] as? String else { return }
         currencyLabels.last?.text = currency
         currentRatesLabel.text = K.currentRates + (currencyLabels.last?.text)!
-        defaults.set(currency, forKey: K.currency)
-        shouldNetworkRequest()
+        performRequestDaily()
     }
 
     // MARK: - Methods
 
-    private func textFieldIsUsable(_ sender: UITextField) -> Bool {
+    private func isTextUsable(from sender: UITextField) -> Bool {
         guard sender.text?.isEmpty == false,
             let text = sender.text else {
-                textFields.forEach { $0.text?.removeAll() } //
+                textFields.forEach { $0.text?.removeAll() }
                 return false
         }
         guard text != K.point else {
@@ -108,39 +102,29 @@ class ConverterVC: UIViewController {
         return true
     }
 
-    private func updateResult(with amount: Double, senderTag: Int) {
+    private func performConversion(with amount: Double, senderTag: Int) -> String {
+        guard let rates = getRatesForConversion(senderTag: senderTag) else { return "" }
+        let result = rateManager.calculConversion(of: amount, with: rates.0, and: rates.1)
+        return result
+    }
+
+    // get rates for 1 euro for both currencies currently chosen by the user
+    private func getRatesForConversion(senderTag: Int) -> (Double, Double)? {
         guard let firstCurrency = currencyLabels.first(where: { $0.tag == senderTag })?.text,
-            let firstRate = coreDataManager?.loadItems(entity: Rate.self, predicate: .currency(firstCurrency)).first?.rate else { return }
+            let firstRate = getRateInEuro(for: firstCurrency) else { return nil }
         guard let secondCurrency = currencyLabels.first(where: { $0.tag != senderTag })?.text,
-            let secondRate = coreDataManager?.loadItems(entity: Rate.self, predicate: .currency(secondCurrency)).first?.rate else { return }
-
-        let result = rateManager.calculConversion(of: amount, with: firstRate, and: secondRate)
-        textFields.first(where: { $0.tag != senderTag })?.text = result
+            let secondRate = getRateInEuro(for: secondCurrency) else { return nil }
+        return (firstRate, secondRate)
     }
 
-    private func shouldNetworkRequest() {
-        if dateManager.didOneDayPassed {
+    private func getRateInEuro(for currency: String) -> Double? {
+        guard let rate = coreDataManager?.loadItems(entity: Rate.self, predicate: .currency(currency)).first?.rate else { return nil }
+        return rate
+    }
+
+    private func performRequestDaily() {
+        if dateManager.didOneDayHasPass {
             httpClient.request(baseUrl: K.baseURLfixer, parameters: [K.fixerQuery]) { self.manageResult(with: $0) }
-        }
-    }
-
-    private func setTimeStampLabel() {
-        guard dateManager.timeStamp != 0 else { return }
-        let date = dateManager.lastUpdateDate
-        self.timeStampLabel.text = K.lastUpdate + date + K.refresh
-
-    }
-
-    private func getCurrencyList() -> [Rate] {
-        switch searchBar.text?.isEmpty {
-        case true:
-            guard let currencies = (coreDataManager?.loadItems(entity: Rate.self, sortBy: K.currency)) else { return [] }
-            return currencies
-        case false:
-            guard let text = searchBar.text else { return [] }
-            guard let currencies = coreDataManager?.loadItems(entity: Rate.self, predicate: .currency(text), sortBy: K.currency) else { return [] }
-            return currencies
-        default: return []
         }
     }
 
@@ -155,16 +139,53 @@ class ConverterVC: UIViewController {
                 print(convertedCurrency.rates)
                 self.coreDataManager?.deleteItems(entity: Rate.self)
                 self.defaults.set(convertedCurrency.timestamp, forKey: K.timeStamp)
-                convertedCurrency.rates.forEach { object in
+                convertedCurrency.rates.forEach { item in
                     self.coreDataManager?.createItem(entity: Rate.self) { rate in
-                        rate.currency = object.key
-                        rate.rate = object.value
+                        rate.currency = item.key
+                        rate.rate = item.value
                     }}
-                self.setTimeStampLabel()
+                self.setLastUpdateLabel()
                 self.tableView.reloadData()
             }
         }
     }
+
+    // return full currency list or currency list filtered by the text entered in searchBar
+    private func setCurrencyList() -> [Rate] {
+        switch searchBar.text?.isEmpty {
+        case true:
+            guard let currencyList = (coreDataManager?.loadItems(entity: Rate.self, sortBy: K.currency)) else { return [] }
+            return currencyList
+        case false:
+            guard let text = searchBar.text else { return [] }
+            guard let currencyList = coreDataManager?.loadItems(entity: Rate.self, predicate: .currency(text), sortBy: K.currency) else { return [] }
+            return currencyList
+        default: return []
+        }
+    }
+
+    private func setUpKeyboardBehaviour() {
+        hideKeyboardWhenTappedAround()
+        setUpToolbar(for: textFields)
+        tableView.keyboardDismissMode = .onDrag
+    }
+
+    private func setDelegates() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        searchBar.delegate = self
+    }
+
+    private func setLabels() {
+        currencyLabels.last?.text = defaults.string(forKey: K.currency) ?? K.USD
+        currentRatesLabel.text = K.currentRates + (currencyLabels.last?.text)!
+    }
+
+    private func setLastUpdateLabel() {
+         guard dateManager.timeStamp != 0 else { return }
+         let date = dateManager.lastUpdateDate
+         self.lastUpdateLabel.text = K.lastUpdate + date + K.refresh
+     }
 }
 
 
@@ -193,10 +214,9 @@ extension ConverterVC: UITableViewDataSource {
 
         let firstRate = currencyList[indexPath.row].rate
         guard let secondCurrency = currencyLabels.last?.text,
-            let secondRate = (coreDataManager?.loadItems(entity: Rate.self, predicate: .currency(secondCurrency)).first?.rate) else { return cell }
-        
-        cell.detailTextLabel?.text = rateManager.getActualRate(of: firstRate, and: secondRate, format: K.sixDecimals)
+            let secondRate = getRateInEuro(for: secondCurrency) else { return cell }
 
+        cell.detailTextLabel?.text = rateManager.getActualRate(of: firstRate, and: secondRate, format: K.sixDecimals)
         return cell
     }
 }
