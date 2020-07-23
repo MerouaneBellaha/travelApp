@@ -8,6 +8,21 @@
 
 import CoreData
 
+enum Predicate {
+    case currency(String)
+    case text(String)
+
+    var format: NSPredicate {
+        switch self {
+        case .currency(let currency):
+            return NSPredicate(format: K.currencyFormat, currency)
+        case .text(let text):
+            return NSPredicate(format: K.taskFormat, text)
+        }
+    }
+}
+
+
 final class CoreDataManager {
 
     // MARK: - Properties
@@ -24,22 +39,15 @@ final class CoreDataManager {
 
     // MARK: - Methods
 
-    func loadItems<T: NSManagedObject>(entity: T.Type, currency: String? = nil, text: String? = nil) -> [T] {
+    func loadItems<T: NSManagedObject>(entity: T.Type, predicate: Predicate? = nil, sortBy key: String? = nil) -> [T] {
         let request = T.fetchRequest()
 
-        // Must be refacto
-        if let currency = currency {
-            request.predicate = NSPredicate(format: K.currencyFormat, currency)
+        if let predicate = predicate {
+            request.predicate = predicate.format
         }
-        if let text = text {
-            request.predicate = NSPredicate(format: K.taskFormat, text)
+        if let key = key {
+            request.sortDescriptors = [NSSortDescriptor(key: key, ascending: true)]
         }
-        if T.self == Task.self {
-            request.sortDescriptors = [NSSortDescriptor(key: K.taskName, ascending: true)]
-        } else if T.self == Rate.self {
-            request.sortDescriptors = [NSSortDescriptor(key: K.currency, ascending: true)]
-        }
-        // --
 
         guard let items = try? (context.fetch(request).compactMap { $0 as? T }) else { return [] }
         return items

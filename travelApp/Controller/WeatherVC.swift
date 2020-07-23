@@ -69,6 +69,7 @@
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
+                    guard error != .noData else { return }
                     var message: String {
                         if error == .incorrectResponse {
                             return forUserCity ? K.cityErrorSettings : K.cityErrorSearched
