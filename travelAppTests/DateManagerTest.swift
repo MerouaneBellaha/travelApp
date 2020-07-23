@@ -24,25 +24,25 @@ class DateManagerTest: XCTestCase {
     func testGivenTimeBetweenTimeStampAndDateIsLessThanOneHour_WhenCallingDidOneHourPassed_ThenResultShouldBeFalse() {
         setDateManager(date: 10000, timeStamp: 8000)
 
-        XCTAssertEqual(dateManager.didOneHourPassed, false)
+        XCTAssertEqual(dateManager.didOneHourHasPass, false)
     }
 
     func testGivenTimeBetweenTimeStampAndDateIsMoreThanOneHour_WhenCallingDidOneHourPassed_ThenResultShouldBeTrue() {
         setDateManager(date: 10_000, timeStamp: 2_000)
 
-        XCTAssertEqual(dateManager.didOneHourPassed, true)
+        XCTAssertEqual(dateManager.didOneHourHasPass, true)
     }
 
     func testGivenTimeBetweenTimeStampAndDateIsLessThanOneDay_WhenCallingDidOneDayPassed_ThenResultShouldBeFalse() {
         setDateManager(date: 10_000, timeStamp: 2_000)
 
-        XCTAssertEqual(dateManager.didOneDayPassed, false)
+        XCTAssertEqual(dateManager.didOneDayHasPass, false)
     }
 
     func testGivenTimeBetweenTimeStampAndDateIsMoreThanOneDay_WhenCallingDidOneDayPassed_ThenResultShouldBeTrue() {
         setDateManager(date: 100_000, timeStamp: 2_000)
 
-        XCTAssertEqual(dateManager.didOneDayPassed, true)
+        XCTAssertEqual(dateManager.didOneDayHasPass, true)
     }
 
     func testGivenDateIsTody_WhenCallingLastUpdateDate_ThenResultCountShouldBe16() {
@@ -52,7 +52,7 @@ class DateManagerTest: XCTestCase {
     }
 
     private func setDateManager(date: Int, timeStamp: Int) {
-        dateManager.date = date
-        dateManager.timeStamp = timeStamp
+        dateManager.presentDate = date
+        dateManager.apiTimeStamp = timeStamp
     }
 }

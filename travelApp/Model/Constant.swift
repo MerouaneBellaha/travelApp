@@ -52,7 +52,7 @@ struct K {
     // MARK: - Keys
 
     static let taskName = "taskName"
-    static let timeStamp = "timestamp"
+    static let timeStamp = "timeStamp"
     static let rate = "rate"
     static let currency = "currency"
     static let city = "city"
@@ -101,5 +101,7 @@ struct K {
     static let cityErrorSearched = "Searched city doesn't exist. Please try again"
     /// "Current rates for 1 "
     static let currentRates = "Current rates for 1 "
+    /// "\n\n\n"
+    static let space = "\n\n\n"
 
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIViewController {
-    private func hideKeyboardWhenTappedAround() {
+    func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
@@ -20,18 +20,12 @@ extension UIViewController {
         view.endEditing(true)
     }
 
-    private func setUpToolbar(textFields: [UITextField]) {
+    func setUpToolbar(for textFields: [UITextField]) {
         let bar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         let doneBtn = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         bar.items = [flexSpace, flexSpace, doneBtn]
         bar.sizeToFit()
         textFields.forEach { $0.inputAccessoryView = bar }
-    }
-
-    func setUpKeyboard(textFields: [UITextField]? = []) {
-        hideKeyboardWhenTappedAround()
-        guard let textFields = textFields else { return }
-        setUpToolbar(textFields: textFields)
     }
 }

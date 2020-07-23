@@ -35,7 +35,8 @@
             locationManager.delegate = self
             locationManager.requestWhenInUseAuthorization()
             searchBar.delegate = self
-            setUpKeyboard()
+//            setUpKeyboard()
+            hideKeyboardWhenTappedAround()
         }
 
         override func viewWillAppear(_ animated: Bool) {

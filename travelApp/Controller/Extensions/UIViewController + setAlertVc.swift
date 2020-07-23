@@ -9,12 +9,13 @@
 import UIKit
 
 extension UIViewController {
+
     func setAlertVc(with message: String) {
         let alertVC = UIAlertController(title: "Oups!", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true)
     }
-    /// set an alert with a textField and an Add button, callback contains the the textField text to save
+    /// set an alert with a textField and an Add button, callback contains the textField.text to save
     func setAlertTextField(callBack: @escaping ((String) -> ())) {
         let alert = UIAlertController(title: nil, message: "Add new task", preferredStyle: .alert)
         alert.addTextField { textField in
@@ -29,10 +30,8 @@ extension UIViewController {
         present(alert, animated: true)
     }
 
-    func setActivityAlert(withTitle title: String?, message: String?, activityIndicatorColor: UIColor = UIColor.black, presentedActivityController: @escaping ((_ success: UIAlertController) -> Void)) {
-
-        let alertController = UIAlertController(title: title, message: (message ?? "") + ("\n\n\n"), preferredStyle: .alert)
-
+    func setActivityAlert(withTitle title: String, message: String, activityIndicatorColor: UIColor = UIColor.black, presentedActivityController: @escaping ((_ success: UIAlertController) -> Void)) {
+        let alertController = UIAlertController(title: title, message: (message + K.space), preferredStyle: .alert)
         let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         activityIndicator.color = activityIndicatorColor
         activityIndicator.startAnimating()

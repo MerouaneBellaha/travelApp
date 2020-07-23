@@ -10,35 +10,31 @@ import Foundation
 
 struct DateManager {
 
-    var date: Int?
-    var timeStamp: Int?
+    var presentDate: Int
+    var apiTimeStamp: Int
     private let hourInSeconds = 3600
     private let dayInSeconds = 86400
 
+    init(presentDate: Int? = nil, apiTimeStamp: Int? = nil) {
+        self.presentDate = presentDate ?? 0
+        self.apiTimeStamp = apiTimeStamp ?? 0
+        }
 
-    var didOneHourPassed: Bool {
-        guard let timeStamp = timeStamp else { return false }
-        guard let date = date else { return false }
-        return (date - timeStamp) > hourInSeconds ? true : false
+    var didOneHourHasPass: Bool {
+        return (presentDate - apiTimeStamp) > hourInSeconds ? true : false
     }
 
-    var didOneDayPassed: Bool {
-        guard let timeStamp = timeStamp else { return false }
-        guard let date = date else { return false }
-        if timeStamp == 0 || (date - timeStamp) > dayInSeconds {
-            return true
-        }
-        return false
+    var didOneDayHasPass: Bool {
+        guard apiTimeStamp == 0 || (presentDate - apiTimeStamp) > dayInSeconds else { return false }
+        return true
     }
 
     var lastUpdateDate: String {
-        guard let timeStamp = timeStamp else { return "no data" }
-        let lastUpdate = Date(timeIntervalSince1970: TimeInterval(timeStamp))
+        let lastUpdate = Date(timeIntervalSince1970: TimeInterval(apiTimeStamp))
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current
         formatter.dateFormat = K.dateFormat
         let dateString = formatter.string(from: lastUpdate)
         return dateString
     }
-
 }
