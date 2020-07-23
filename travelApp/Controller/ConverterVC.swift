@@ -29,8 +29,8 @@ class ConverterVC: UIViewController {
     private let rateManager = RateManager()
     private var dateManager: DateManager {
         var dateManager = DateManager()
-        dateManager.timeStamp = defaults.integer(forKey: K.timeStamp)
-        dateManager.date = Int(Date().timeIntervalSince1970)
+        dateManager.apiTimeStamp = defaults.integer(forKey: K.timeStamp)
+        dateManager.presentDate = Int(Date().timeIntervalSince1970)
         return dateManager
     }
     private var currencyList: [Rate] { setCurrencyList() }
@@ -138,7 +138,7 @@ class ConverterVC: UIViewController {
             DispatchQueue.main.async {
                 print(convertedCurrency.rates)
                 self.coreDataManager?.deleteItems(entity: Rate.self)
-                self.defaults.set(convertedCurrency.timestamp, forKey: K.timeStamp)
+                self.defaults.set(convertedCurrency.timeStamp, forKey: K.timeStamp)
                 convertedCurrency.rates.forEach { item in
                     self.coreDataManager?.createItem(entity: Rate.self) { rate in
                         rate.currency = item.key
@@ -182,7 +182,7 @@ class ConverterVC: UIViewController {
     }
 
     private func setLastUpdateLabel() {
-         guard dateManager.timeStamp != 0 else { return }
+         guard dateManager.apiTimeStamp != 0 else { return }
          let date = dateManager.lastUpdateDate
          self.lastUpdateLabel.text = K.lastUpdate + date + K.refresh
      }

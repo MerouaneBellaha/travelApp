@@ -10,7 +10,7 @@ import Foundation
 
 struct CurrencyData: Codable {
     var rates: [String: Double]
-    var timestamp: Int
+    var timeStamp: Int
 }
 
 

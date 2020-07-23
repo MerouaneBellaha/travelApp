@@ -52,7 +52,7 @@ struct K {
     // MARK: - Keys
 
     static let taskName = "taskName"
-    static let timeStamp = "timestamp"
+    static let timeStamp = "timeStamp"
     static let rate = "rate"
     static let currency = "currency"
     static let city = "city"

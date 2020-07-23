@@ -52,7 +52,7 @@ class DateManagerTest: XCTestCase {
     }
 
     private func setDateManager(date: Int, timeStamp: Int) {
-        dateManager.date = date
-        dateManager.timeStamp = timeStamp
+        dateManager.presentDate = date
+        dateManager.apiTimeStamp = timeStamp
     }
 }
