@@ -21,7 +21,7 @@ class ToDoVC: UIViewController {
     var coreDataManager: CoreDataManager?
     private var searchText: String = "" { didSet { tableView.reloadData() }}
     private var loadedItems: [Task] {
-        (searchBar.text?.isEmpty == true ? coreDataManager?.loadItems(entity: Task.self) : coreDataManager?.loadItems(entity: Task.self, text: searchText)) ?? []
+        (searchBar.text?.isEmpty == true ? (coreDataManager?.loadItems(entity: Task.self, sortBy: K.taskName)) : coreDataManager?.loadItems(entity: Task.self, predicate: .text(searchText), sortBy: K.taskName)) ?? []
     }
 
     // MARK: - ViewLifeCycle

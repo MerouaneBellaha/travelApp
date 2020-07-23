@@ -92,7 +92,7 @@ class ConverterVC: UIViewController {
     private func textFieldIsUsable(_ sender: UITextField) -> Bool {
         guard sender.text?.isEmpty == false,
             let text = sender.text else {
-                textFields.forEach { $0.text?.removeAll() }
+                textFields.forEach { $0.text?.removeAll() } //
                 return false
         }
         guard text != K.point else {
@@ -110,9 +110,9 @@ class ConverterVC: UIViewController {
 
     private func updateResult(with amount: Double, senderTag: Int) {
         guard let firstCurrency = currencyLabels.first(where: { $0.tag == senderTag })?.text,
-            let firstRate = coreDataManager?.loadItems(entity: Rate.self, currency: firstCurrency).first?.rate else { return }
+            let firstRate = coreDataManager?.loadItems(entity: Rate.self, predicate: .currency(firstCurrency)).first?.rate else { return }
         guard let secondCurrency = currencyLabels.first(where: { $0.tag != senderTag })?.text,
-            let secondRate = coreDataManager?.loadItems(entity: Rate.self, currency: secondCurrency).first?.rate else { return }
+            let secondRate = coreDataManager?.loadItems(entity: Rate.self, predicate: .currency(secondCurrency)).first?.rate else { return }
 
         let result = rateManager.calculConversion(of: amount, with: firstRate, and: secondRate)
         textFields.first(where: { $0.tag != senderTag })?.text = result
@@ -134,10 +134,11 @@ class ConverterVC: UIViewController {
     private func getCurrencyList() -> [Rate] {
         switch searchBar.text?.isEmpty {
         case true:
-            guard let currencies = (coreDataManager?.loadItems(entity: Rate.self)) else { return [] }
+            guard let currencies = (coreDataManager?.loadItems(entity: Rate.self, sortBy: K.currency)) else { return [] }
             return currencies
         case false:
-            guard let currencies = (coreDataManager?.loadItems(entity: Rate.self, currency: searchBar.text)) else { return [] }
+            guard let text = searchBar.text else { return [] }
+            guard let currencies = coreDataManager?.loadItems(entity: Rate.self, predicate: .currency(text), sortBy: K.currency) else { return [] }
             return currencies
         default: return []
         }
@@ -191,7 +192,8 @@ extension ConverterVC: UITableViewDataSource {
         cell.textLabel?.text = currencyList[indexPath.row].currency
 
         let firstRate = currencyList[indexPath.row].rate
-        guard let secondRate = (coreDataManager?.loadItems(entity: Rate.self, currency: currencyLabels.last?.text).first?.rate) else { return cell }
+        guard let secondCurrency = currencyLabels.last?.text,
+            let secondRate = (coreDataManager?.loadItems(entity: Rate.self, predicate: .currency(secondCurrency)).first?.rate) else { return cell }
         
         cell.detailTextLabel?.text = rateManager.getActualRate(of: firstRate, and: secondRate, format: K.sixDecimals)
 
