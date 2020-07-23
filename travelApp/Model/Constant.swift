@@ -101,5 +101,7 @@ struct K {
     static let cityErrorSearched = "Searched city doesn't exist. Please try again"
     /// "Current rates for 1 "
     static let currentRates = "Current rates for 1 "
+    /// "\n\n\n"
+    static let space = "\n\n\n"
 
 }

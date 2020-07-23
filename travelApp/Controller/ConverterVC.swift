@@ -138,7 +138,7 @@ class ConverterVC: UIViewController {
             DispatchQueue.main.async {
                 print(convertedCurrency.rates)
                 self.coreDataManager?.deleteItems(entity: Rate.self)
-                self.defaults.set(convertedCurrency.timeStamp, forKey: K.timeStamp)
+                self.defaults.set(convertedCurrency.timestamp, forKey: K.timeStamp)
                 convertedCurrency.rates.forEach { item in
                     self.coreDataManager?.createItem(entity: Rate.self) { rate in
                         rate.currency = item.key

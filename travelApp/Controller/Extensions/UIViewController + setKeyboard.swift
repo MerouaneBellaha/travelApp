@@ -28,10 +28,4 @@ extension UIViewController {
         bar.sizeToFit()
         textFields.forEach { $0.inputAccessoryView = bar }
     }
-
-    //    func setUpKeyboard(textFields: [UITextField]? = []) {
-    //        hideKeyboardWhenTappedAround()
-    //        guard let textFields = textFields else { return }
-    //        setUpToolbar(for: textFields)
-    //    }
 }
