@@ -103,5 +103,9 @@ struct K {
     static let currentRates = "Current rates for 1 "
     /// "\n\n\n"
     static let space = "\n\n\n"
+    /// "Please wait..."
+    static let wait = "Please wait..."
+    /// "We're getting your local forecast."
+    static let localForecast = "We're getting your local forecast."
 
 }

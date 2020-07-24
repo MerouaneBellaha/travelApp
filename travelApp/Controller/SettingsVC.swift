@@ -23,6 +23,7 @@ final class SettingsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
     }
     
     @IBAction func currencyButtonTapped(_ sender: UIButton) {
