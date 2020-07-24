@@ -12,25 +12,21 @@ class ToDoVC: UIViewController {
 
     // MARK: - IBOutlet properties
 
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noTaskLabel: UILabel!
-    @IBOutlet weak var searchBar: UISearchBar!
+
 
     // MARK: - Properties
 
     var coreDataManager: CoreDataManager?
-    private var searchText: String = "" { didSet { tableView.reloadData() }}
-    private var loadedItems: [Task] {
-        (searchBar.text?.isEmpty == true ? (coreDataManager?.loadItems(entity: Task.self, sortBy: K.taskName)) : coreDataManager?.loadItems(entity: Task.self, predicate: .text(searchText), sortBy: K.taskName)) ?? []
-    }
+    private var taskList: [Task] { setTaskList() }
 
     // MARK: - ViewLifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
-        searchBar.delegate = self
+        setDelegates()
         hideKeyboardWhenTappedAround()
     }
 
@@ -47,38 +43,53 @@ class ToDoVC: UIViewController {
         coreDataManager?.deleteItems(entity: Task.self)
         tableView.reloadData()
     }
+
+    private func setTaskList() -> [Task] {
+        if searchBar.text?.isEmpty == true {
+            return coreDataManager?.loadItems(entity: Task.self, sortBy: K.taskName) ?? []
+        } else {
+            return coreDataManager?.loadItems(entity: Task.self, predicate: .text(searchBar.text!), sortBy: K.taskName) ?? []
+        }
+    }
+
+    private func setDelegates() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        searchBar.delegate = self
+    }
 }
 
-    // MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ToDoVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        noTaskLabel.text = coreDataManager?.loadItems(entity: Task.self).isEmpty ?? true ? K.noTask : .none
-        return loadedItems.count
+        noTaskLabel.text = taskList.isEmpty ? K.noTask : .none
+        return taskList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.taskCell, for: indexPath)
-        cell.textLabel?.text = loadedItems[indexPath.row].taskName
+        cell.textLabel?.text = taskList[indexPath.row].taskName
         return cell
     }
 }
 
-    // MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension ToDoVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            coreDataManager?.deleteItem(item: (coreDataManager?.loadItems(entity: Task.self)[indexPath.row])!)
+            guard let itemToDelete = coreDataManager?.loadItems(entity: Task.self)[indexPath.row] else { return }
+            coreDataManager?.deleteItem(item: itemToDelete)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
 
-    // MARK: - UISearchBarDelegate
+// MARK: - UISearchBarDelegate
 
 extension ToDoVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchText = searchText
+        tableView.reloadData()
     }
 }

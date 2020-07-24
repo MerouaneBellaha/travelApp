@@ -18,7 +18,7 @@
         @IBOutlet var conditionLabels: [UILabel]!
         @IBOutlet var temperaturesLabels: [UILabel]!
         @IBOutlet var weatherIcons: [UIImageView]!
-
+        
         // MARK: - Properties
 
         private var httpClient = HTTPClient()
