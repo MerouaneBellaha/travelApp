@@ -1,0 +1,12 @@
+{
+    "weather": [
+        {
+            "id": 804,
+            "description": "overcast clouds",
+        }
+    ],
+    "main": {
+        "temp": 19.11,
+    },
+    "name": "London",
+}

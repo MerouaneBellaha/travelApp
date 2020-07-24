@@ -70,7 +70,7 @@
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
-                    guard error != .noData else { return }
+                    guard error != .error else { return }
                     var message: String {
                         if error == .incorrectResponse {
                             return forUserCity ? K.cityErrorSettings : K.cityErrorSearched
@@ -108,10 +108,10 @@
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             guard let currentLocation = locations.last else { return }
             locationManager.stopUpdatingLocation()
-            let currentLocationLon = currentLocation.coordinate.longitude
-            let currentLocationLat = currentLocation.coordinate.latitude
+            let currentLocationLon = String(currentLocation.coordinate.longitude)
+            let currentLocationLat = String(currentLocation.coordinate.latitude)
             activityIndicator.dismiss(animated: true)
-            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.queryLat, String(currentLocationLat)), (K.queryLon, String(currentLocationLon))]) { [unowned self] result in
+            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.queryLat, currentLocationLat), (K.queryLon, currentLocationLon)]) { [unowned self] result in
                 self.manageResult(with: result)
             }
         }

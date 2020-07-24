@@ -11,6 +11,10 @@
 		CB05346F24C72A8C005AF631 /* DateManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05346E24C72A8C005AF631 /* DateManagerTest.swift */; };
 		CB05347124C740FD005AF631 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB05347024C740FD005AF631 /* ApiKeys.plist */; };
 		CB05347324C7922A005AF631 /* RateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05347224C7922A005AF631 /* RateManager.swift */; };
+		CB307E5F24CAD63C009E425C /* HTTPClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB307E5E24CAD63C009E425C /* HTTPClientTest.swift */; };
+		CB307E6124CAD69B009E425C /* Weather.json in Resources */ = {isa = PBXBuildFile; fileRef = CB307E6024CAD69B009E425C /* Weather.json */; };
+		CB307E6324CADAAE009E425C /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB307E6224CADAAE009E425C /* FakeResponseData.swift */; };
+		CB307E6924CADF33009E425C /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB307E6824CADF33009E425C /* URLSessionFake.swift */; };
 		CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */; };
 		CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */; };
 		CB6BF2C324BDDBE40065F64E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6BF2C124BDDBE40065F64E /* Main.storyboard */; };
@@ -24,7 +28,7 @@
 		CB7F046724C3093C0084D64E /* CoreDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F046624C3093C0084D64E /* CoreDataManagerTest.swift */; };
 		CB7F047124C309F60084D64E /* FakeCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F047024C309F60084D64E /* FakeCoreDataStack.swift */; };
 		CB7F047324C310390084D64E /* HTTPEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F047224C310390084D64E /* HTTPEngine.swift */; };
-		CB7F047524C318550084D64E /* HTTPclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F047424C318550084D64E /* HTTPclient.swift */; };
+		CB7F047524C318550084D64E /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F047424C318550084D64E /* HTTPClient.swift */; };
 		CB7F047724C318B90084D64E /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F047624C318B90084D64E /* Constant.swift */; };
 		CB8F7C4724BE38950080570D /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4624BE38950080570D /* RequestError.swift */; };
 		CB8F7C4924BE38C80080570D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4824BE38C80080570D /* Data.swift */; };
@@ -54,6 +58,10 @@
 		CB05346E24C72A8C005AF631 /* DateManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerTest.swift; sourceTree = "<group>"; };
 		CB05347024C740FD005AF631 /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		CB05347224C7922A005AF631 /* RateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateManager.swift; sourceTree = "<group>"; };
+		CB307E5E24CAD63C009E425C /* HTTPClientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientTest.swift; sourceTree = "<group>"; };
+		CB307E6024CAD69B009E425C /* Weather.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Weather.json; sourceTree = "<group>"; };
+		CB307E6224CADAAE009E425C /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
+		CB307E6824CADF33009E425C /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
 		CB6BF2B824BDDBE40065F64E /* travelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterVC.swift; sourceTree = "<group>"; };
@@ -71,7 +79,7 @@
 		CB7F046824C3093C0084D64E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB7F047024C309F60084D64E /* FakeCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCoreDataStack.swift; sourceTree = "<group>"; };
 		CB7F047224C310390084D64E /* HTTPEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEngine.swift; sourceTree = "<group>"; };
-		CB7F047424C318550084D64E /* HTTPclient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPclient.swift; sourceTree = "<group>"; };
+		CB7F047424C318550084D64E /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		CB7F047624C318B90084D64E /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		CB8F7C4624BE38950080570D /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		CB8F7C4824BE38C80080570D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -111,6 +119,26 @@
 				CB05346C24C70F13005AF631 /* DateManager.swift */,
 			);
 			path = ConverterVcModel;
+			sourceTree = "<group>";
+		};
+		CB307E6624CADAE3009E425C /* CoreDataTest */ = {
+			isa = PBXGroup;
+			children = (
+				CB7F046624C3093C0084D64E /* CoreDataManagerTest.swift */,
+				CB7F047024C309F60084D64E /* FakeCoreDataStack.swift */,
+			);
+			path = CoreDataTest;
+			sourceTree = "<group>";
+		};
+		CB307E6724CADB04009E425C /* HTTPClientTest */ = {
+			isa = PBXGroup;
+			children = (
+				CB307E5E24CAD63C009E425C /* HTTPClientTest.swift */,
+				CB307E6224CADAAE009E425C /* FakeResponseData.swift */,
+				CB307E6824CADF33009E425C /* URLSessionFake.swift */,
+				CB307E6024CAD69B009E425C /* Weather.json */,
+			);
+			path = HTTPClientTest;
 			sourceTree = "<group>";
 		};
 		CB6BF2AF24BDDBE40065F64E = {
@@ -183,11 +211,11 @@
 		CB7F046524C3093C0084D64E /* travelAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				CB7F046624C3093C0084D64E /* CoreDataManagerTest.swift */,
-				CB7F047024C309F60084D64E /* FakeCoreDataStack.swift */,
 				CBEF0C4924C49D4A008535E1 /* WeatherModelTest.swift */,
 				CB05346E24C72A8C005AF631 /* DateManagerTest.swift */,
 				CBEBF39B24C9E92C00A06E93 /* RateManagerTest.swift */,
+				CB307E6624CADAE3009E425C /* CoreDataTest */,
+				CB307E6724CADB04009E425C /* HTTPClientTest */,
 				CB7F046824C3093C0084D64E /* Info.plist */,
 			);
 			path = travelAppTests;
@@ -196,7 +224,7 @@
 		CB7F047824C31BFB0084D64E /* GenericNetworking */ = {
 			isa = PBXGroup;
 			children = (
-				CB7F047424C318550084D64E /* HTTPclient.swift */,
+				CB7F047424C318550084D64E /* HTTPClient.swift */,
 				CB7F047224C310390084D64E /* HTTPEngine.swift */,
 				CB8F7C4624BE38950080570D /* RequestError.swift */,
 			);
@@ -316,6 +344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB307E6124CAD69B009E425C /* Weather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +369,7 @@
 				CB925B3F24BF80D70049774F /* CoreDataStack.swift in Sources */,
 				CB6BF2DA24BDE52F0065F64E /* ToDoVC.swift in Sources */,
 				CBEF0C4824C472F9008535E1 /* WeatherModel.swift in Sources */,
-				CB7F047524C318550084D64E /* HTTPclient.swift in Sources */,
+				CB7F047524C318550084D64E /* HTTPClient.swift in Sources */,
 				CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */,
 				CB8F7C4724BE38950080570D /* RequestError.swift in Sources */,
 				CBFB8BA924C3C4E000318370 /* UIViewController + setKeyboard.swift in Sources */,
@@ -354,9 +383,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB307E5F24CAD63C009E425C /* HTTPClientTest.swift in Sources */,
 				CBEF0C4A24C49D4A008535E1 /* WeatherModelTest.swift in Sources */,
 				CB05346F24C72A8C005AF631 /* DateManagerTest.swift in Sources */,
+				CB307E6324CADAAE009E425C /* FakeResponseData.swift in Sources */,
 				CB7F047124C309F60084D64E /* FakeCoreDataStack.swift in Sources */,
+				CB307E6924CADF33009E425C /* URLSessionFake.swift in Sources */,
 				CBEBF39C24C9E92C00A06E93 /* RateManagerTest.swift in Sources */,
 				CB7F046724C3093C0084D64E /* CoreDataManagerTest.swift in Sources */,
 			);
