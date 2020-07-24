@@ -14,71 +14,48 @@ class HTTPClientTest: XCTestCase {
     var httpClient: HTTPClient!
     var requestResult: (WeatherData?, Error?)
 
-
-    private func manageResult(with result: Result<WeatherData, RequestError>) {
-        switch result {
-        case .failure(let error):
-            requestResult = (nil, error)
-        case .success(let data):
-            requestResult = (data, nil)
-        }
-    }
-
     func testRequestShouldPostFailureIfError() {
-        let URLSession = URLSessionFake(data: nil, response: nil, error: FakeResponseData.error)
-        httpClient = HTTPClient(httpEngine: HTTPEngine(session: URLSession))
-
-
-        httpClient.request(baseUrl: K.baseURLweather) { self.manageResult(with: $0) }
-
-        XCTAssertNil(requestResult.0)
-        XCTAssertNotNil(requestResult.1)
-        XCTAssertEqual((requestResult.1 as! RequestError).description, "Error")
+        performRequest(data: nil, response: nil, error: FakeResponseData.error)
+        testRequestResult(description: "Error")
     }
 
     func testRequestShouldPostFailureIfNoData() {
-        let URLSession = URLSessionFake(data: nil, response: nil, error: nil)
-        httpClient = HTTPClient(httpEngine: HTTPEngine(session: URLSession))
-
-        httpClient.request(baseUrl: K.baseURLweather) { self.manageResult(with: $0) }
-
-        XCTAssertNil(requestResult.0)
-        XCTAssertNotNil(requestResult.1)
-        XCTAssertEqual((requestResult.1 as! RequestError).description, "Can't reach the server, please retry.")
+        performRequest(data: nil, response: nil, error: nil)
+        testRequestResult(description: "Can't reach the server, please retry.")
     }
 
     func testRequestShouldPostFailureIfIncorrestResponse() {
-        let URLSession = URLSessionFake(data: FakeResponseData.weatherCorrectData, response: FakeResponseData.responseKO, error: nil)
-        httpClient = HTTPClient(httpEngine: HTTPEngine(session: URLSession))
-
-        httpClient.request(baseUrl: K.baseURLweather) { self.manageResult(with: $0) }
-
-        XCTAssertNil(requestResult.0)
-        XCTAssertNotNil(requestResult.1)
-        XCTAssertEqual((requestResult.1 as! RequestError).description, "Incorrect response")
+        performRequest(data: FakeResponseData.weatherCorrectData, response: FakeResponseData.responseKO, error: nil)
+        testRequestResult(description: "Incorrect response")
     }
 
     func testRequestShouldPostFailureIfIncorrectData() {
-        let URLSession = URLSessionFake(data: FakeResponseData.weatherIncorrectData, response: FakeResponseData.responseOK, error: nil)
-        httpClient = HTTPClient(httpEngine: HTTPEngine(session: URLSession))
-
-        httpClient.request(baseUrl: K.baseURLweather) { self.manageResult(with: $0) }
-
-        XCTAssertNil(requestResult.0)
-        XCTAssertNotNil(requestResult.1)
-        XCTAssertEqual((requestResult.1 as! RequestError).description, "Undecodable data")
+        performRequest(data: FakeResponseData.weatherIncorrectData, response: FakeResponseData.responseOK, error: nil)
+        testRequestResult(description: "Undecodable data")
     }
 
     func testRequestShouldPostSuccessIfNoErrorAndCorrectData() {
-        let URLSession = URLSessionFake(data: FakeResponseData.weatherCorrectData, response: FakeResponseData.responseOK, error: nil)
-        httpClient = HTTPClient(httpEngine: HTTPEngine(session: URLSession))
-
-        httpClient.request(baseUrl: K.baseURLweather) { self.manageResult(with: $0) }
+        performRequest(data: FakeResponseData.weatherCorrectData, response: FakeResponseData.responseOK, error: nil)
 
         XCTAssertNotNil(requestResult.0)
         XCTAssertNil(requestResult.1)
 
+        testRetrivedData()
+    }
 
+    private func performRequest(data: Data?, response: URLResponse?, error: Error?) {
+        let URLSession = URLSessionFake(data: data, response: response, error: error)
+        httpClient = HTTPClient(httpEngine: HTTPEngine(session: URLSession))
+        httpClient.request(baseUrl: K.baseURLweather) { self.manageResult(with: $0) }
+    }
+
+    private func testRequestResult(description: String) {
+        XCTAssertNil(requestResult.0)
+        XCTAssertNotNil(requestResult.1)
+        XCTAssertEqual((requestResult.1 as! RequestError).description, description)
+    }
+
+    private func testRetrivedData() {
         let id = 804
         let description = "overcast clouds"
         let temp = 19.11
@@ -88,6 +65,15 @@ class HTTPClientTest: XCTestCase {
         XCTAssertEqual(requestResult.0?.weather.first?.description, description)
         XCTAssertEqual(requestResult.0?.main.temp, temp)
         XCTAssertEqual(requestResult.0?.name, name)
+    }
+
+    private func manageResult(with result: Result<WeatherData, RequestError>) {
+        switch result {
+        case .failure(let error):
+            requestResult = (nil, error)
+        case .success(let data):
+            requestResult = (data, nil)
+        }
     }
 
     override func tearDown() {
