@@ -18,7 +18,6 @@ struct WeatherData: Decodable {
     let main: Main
     let weather: [Weather]
     let name: String
-    let coord: Coord
 }
 
 struct Main: Decodable {
@@ -28,9 +27,4 @@ struct Main: Decodable {
 struct Weather: Decodable {
     var id: Int
     var description: String
-}
-
-struct Coord: Decodable {
-    var lon: Double
-    var lat: Double
 }

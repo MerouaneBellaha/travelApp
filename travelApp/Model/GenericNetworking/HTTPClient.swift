@@ -1,5 +1,5 @@
 //
-//  HTTPclient.swift
+//  HTTPClient.swift
 //  travelApp
 //
 //  Created by Merouane Bellaha on 18/07/2020.
@@ -22,11 +22,16 @@ final class HTTPClient {
 
     func request<T: Decodable>(baseUrl: String, parameters: [(String, Any)]? = nil, callback: @escaping (Result<T, RequestError>) -> Void) {
         httpEngine.request(baseUrl: baseUrl, parameters: parameters) { data, response, error in
-            guard let data = data, error == nil else {
+            guard error == nil else {
+                callback(.failure(.error))
+                return
+            }
+            guard let data = data else {
                 callback(.failure(.noData))
                 return
             }
             guard let response = response, response.statusCode == 200 else {
+                print("OK")
                 callback(.failure(.incorrectResponse))
                 return
             }

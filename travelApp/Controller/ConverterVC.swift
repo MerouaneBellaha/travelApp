@@ -19,15 +19,13 @@ class ConverterVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
-    
-
     // MARK: - Properties
 
     var coreDataManager: CoreDataManager?
     private var httpClient = HTTPClient()
     private let defaults = UserDefaults.standard
     private let rateManager = RateManager()
-    private var dateManager: DateManager {
+    private var dateManager: DateManager { //
         var dateManager = DateManager()
         dateManager.apiTimeStamp = defaults.integer(forKey: K.timeStamp)
         dateManager.presentDate = Int(Date().timeIntervalSince1970)
