@@ -336,7 +336,7 @@
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" backgroundImage="location.circle"/>
                                         <connections>
-                                            <action selector="getLocation:" destination="3Wx-jJ-Olk" eventType="touchUpInside" id="5yT-KT-WtF"/>
+                                            <action selector="getUserLocation:" destination="3Wx-jJ-Olk" eventType="touchUpInside" id="5yT-KT-WtF"/>
                                         </connections>
                                     </button>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="search for a city..." translatesAutoresizingMaskIntoConstraints="NO" id="3Gj-gu-k1c">

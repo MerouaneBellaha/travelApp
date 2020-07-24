@@ -18,55 +18,48 @@
         @IBOutlet var conditionLabels: [UILabel]!
         @IBOutlet var temperaturesLabels: [UILabel]!
         @IBOutlet var weatherIcons: [UIImageView]!
-        @IBOutlet weak var overlay: UIView!
 
         // MARK: - Properties
 
-        private let locationManager = CLLocationManager()
         private var httpClient = HTTPClient()
         private var weatherData: WeatherModel!
         private var defaults = UserDefaults.standard
         private var activityIndicator: UIAlertController!
+        private let locationManager = CLLocationManager()
 
         // MARK: - ViewLifeCycle
 
         override func viewDidLoad() {
             super.viewDidLoad()
-            locationManager.delegate = self
+            setDelegates()
             locationManager.requestWhenInUseAuthorization()
-            searchBar.delegate = self
-//            setUpKeyboard()
             hideKeyboardWhenTappedAround()
         }
 
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            let userCity = defaults.string(forKey: K.city) ?? K.defaultCity
-            self.httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, userCity)]) { self.manageResult(with: $0, forUserCity: true) }
-
+            performRequestWithUserCity()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.getLocation()
+                self.getUserLocation()
             }
         }
 
         // MARK: - IBAction methods
 
-        @IBAction func getLocation(_ sender: UIButton? = nil) {
-            setActivityAlert(withTitle: "Please wait...", message: "We're getting your local forecast.") { alertController in
+        @IBAction func getUserLocation(_ sender: UIButton? = nil) {
+            setActivityAlert(withTitle: K.wait, message: K.localForecast) { alertController in
                 self.locationManager.requestLocation()
                 self.activityIndicator = alertController
             }
         }
 
         @IBAction func searchPressed(_ sender: UIButton) {
-            guard let city = searchBar.text else { return }
-            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, city)]) { self.manageResult(with: $0) }
+            performRequestWithSearBarText()
         }
 
         // MARK: - Methods
 
         private func manageResult(with result: Result<WeatherData, RequestError>, forUserCity: Bool = false) {
-
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -89,6 +82,21 @@
                 }
             }
         }
+
+        private func performRequestWithSearBarText() {
+            guard let city = searchBar.text else { return }
+            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, city)]) { self.manageResult(with: $0) }
+        }
+
+        private func performRequestWithUserCity() {
+            let userCity = defaults.string(forKey: K.city) ?? K.defaultCity
+            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, userCity)]) { self.manageResult(with: $0, forUserCity: true) }
+        }
+
+        private func setDelegates() {
+            locationManager.delegate = self
+            searchBar.delegate = self
+        }
     }
 
     // MARK: - UISearchBarDelegate
@@ -96,27 +104,23 @@
     extension WeatherVC: UISearchBarDelegate {
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
             view.endEditing(true)
-            guard let city = searchBar.text else { return }
-            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, city)]) { self.manageResult(with: $0) }
+            performRequestWithSearBarText()
         }
     }
 
     // MARK: - CLLocationManagerDelegate
 
     extension WeatherVC: CLLocationManagerDelegate {
-
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             guard let currentLocation = locations.last else { return }
             locationManager.stopUpdatingLocation()
-            let currentLocationLon = String(currentLocation.coordinate.longitude)
-            let currentLocationLat = String(currentLocation.coordinate.latitude)
+            let lon = String(currentLocation.coordinate.longitude)
+            let lat = String(currentLocation.coordinate.latitude)
             activityIndicator.dismiss(animated: true)
-            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.queryLat, currentLocationLat), (K.queryLon, currentLocationLon)]) { [unowned self] result in
+            httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.queryLat, lat), (K.queryLon, lon)]) { [unowned self] result in
                 self.manageResult(with: result)
             }
         }
 
-        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            print(error)
-        }
+        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) { print(error) }
     }

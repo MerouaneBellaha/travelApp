@@ -31,6 +31,7 @@ class ToDoVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
+        hideKeyboardWhenTappedAround()
     }
 
     // MARK: - IBAction methods
