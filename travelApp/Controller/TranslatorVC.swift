@@ -130,7 +130,7 @@ class TranslatorVC: UIViewController {
 
     private func performTranslation() {
         guard let textToTranslate = textViews.first?.text,
-        let language = languageLabels.last?.text else { return }
+            let language = languageLabels.last?.text else { return }
         let targetLanguage = getLanguageCode(from: language)
         // Should managage source language ??
         httpClient.request(baseUrl: K.baseURLtranslate, parameters: [K.googleQuery, (K.query, textToTranslate), (K.target, targetLanguage), K.textFormat]) { self.manageTranslateResult(with: $0) }
