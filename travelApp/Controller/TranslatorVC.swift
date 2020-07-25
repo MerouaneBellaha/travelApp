@@ -32,20 +32,23 @@ class TranslatorVC: UIViewController {
 
     // MARK: - IBAction methods
 
-    @IBAction func detectLanguageTapped(_ sender: UIButton) {
+    @IBAction func detectButtonTapped(_ sender: UIButton) {
         guard let textToDetext = textViews.first?.text else { return }
         httpClient.request(baseUrl: K.baseURLdetect, parameters: [K.googleQuery, (K.query, textToDetext)]) { self.manageDetectResult(with: $0) }
     }
 
-    @IBAction func swapLanguagesTapped(_ sender: UIButton) {
+    @IBAction func swapButtonTapped(_ sender: UIButton) {
         guard languageLabelsAreNotEmpty() else { return }
         swapLanguageLabelsText()
+        swapTextViewsText()
     }
 
 
     @IBAction func translateTapped(_ sender: UIButton) {
         guard isTranslationPossible() else { return }
-        performTranslation()
+//        performTranslation()
+        let parameters = getTranslationParameters()
+        requestTranslation(with: parameters)
     }
 
     // MARK: - Managing request result Methods
@@ -86,9 +89,10 @@ class TranslatorVC: UIViewController {
             }
         case .success(let result):
             DispatchQueue.main.async {
-                let detectedLanguageCode = result.data.translations.first?.detectedSourceLanguage
-                let detectedLanguage = self.getLanguageName(from: detectedLanguageCode ?? "N/A")
-                self.languageLabels.first?.text = detectedLanguage
+                if let detectedLanguageCode = result.data.translations.first?.detectedSourceLanguage {
+                    let detectedLanguage = self.getLanguageName(from: detectedLanguageCode)
+                    self.languageLabels.first?.text = detectedLanguage
+                }
                 self.textViews.last?.text = result.data.translations.first?.translatedText
             }
         }
@@ -105,6 +109,12 @@ class TranslatorVC: UIViewController {
         let firstLanguage = languageLabels.first?.text
         languageLabels.first?.text = languageLabels.last?.text
         languageLabels.last?.text = firstLanguage
+    }
+
+    private func swapTextViewsText() {
+        let firstText = textViews.first?.text
+        textViews.first?.text = textViews.last?.text
+        textViews.last?.text = firstText
     }
 
     private func languageLabelsAreNotEmpty() -> Bool {
@@ -128,13 +138,24 @@ class TranslatorVC: UIViewController {
         return true
     }
 
-    private func performTranslation() {
+    private func getTranslationParameters() -> [(String, String)] {
         guard let textToTranslate = textViews.first?.text,
-            let language = languageLabels.last?.text else { return }
+            let language = languageLabels.last?.text else { return [] }
         let targetLanguage = getLanguageCode(from: language)
-        // Should managage source language ??
-        httpClient.request(baseUrl: K.baseURLtranslate, parameters: [K.googleQuery, (K.query, textToTranslate), (K.target, targetLanguage), K.textFormat]) { self.manageTranslateResult(with: $0) }
+        var parameters = [K.googleQuery, (K.query, textToTranslate), (K.target, targetLanguage), K.textFormat]
+        guard languageLabels.first?.text != "N/A",
+            let sourceLanguage = languageLabels.first?.text else {
+            return parameters
+        }
+        let sourceLanguageCode = getLanguageCode(from: sourceLanguage)
+        parameters.append(("source", sourceLanguageCode))
+        return parameters
     }
+
+    private func requestTranslation(with parameters: [(String, String)]) {
+        httpClient.request(baseUrl: K.baseURLtranslate, parameters: parameters) { self.manageTranslateResult(with: $0) }
+    }
+
 
 
     private func getLanguageCode(from language: String) -> String {
