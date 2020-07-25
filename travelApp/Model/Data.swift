@@ -35,7 +35,7 @@ struct Weather: Codable {
     // MARK: - GoogleDetectLanguages
 
 struct DetectData: Codable {
-    let data: DetectedList
+    var data: DetectedList
 }
 
 struct DetectedList: Codable {
@@ -49,7 +49,7 @@ struct Detection: Codable {
     // MARK: - GoogleSupportedLanguages
 
 struct LanguageData: Codable {
-    let data: LanguageList
+    var data: LanguageList
 }
 
 struct LanguageList: Codable {
@@ -63,7 +63,7 @@ struct Language: Codable {
     // MARK: - GoogleTranslate
 
 struct TranslateData: Codable {
-    let data: TranslateList
+    var data: TranslateList
 }
 
 struct TranslateList: Codable {
@@ -73,5 +73,4 @@ struct TranslateList: Codable {
 struct Translation: Codable {
     let translatedText, detectedSourceLanguage: String
 }
-
 

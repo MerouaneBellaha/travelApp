@@ -16,8 +16,6 @@
 		CB307E6324CADAAE009E425C /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB307E6224CADAAE009E425C /* FakeResponseData.swift */; };
 		CB307E6924CADF33009E425C /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB307E6824CADF33009E425C /* URLSessionFake.swift */; };
 		CB307E6B24CC428F009E425C /* LanguagesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB307E6A24CC428F009E425C /* LanguagesTable.swift */; };
-		CB307E6D24CC5866009E425C /* TranslatorAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB307E6C24CC5866009E425C /* TranslatorAPI.swift */; };
-		CB307E6F24CC81E0009E425C /* GoogleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB307E6E24CC81E0009E425C /* GoogleModel.swift */; };
 		CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */; };
 		CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */; };
 		CB6BF2C324BDDBE40065F64E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6BF2C124BDDBE40065F64E /* Main.storyboard */; };
@@ -66,8 +64,6 @@
 		CB307E6224CADAAE009E425C /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		CB307E6824CADF33009E425C /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
 		CB307E6A24CC428F009E425C /* LanguagesTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesTable.swift; sourceTree = "<group>"; };
-		CB307E6C24CC5866009E425C /* TranslatorAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorAPI.swift; sourceTree = "<group>"; };
-		CB307E6E24CC81E0009E425C /* GoogleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleModel.swift; sourceTree = "<group>"; };
 		CB6BF2B824BDDBE40065F64E /* travelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterVC.swift; sourceTree = "<group>"; };
@@ -186,8 +182,6 @@
 				CB8F7C4824BE38C80080570D /* Data.swift */,
 				CB7F047624C318B90084D64E /* Constant.swift */,
 				CBEF0C4724C472F9008535E1 /* WeatherModel.swift */,
-				CB307E6C24CC5866009E425C /* TranslatorAPI.swift */,
-				CB307E6E24CC81E0009E425C /* GoogleModel.swift */,
 				CB05347424C79248005AF631 /* ConverterVcModel */,
 				CB7F047924C31C010084D64E /* GenericCoreData */,
 				CB7F047824C31BFB0084D64E /* GenericNetworking */,
@@ -378,11 +372,9 @@
 				CB8F7C4924BE38C80080570D /* Data.swift in Sources */,
 				CB925B3F24BF80D70049774F /* CoreDataStack.swift in Sources */,
 				CB6BF2DA24BDE52F0065F64E /* ToDoVC.swift in Sources */,
-				CB307E6D24CC5866009E425C /* TranslatorAPI.swift in Sources */,
 				CBEF0C4824C472F9008535E1 /* WeatherModel.swift in Sources */,
 				CB7F047524C318550084D64E /* HTTPClient.swift in Sources */,
 				CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */,
-				CB307E6F24CC81E0009E425C /* GoogleModel.swift in Sources */,
 				CB8F7C4724BE38950080570D /* RequestError.swift in Sources */,
 				CBFB8BA924C3C4E000318370 /* UIViewController + setKeyboard.swift in Sources */,
 				CB6BF2D624BDE4340065F64E /* TranslatorVC.swift in Sources */,
