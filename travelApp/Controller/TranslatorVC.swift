@@ -46,55 +46,55 @@ class TranslatorVC: UIViewController {
 
     @IBAction func translateTapped(_ sender: UIButton) {
         guard isTranslationPossible() else { return }
-//        performTranslation()
         let parameters = getTranslationParameters()
         requestTranslation(with: parameters)
     }
 
     // MARK: - Managing request result Methods
 
+    // infer generic networking through those 3 functions and get Result
     private func manageDetectResult(with result: Result<DetectData, RequestError>) {
-        switch result {
-        case .failure(let error):
-            DispatchQueue.main.async {
-                self.setAlertVc(with: error.description)
-            }
-        case .success(let result):
-            DispatchQueue.main.async {
-                guard let detectedLanguage = result.data.detections.first?.first?.language else { return }
-                let language = self.getLanguageName(from: detectedLanguage)
-                self.languageLabels.first?.text = language
-            }
-        }
+        manageResult(with: result)
     }
 
     private func manageLanguagesResult(with result: Result<LanguageData, RequestError>) {
+        manageResult(with: result)
+    }
+
+    private func manageTranslateResult(with result: Result<TranslateData, RequestError>) {
+        manageResult(with: result)
+    }
+
+    // then manage Result type cases
+    func manageResult<T>(with result: Result<T, RequestError>) {
         switch result {
         case .failure(let error):
             DispatchQueue.main.async {
                 self.setAlertVc(with: error.description)
             }
-        case .success(let result):
+        case .success(let data):
             DispatchQueue.main.async {
-                self.languages = result.data.languages
+                self.manageSucces(with: data)
             }
         }
     }
 
-    private func manageTranslateResult(with result: Result<TranslateData, RequestError>) {
-        switch result {
-        case .failure(let error):
-            DispatchQueue.main.async {
-                self.setAlertVc(with: error.description)
+    // then switch on data type, and update UI accordingly
+    func manageSucces<T>(with data: T) {
+        switch data {
+        case let languageData as LanguageData:
+            languages = languageData.data.languages
+        case let translateData as TranslateData:
+            if let detectedLanguageCode = translateData.data.translations.first?.detectedSourceLanguage {
+                let detectedLanguage = getLanguageName(from: detectedLanguageCode)
+                languageLabels.first?.text = detectedLanguage
             }
-        case .success(let result):
-            DispatchQueue.main.async {
-                if let detectedLanguageCode = result.data.translations.first?.detectedSourceLanguage {
-                    let detectedLanguage = self.getLanguageName(from: detectedLanguageCode)
-                    self.languageLabels.first?.text = detectedLanguage
-                }
-                self.textViews.last?.text = result.data.translations.first?.translatedText
-            }
+            self.textViews.last?.text = translateData.data.translations.first?.translatedText
+        case let detectData as DetectData:
+            guard let detectedLanguage = detectData.data.detections.first?.first?.language else { return }
+            let language = getLanguageName(from: detectedLanguage)
+            languageLabels.first?.text = language
+        default: break
         }
     }
 
@@ -145,7 +145,7 @@ class TranslatorVC: UIViewController {
         var parameters = [K.googleQuery, (K.query, textToTranslate), (K.target, targetLanguage), K.textFormat]
         guard languageLabels.first?.text != "N/A",
             let sourceLanguage = languageLabels.first?.text else {
-            return parameters
+                return parameters
         }
         let sourceLanguageCode = getLanguageCode(from: sourceLanguage)
         parameters.append(("source", sourceLanguageCode))
