@@ -47,6 +47,16 @@ final class HTTPEngine {
             urlComponents.queryItems?.append(queryItem)
         }
         guard let url = urlComponents.url else { return baseUrl }
+
+///
+
+//        var request = URLRequest(url: url)
+//        if baseUrl.absoluteString == TranslatorAPI.getBaseURL(.languages)() {
+//            request.httpMethod = "POST"
+//        }
+
+///
+        print(url.absoluteString)
         return url
     }
 }

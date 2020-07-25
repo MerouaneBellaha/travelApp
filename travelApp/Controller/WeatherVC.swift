@@ -54,7 +54,7 @@
         }
 
         @IBAction func searchPressed(_ sender: UIButton) {
-            performRequestWithSearBarText()
+            performRequestWithSearchBarText()
         }
 
         // MARK: - Methods
@@ -83,7 +83,7 @@
             }
         }
 
-        private func performRequestWithSearBarText() {
+        private func performRequestWithSearchBarText() {
             guard let city = searchBar.text else { return }
             httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, city)]) { self.manageResult(with: $0) }
         }
@@ -104,7 +104,7 @@
     extension WeatherVC: UISearchBarDelegate {
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
             view.endEditing(true)
-            performRequestWithSearBarText()
+            performRequestWithSearchBarText()
         }
     }
 
