@@ -25,6 +25,10 @@ struct K {
         K().getAPIKey(named: "weatherAPI")
     }
 
+    static var googleKey: String {
+        K().getAPIKey(named: "googleAPI")
+    }
+
 
     // MARK: - Networking
 
@@ -32,12 +36,22 @@ struct K {
     static var fixerQuery: (String, String) {
         ("access_key", fixerKey)
     }
+
     static let baseURLweather = "https://api.openweathermap.org/data/2.5/weather?"
     static var weatherQuery: (String, String) {
         ("appId", weatherKey)
     }
-    static let metric = ("units", "metric")
 
+    static let baseURLdetect = "https://translation.googleapis.com/language/translate/v2/detect"
+    static let baseURLtranslate = "https://translation.googleapis.com/language/translate/v2"
+    static let baseURLlanguages = "https://translation.googleapis.com/language/translate/v2/languages"
+    static var googleQuery: (String, String) {
+        ("key", googleKey)
+    }
+
+    static let textFormat = ("format", "text")
+    static let target = "target"
+    static let metric = ("units", "metric")
     static let query = "q"
     static let queryLat = "lat"
     static let queryLon = "lon"
