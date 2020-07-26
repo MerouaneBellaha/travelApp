@@ -34,7 +34,9 @@ class TranslatorVC: UIViewController {
 
     @IBAction func detectButtonTapped(_ sender: UIButton) {
         guard let textToDetext = textViews.first?.text else { return }
-        httpClient.request(baseUrl: K.baseURLdetect, parameters: [K.googleQuery, (K.query, textToDetext)]) { self.manageDetectResult(with: $0) }
+        httpClient.request(baseUrl: K.baseURLdetect, parameters: [K.googleQuery, (K.query, textToDetext)]) {
+            self.manageResult(dataType: DetectData.self, with: $0)
+        }
     }
 
     @IBAction func swapButtonTapped(_ sender: UIButton) {
@@ -52,34 +54,20 @@ class TranslatorVC: UIViewController {
 
     // MARK: - Managing request result Methods
 
-    // infer generic networking through those 3 functions and get Result
-    private func manageDetectResult(with result: Result<DetectData, RequestError>) {
-        manageResult(with: result)
-    }
+    private func manageResult<T>(dataType: T.Type, with result: Result<T, RequestError>) {
+           switch result {
+           case .failure(let error):
+               DispatchQueue.main.async {
+                   self.setAlertVc(with: error.description)
+               }
+           case .success(let data):
+               DispatchQueue.main.async {
+                   self.manageSucces(with: data)
+               }
+           }
+       }
 
-    private func manageLanguagesResult(with result: Result<LanguageData, RequestError>) {
-        manageResult(with: result)
-    }
-
-    private func manageTranslateResult(with result: Result<TranslateData, RequestError>) {
-        manageResult(with: result)
-    }
-
-    // then manage Result type cases
-    func manageResult<T>(with result: Result<T, RequestError>) {
-        switch result {
-        case .failure(let error):
-            DispatchQueue.main.async {
-                self.setAlertVc(with: error.description)
-            }
-        case .success(let data):
-            DispatchQueue.main.async {
-                self.manageSucces(with: data)
-            }
-        }
-    }
-
-    // then switch on data type, and update UI accordingly
+    // switch on data type, and update UI accordingly
     func manageSucces<T>(with data: T) {
         switch data {
         case let languageData as LanguageData:
@@ -102,7 +90,8 @@ class TranslatorVC: UIViewController {
 
     private func requestLanguages() {
         let deviceLanguage = Locale.current.languageCode ?? "en"
-        httpClient.request(baseUrl: K.baseURLlanguages, parameters: [K.googleQuery, (K.target, deviceLanguage)]) { self.manageLanguagesResult(with: $0)}
+        httpClient.request(baseUrl: K.baseURLlanguages, parameters: [K.googleQuery, (K.target, deviceLanguage)]) { self.manageResult(dataType: LanguageData.self, with: $0)}
+        
     }
 
     private func swapLanguageLabelsText() {
@@ -153,7 +142,7 @@ class TranslatorVC: UIViewController {
     }
 
     private func requestTranslation(with parameters: [(String, String)]) {
-        httpClient.request(baseUrl: K.baseURLtranslate, parameters: parameters) { self.manageTranslateResult(with: $0) }
+        httpClient.request(baseUrl: K.baseURLtranslate, parameters: parameters) { self.manageResult(dataType: TranslateData.self, with: $0)}
     }
 
     private func getLanguageCode(from language: String) -> String {
