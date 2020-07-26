@@ -112,7 +112,7 @@ struct K {
     /// ""City entered in settings page doesn't exist. Please try again."
     static let cityErrorSettings = "City entered in settings page doesn't exist. Please try again."
     /// "Searched city doesn't exist. Please try again"
-    static let cityErrorSearched = "Searched city doesn't exist. Please try again"
+    static let cityErrorSearched = "Search for a city or a country. Please try again."
     /// "Current rates for 1 "
     static let currentRates = "Current rates for 1 "
     /// "\n\n\n"
