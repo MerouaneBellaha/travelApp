@@ -9,19 +9,19 @@
 import UIKit
 
 class TranslatorVC: UIViewController {
-
+    
     // MARK: - IBOutlet properties
-
+    
     @IBOutlet var languageLabels: [UILabel]!
     @IBOutlet var textViews: [UITextView]!
-
+    
     // MARK: - Properties
-
+    
     private var httpClient = HTTPClient()
     private var languages: [Language] = []
-
+    
     // MARK: - ViewLifeCycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
@@ -29,44 +29,44 @@ class TranslatorVC: UIViewController {
         requestLanguages()
         textViews.first?.delegate = self
     }
-
+    
     // MARK: - IBAction methods
-
+    
     @IBAction func detectButtonTapped(_ sender: UIButton) {
         guard let textToDetext = textViews.first?.text else { return }
         httpClient.request(baseUrl: K.baseURLdetect, parameters: [K.googleQuery, (K.query, textToDetext)]) {
             self.manageResult(dataType: DetectData.self, with: $0)
         }
     }
-
+    
     @IBAction func swapButtonTapped(_ sender: UIButton) {
         guard languageLabelsAreNotEmpty() else { return }
         swapLanguageLabelsText()
         swapTextViewsText()
     }
-
-
+    
+    
     @IBAction func translateButtonTapped(_ sender: UIButton?) {
         guard isTranslationPossible() else { return }
         let parameters = getTranslationParameters()
         requestTranslation(with: parameters)
     }
-
+    
     // MARK: - Managing request result Methods
-
+    
     private func manageResult<T>(dataType: T.Type, with result: Result<T, RequestError>) {
-           switch result {
-           case .failure(let error):
-               DispatchQueue.main.async {
-                   self.setAlertVc(with: error.description)
-               }
-           case .success(let data):
-               DispatchQueue.main.async {
-                   self.manageSucces(with: data)
-               }
-           }
-       }
-
+        switch result {
+        case .failure(let error):
+            DispatchQueue.main.async {
+                self.setAlertVc(with: error.description)
+            }
+        case .success(let data):
+            DispatchQueue.main.async {
+                self.manageSucces(with: data)
+            }
+        }
+    }
+    
     // switch on data type, and update UI accordingly
     func manageSucces<T>(with data: T) {
         switch data {
@@ -85,27 +85,27 @@ class TranslatorVC: UIViewController {
         default: break
         }
     }
-
+    
     // MARK: - Methods
-
+    
     private func requestLanguages() {
         let deviceLanguage = Locale.current.languageCode ?? "en"
         httpClient.request(baseUrl: K.baseURLlanguages, parameters: [K.googleQuery, (K.target, deviceLanguage)]) { self.manageResult(dataType: LanguageData.self, with: $0)}
         
     }
-
+    
     private func swapLanguageLabelsText() {
         let firstLanguage = languageLabels.first?.text
         languageLabels.first?.text = languageLabels.last?.text
         languageLabels.last?.text = firstLanguage
     }
-
+    
     private func swapTextViewsText() {
         let firstText = textViews.first?.text
         textViews.first?.text = textViews.last?.text
         textViews.last?.text = firstText
     }
-
+    
     private func languageLabelsAreNotEmpty() -> Bool {
         guard languageLabels.first?.text != "N/A",
             languageLabels.last?.text != "N/A" else {
@@ -114,7 +114,7 @@ class TranslatorVC: UIViewController {
         }
         return true
     }
-
+    
     private func isTranslationPossible() -> Bool {
         guard textViews.first?.textColor != UIColor.lightGray else {
             setAlertVc(with: "Type a text to translate.")
@@ -126,7 +126,7 @@ class TranslatorVC: UIViewController {
         }
         return true
     }
-
+    
     private func getTranslationParameters() -> [(String, String)] {
         guard let textToTranslate = textViews.first?.text,
             let language = languageLabels.last?.text else { return [] }
@@ -140,24 +140,24 @@ class TranslatorVC: UIViewController {
         parameters.append(("source", sourceLanguageCode))
         return parameters
     }
-
+    
     private func requestTranslation(with parameters: [(String, String)]) {
         httpClient.request(baseUrl: K.baseURLtranslate, parameters: parameters) { self.manageResult(dataType: TranslateData.self, with: $0)}
     }
-
+    
     private func getLanguageCode(from language: String) -> String {
         return languages.first(where: { $0.name == language })?.language ?? ""
     }
-
+    
     private func getLanguageName(from code: String) -> String {
         return languages.first(where: { $0.language == code })?.name ?? "N/A"
     }
-
+    
     private func setPlaceholders() {
         textViews.first?.text = "Type text to translate here..."
         textViews.first?.textColor = UIColor.lightGray
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationVc = segue.destination as? LanguagesTable else { return }
         destinationVc.senderTag = (sender as? UIButton)?.tag
@@ -174,7 +174,7 @@ extension TranslatorVC: UITextViewDelegate {
         if languageLabels.last?.text != "N/A" { translateButtonTapped(nil) }
         return false
     }
-
+    
     // fake placeholder set up for textView
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -182,7 +182,7 @@ extension TranslatorVC: UITextViewDelegate {
             textView.textColor = UIColor.black
         }
     }
-
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Type text to translate here..."

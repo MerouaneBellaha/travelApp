@@ -84,12 +84,21 @@ class WeatherVC: UIViewController {
     }
 
     private func performRequest(with city: String) {
-           httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, city)]) { self.manageResult(with: $0) }
-       }
+        httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, city)]) { self.manageResult(with: $0) }
+    }
 
     private func performRequestWithUserCity() {
         let userCity = defaults.string(forKey: K.city) ?? K.defaultCity
         httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, userCity)]) { self.manageResult(with: $0, forUserCity: true) }
+    }
+
+    private func presentSearchPlacesVC() {
+        let searchPlaces = GMSAutocompleteViewController()
+        let filter = GMSAutocompleteFilter()
+        filter.type = .city
+        searchPlaces.autocompleteFilter = .some(filter)
+        searchPlaces.delegate = self
+        present(searchPlaces, animated: true, completion: nil)
     }
 
     private func setDelegates() {
@@ -98,21 +107,16 @@ class WeatherVC: UIViewController {
     }
 }
 
-    // MARK: - UISearchBarDelegate
+// MARK: - UISearchBarDelegate
 
 extension WeatherVC: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        let acController = GMSAutocompleteViewController()
-        let filter = GMSAutocompleteFilter()
-        filter.type = .city
-        acController.autocompleteFilter = .some(filter)
-        acController.delegate = self
-        present(acController, animated: true, completion: nil)
+        presentSearchPlacesVC()
     }
 }
 
-    // MARK: - CLLocationManagerDelegate
+// MARK: - CLLocationManagerDelegate
 
 extension WeatherVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -130,7 +134,7 @@ extension WeatherVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) { print(error) }
 }
 
-    // MARK: - GMSAutocompleteViewControllerDelegate
+// MARK: - GMSAutocompleteViewControllerDelegate
 
 extension WeatherVC: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
