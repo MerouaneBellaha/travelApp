@@ -45,7 +45,7 @@ final class SettingsVC: UIViewController {
             return nil
         }
         guard currencies.contains(currency) else {
-            setAlertVc(with: K.unvailableCurrency)
+            setAlertVc(with: K.unavailableCurrency)
             textField.text?.removeAll()
             return nil
         }

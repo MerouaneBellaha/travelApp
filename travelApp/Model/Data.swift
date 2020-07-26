@@ -11,8 +11,8 @@ import Foundation
     // MARK: - Fixer
 
 struct CurrencyData: Codable {
-    var rates: [String: Double]
-    var timestamp: Int
+    let rates: [String: Double]
+    let timestamp: Int
 }
 
     // MARK: - OpenWeather
@@ -24,18 +24,18 @@ struct WeatherData: Codable {
 }
 
 struct Main: Codable {
-    var temp: Double
+    let temp: Double
 }
 
 struct Weather: Codable {
-    var id: Int
-    var description: String
+    let id: Int
+    let description: String
 }
 
     // MARK: - GoogleDetectLanguages
 
 struct DetectData: Codable {
-    var data: DetectedList
+    let data: DetectedList
 }
 
 struct DetectedList: Codable {
@@ -49,7 +49,7 @@ struct Detection: Codable {
     // MARK: - GoogleSupportedLanguages
 
 struct LanguageData: Codable {
-    var data: LanguageList
+    let data: LanguageList
 }
 
 struct LanguageList: Codable {
@@ -63,7 +63,7 @@ struct Language: Codable {
     // MARK: - GoogleTranslate
 
 struct TranslateData: Codable {
-    var data: TranslateList
+    let data: TranslateList
 }
 
 struct TranslateList: Codable {
