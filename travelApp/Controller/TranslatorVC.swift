@@ -26,7 +26,7 @@ class TranslatorVC: UIViewController {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         setPlaceholders()
-        fetchLanguages()
+        requestLanguages()
         textViews.first?.delegate = self
     }
 
@@ -44,7 +44,7 @@ class TranslatorVC: UIViewController {
     }
 
 
-    @IBAction func translateTapped(_ sender: UIButton) {
+    @IBAction func translateButtonTapped(_ sender: UIButton) {
         guard isTranslationPossible() else { return }
         let parameters = getTranslationParameters()
         requestTranslation(with: parameters)
@@ -89,7 +89,7 @@ class TranslatorVC: UIViewController {
                 let detectedLanguage = getLanguageName(from: detectedLanguageCode)
                 languageLabels.first?.text = detectedLanguage
             }
-            self.textViews.last?.text = translateData.data.translations.first?.translatedText
+            textViews.last?.text = translateData.data.translations.first?.translatedText
         case let detectData as DetectData:
             guard let detectedLanguage = detectData.data.detections.first?.first?.language else { return }
             let language = getLanguageName(from: detectedLanguage)
@@ -100,7 +100,7 @@ class TranslatorVC: UIViewController {
 
     // MARK: - Methods
 
-    private func fetchLanguages() {
+    private func requestLanguages() {
         let deviceLanguage = Locale.current.languageCode ?? "en"
         httpClient.request(baseUrl: K.baseURLlanguages, parameters: [K.googleQuery, (K.target, deviceLanguage)]) { self.manageLanguagesResult(with: $0)}
     }
@@ -156,8 +156,6 @@ class TranslatorVC: UIViewController {
         httpClient.request(baseUrl: K.baseURLtranslate, parameters: parameters) { self.manageTranslateResult(with: $0) }
     }
 
-
-
     private func getLanguageCode(from language: String) -> String {
         return languages.first(where: { $0.name == language })?.language ?? ""
     }
@@ -180,12 +178,14 @@ class TranslatorVC: UIViewController {
 }
 
 extension TranslatorVC: UITextViewDelegate {
+    // dismiss keyboard when return key is tapped
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         guard text == "\n" else { return true }
         textView.resignFirstResponder()
         return false
     }
 
+    // fake placeholder set up for textView
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
