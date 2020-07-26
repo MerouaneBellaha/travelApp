@@ -44,7 +44,7 @@ class TranslatorVC: UIViewController {
     }
 
 
-    @IBAction func translateButtonTapped(_ sender: UIButton) {
+    @IBAction func translateButtonTapped(_ sender: UIButton?) {
         guard isTranslationPossible() else { return }
         let parameters = getTranslationParameters()
         requestTranslation(with: parameters)
@@ -182,6 +182,7 @@ extension TranslatorVC: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         guard text == "\n" else { return true }
         textView.resignFirstResponder()
+        if languageLabels.last?.text != "N/A" { translateButtonTapped(nil) }
         return false
     }
 
