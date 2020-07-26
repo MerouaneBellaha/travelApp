@@ -1,5 +1,5 @@
 import UIKit
-
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -8,6 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var coreDataStack = CoreDataStack(containerName: "travelApp")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
         guard let tabBarController = window?.rootViewController as? UITabBarController,
             let navController = tabBarController.viewControllers?.first as? UINavigationController,
             let mainVC = navController.topViewController as? ConverterVC else {
@@ -28,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainVC.coreDataManager = CoreDataManager(with: appDelegate.coreDataStack)
         settingsVc.coreDataManager = CoreDataManager(with: appDelegate.coreDataStack)
         toDoVC.coreDataManager = CoreDataManager(with: appDelegate.coreDataStack)
+
+        GMSPlacesClient.provideAPIKey(K.googleKey)
+
         return true
     }
 
