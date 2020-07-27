@@ -51,6 +51,9 @@ class TranslatorVC: UIViewController {
         let parameters = getTranslationParameters()
         requestTranslation(with: parameters)
     }
+    @IBAction func clearButtonTapped(_ sender: UIButton) {
+        textViews.forEach { $0.text.removeAll() }
+    }
     
     // MARK: - Managing request result Methods
     
