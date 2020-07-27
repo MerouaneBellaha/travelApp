@@ -23,11 +23,6 @@ class WeatherVC: UIViewController {
     
     // MARK: - Properties
 
-
-    //        var searchBar: UISearchBar?
-    var tableDataSource: GMSAutocompleteTableDataSource?
-    var searchController: UISearchController?
-
     private var httpClient = HTTPClient()
     private var weatherData: WeatherModel!
     private var defaults = UserDefaults.standard
@@ -83,10 +78,6 @@ class WeatherVC: UIViewController {
         }
     }
 
-    private func performRequest(with city: String) {
-        httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, city)]) { self.manageResult(with: $0) }
-    }
-
     private func performRequestWithUserCity() {
         let userCity = defaults.string(forKey: K.city) ?? K.defaultCity
         httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, userCity)]) { self.manageResult(with: $0, forUserCity: true) }
@@ -98,7 +89,7 @@ class WeatherVC: UIViewController {
         filter.type = .city
         searchPlaces.autocompleteFilter = .some(filter)
         searchPlaces.delegate = self
-        present(searchPlaces, animated: true, completion: nil)
+        present(searchPlaces, animated: true)
     }
 
     private func setDelegates() {
@@ -139,9 +130,10 @@ extension WeatherVC: CLLocationManagerDelegate {
 extension WeatherVC: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         guard let city = place.name else { return }
-        performRequest(with: city)
         overlay.isHidden = true
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            self.httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, city)]) { self.manageResult(with: $0) }
+        }
     }
 
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
@@ -149,6 +141,6 @@ extension WeatherVC: GMSAutocompleteViewControllerDelegate {
     }
 
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 }
