@@ -27,15 +27,14 @@ class TranslatorVC: UIViewController {
         hideKeyboardWhenTappedAround()
         setPlaceholders()
         requestLanguages()
-        textViews.first?.delegate = self
     }
     
     // MARK: - IBAction methods
     
     @IBAction func detectButtonTapped(_ sender: UIButton) {
         guard let textToDetext = textViews.first?.text else { return }
-        httpClient.request(baseUrl: K.baseURLdetect, parameters: [K.googleQuery, (K.query, textToDetext)]) {
-            self.manageResult(dataType: DetectData.self, with: $0)
+        httpClient.request(baseUrl: K.baseURLdetect, parameters: [K.googleQuery, (K.query, textToDetext)]) { [unowned self] result in
+            self.manageResult(dataType: DetectData.self, with: result)
         }
     }
     
@@ -93,8 +92,8 @@ class TranslatorVC: UIViewController {
     
     private func requestLanguages() {
         let deviceLanguage = Locale.current.languageCode ?? "en"
-        httpClient.request(baseUrl: K.baseURLlanguages, parameters: [K.googleQuery, (K.target, deviceLanguage)]) { self.manageResult(dataType: LanguageData.self, with: $0)}
-        
+        httpClient.request(baseUrl: K.baseURLlanguages, parameters: [K.googleQuery, (K.target, deviceLanguage)]) { [unowned self] result in
+            self.manageResult(dataType: LanguageData.self, with: result)}
     }
     
     private func swapLanguageLabelsText() {
@@ -145,7 +144,8 @@ class TranslatorVC: UIViewController {
     }
     
     private func requestTranslation(with parameters: [(String, String)]) {
-        httpClient.request(baseUrl: K.baseURLtranslate, parameters: parameters) { self.manageResult(dataType: TranslateData.self, with: $0)}
+        httpClient.request(baseUrl: K.baseURLtranslate, parameters: parameters) { [unowned self] result in
+            self.manageResult(dataType: TranslateData.self, with: result)}
     }
     
     private func getLanguageCode(from language: String) -> String {
@@ -162,12 +162,14 @@ class TranslatorVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destinationVc = segue.destination as? LanguagesTable else { return }
+        guard let destinationVc = segue.destination as? LanguagesTableVC else { return }
         destinationVc.senderTag = (sender as? UIButton)?.tag
         destinationVc.languages = languages
-        destinationVc.senderVC = self
+        destinationVc.delegate = self
     }
 }
+
+// MARK: - UITextViewDelegate
 
 extension TranslatorVC: UITextViewDelegate {
     // dismiss keyboard when return key is tapped
@@ -192,5 +194,11 @@ extension TranslatorVC: UITextViewDelegate {
             textView.textColor = UIColor.lightGray
             textViews.last?.text.removeAll()
         }
+    }
+}
+
+extension TranslatorVC: LanguagesProtocol {
+    func didUpdateLanguage(for tag: Int, with language: String) {
+        languageLabels[tag].text = language
     }
 }

@@ -33,7 +33,7 @@ class WeatherVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegates()
+        locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         hideKeyboardWhenTappedAround()
     }
@@ -80,7 +80,9 @@ class WeatherVC: UIViewController {
 
     private func performRequestWithUserCity() {
         let userCity = defaults.string(forKey: K.city) ?? K.defaultCity
-        httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, userCity)]) { self.manageResult(with: $0, forUserCity: true) }
+        httpClient.request(baseUrl: K.baseURLweather,
+                           parameters: [K.weatherQuery, K.metric, (K.query, userCity)]) { [unowned self] result in
+        self.manageResult(with: result, forUserCity: true) }
     }
 
     private func presentSearchPlacesVC() {
@@ -90,11 +92,6 @@ class WeatherVC: UIViewController {
         searchPlaces.autocompleteFilter = .some(filter)
         searchPlaces.delegate = self
         present(searchPlaces, animated: true)
-    }
-
-    private func setDelegates() {
-        locationManager.delegate = self
-        searchBar.delegate = self
     }
 }
 
@@ -117,7 +114,8 @@ extension WeatherVC: CLLocationManagerDelegate {
         let lat = String(currentLocation.coordinate.latitude)
         activityIndicator.dismiss(animated: true)
         overlay.isHidden = true
-        httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.queryLat, lat), (K.queryLon, lon)]) { [unowned self] result in
+        httpClient.request(baseUrl: K.baseURLweather,
+                           parameters: [K.weatherQuery, K.metric, (K.queryLat, lat), (K.queryLon, lon)]) { [unowned self] result in
             self.manageResult(with: result)
         }
     }
@@ -132,7 +130,9 @@ extension WeatherVC: GMSAutocompleteViewControllerDelegate {
         guard let city = place.name else { return }
         overlay.isHidden = true
         dismiss(animated: true) {
-            self.httpClient.request(baseUrl: K.baseURLweather, parameters: [K.weatherQuery, K.metric, (K.query, city)]) { self.manageResult(with: $0) }
+            self.httpClient.request(baseUrl: K.baseURLweather,
+                                    parameters: [K.weatherQuery, K.metric, (K.query, city)]) { [unowned self] result in
+                self.manageResult(with: result) }
         }
     }
 

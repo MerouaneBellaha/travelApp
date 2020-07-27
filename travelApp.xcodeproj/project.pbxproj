@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,7 @@
 		CB307E6124CAD69B009E425C /* Weather.json in Resources */ = {isa = PBXBuildFile; fileRef = CB307E6024CAD69B009E425C /* Weather.json */; };
 		CB307E6324CADAAE009E425C /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB307E6224CADAAE009E425C /* FakeResponseData.swift */; };
 		CB307E6924CADF33009E425C /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB307E6824CADF33009E425C /* URLSessionFake.swift */; };
-		CB307E6B24CC428F009E425C /* LanguagesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB307E6A24CC428F009E425C /* LanguagesTable.swift */; };
+		CB307E6B24CC428F009E425C /* LanguagesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB307E6A24CC428F009E425C /* LanguagesTableVC.swift */; };
 		CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */; };
 		CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */; };
 		CB6BF2C324BDDBE40065F64E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6BF2C124BDDBE40065F64E /* Main.storyboard */; };
@@ -69,7 +69,7 @@
 		CB307E6024CAD69B009E425C /* Weather.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Weather.json; sourceTree = "<group>"; };
 		CB307E6224CADAAE009E425C /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		CB307E6824CADF33009E425C /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
-		CB307E6A24CC428F009E425C /* LanguagesTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesTable.swift; sourceTree = "<group>"; };
+		CB307E6A24CC428F009E425C /* LanguagesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesTableVC.swift; sourceTree = "<group>"; };
 		CB6BF2B824BDDBE40065F64E /* travelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6BF2BB24BDDBE40065F64E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterVC.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 			children = (
 				CB6BF2BF24BDDBE40065F64E /* ConverterVC.swift */,
 				CB6BF2D524BDE4340065F64E /* TranslatorVC.swift */,
-				CB307E6A24CC428F009E425C /* LanguagesTable.swift */,
+				CB307E6A24CC428F009E425C /* LanguagesTableVC.swift */,
 				CB6BF2D724BDE5090065F64E /* WeatherVC.swift */,
 				CB6BF2D924BDE52F0065F64E /* ToDoVC.swift */,
 				CB6BF2DB24BDE54D0065F64E /* SettingsVC.swift */,
@@ -284,7 +284,6 @@
 				EC82F55F112860F3011232FF /* Pods-travelAppTests.debug.xcconfig */,
 				3D5805FB221CD0A8C454FC95 /* Pods-travelAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -460,7 +459,7 @@
 			files = (
 				CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */,
 				CB05346D24C70F13005AF631 /* DateManager.swift in Sources */,
-				CB307E6B24CC428F009E425C /* LanguagesTable.swift in Sources */,
+				CB307E6B24CC428F009E425C /* LanguagesTableVC.swift in Sources */,
 				CB7F047724C318B90084D64E /* Constant.swift in Sources */,
 				CB925B3924BF36E20049774F /* UIViewController + setAlertVc.swift in Sources */,
 				CB6BF2D824BDE5090065F64E /* WeatherVC.swift in Sources */,
