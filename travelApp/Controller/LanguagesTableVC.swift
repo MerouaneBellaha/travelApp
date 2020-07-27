@@ -1,5 +1,5 @@
 //
-//  LanguagesTable.swift
+//  LanguagesTableVC.swift
 //  travelApp
 //
 //  Created by Merouane Bellaha on 25/07/2020.
@@ -8,7 +8,11 @@
 
 import UIKit
 
-class LanguagesTable: UITableViewController {
+protocol LanguagesProtocol: class {
+    func didUpdateLanguage(for tag: Int, with language: String)
+}
+
+class LanguagesTableVC: UITableViewController {
 
     // MARK: - IBOutlet properties
 
@@ -16,18 +20,18 @@ class LanguagesTable: UITableViewController {
     @IBOutlet weak var noLanguageLabel: UILabel!
 
     // MARK: - Properties
-    
-    var senderTag: Int!
+
+    weak var delegate: LanguagesProtocol?
+    var senderTag: Int?
     var languages: [Language] = []
     var diplayedLanguages: [Language] { setDisplayedLanguages() }
     var chosenLanguage: String = ""
-    var senderVC: UIViewController!
+//    var senderVC: UIViewController!
 
     // MARK: - ViewLifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
         hideKeyboardWhenTappedAround()
     }
 
@@ -59,15 +63,20 @@ class LanguagesTable: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chosenLanguage = diplayedLanguages[indexPath.row].name
-        (senderVC as? TranslatorVC)?.languageLabels[senderTag].text = chosenLanguage
-        senderVC = nil
+        guard let senderTag = senderTag else { return }
+        //
+        print(senderTag, chosenLanguage)
+        delegate?.didUpdateLanguage(for: senderTag, with: chosenLanguage)
+//        (senderVC as? TranslatorVC)?.languageLabels[senderTag].text = chosenLanguage
+//        senderVC = nil
+        //
         navigationController?.popViewController(animated: true)
     }
 }
 
 // MARK: - UISearchBarDelegate
 
-extension LanguagesTable: UISearchBarDelegate {
+extension LanguagesTableVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         tableView.reloadData()
     }
@@ -76,4 +85,3 @@ extension LanguagesTable: UISearchBarDelegate {
         view.endEditing(true)
     }
 }
-//

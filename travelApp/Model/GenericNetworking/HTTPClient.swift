@@ -31,7 +31,6 @@ final class HTTPClient {
                 return
             }
             guard let response = response, response.statusCode == 200 else {
-                print("OK")
                 callback(.failure(.incorrectResponse))
                 return
             }

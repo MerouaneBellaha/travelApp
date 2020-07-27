@@ -26,7 +26,6 @@ class ToDoVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegates()
         hideKeyboardWhenTappedAround()
     }
 
@@ -40,22 +39,18 @@ class ToDoVC: UIViewController {
     }
 
     @IBAction func resetTapped(_ sender: UIBarButtonItem) {
+        // Add an Alert controller to confirm clear all tasks
         coreDataManager?.deleteItems(entity: Task.self)
         tableView.reloadData()
     }
 
     private func setTaskList() -> [Task] {
+        // -> Ternaire
         if searchBar.text?.isEmpty == true {
             return coreDataManager?.loadItems(entity: Task.self, sortBy: K.taskName) ?? []
         } else {
             return coreDataManager?.loadItems(entity: Task.self, predicate: .text(searchBar.text!), sortBy: K.taskName) ?? []
         }
-    }
-
-    private func setDelegates() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        searchBar.delegate = self
     }
 }
 

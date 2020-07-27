@@ -134,6 +134,9 @@
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="search for a currency..." translatesAutoresizingMaskIntoConstraints="NO" id="HoI-h0-7jH">
                                 <rect key="frame" x="20" y="318" width="374" height="56"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Hoj-fk-EDa" id="Cdc-Ct-f91"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kvk-TQ-G3m">
                                 <rect key="frame" x="0.0" y="374" width="414" height="439"/>
@@ -181,6 +184,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Hoj-fk-EDa" id="UUZ-o4-7nX"/>
+                                    <outlet property="delegate" destination="Hoj-fk-EDa" id="vRa-uL-QlA"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -369,6 +376,9 @@
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Lxc-ot-PJ8" id="1yo-Ro-nKB"/>
+                                                </connections>
                                             </textView>
                                         </subviews>
                                     </stackView>
@@ -503,10 +513,10 @@
             </objects>
             <point key="canvasLocation" x="2222" y="-170"/>
         </scene>
-        <!--Languages Table-->
+        <!--Languages TableVC-->
         <scene sceneID="bZO-WL-fMm">
             <objects>
-                <tableViewController id="GHJ-ZZ-pFw" customClass="LanguagesTable" customModule="travelApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="GHJ-ZZ-pFw" customClass="LanguagesTableVC" customModule="travelApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cGO-eL-91M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -515,6 +525,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="GHJ-ZZ-pFw" id="Pjb-g6-G6K"/>
+                            </connections>
                         </searchBar>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ROg-wn-J6C">
                             <rect key="frame" x="0.0" y="640.5" width="414" height="128"/>
@@ -593,6 +606,9 @@
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="search for a city..." translatesAutoresizingMaskIntoConstraints="NO" id="3Gj-gu-k1c">
                                         <rect key="frame" x="30" y="0.0" width="344" height="50"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="3Wx-jJ-Olk" id="IJp-Bt-euH"/>
+                                        </connections>
                                     </searchBar>
                                 </subviews>
                                 <constraints>
@@ -775,6 +791,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="N8U-FK-Hmr" id="EZK-fA-xmu"/>
+                                    </connections>
                                 </searchBar>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="L5E-hT-XFJ">
                                     <rect key="frame" x="0.0" y="630.5" width="414" height="128"/>
@@ -812,6 +831,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="N8U-FK-Hmr" id="9eQ-iZ-St2"/>
+                                    <outlet property="delegate" destination="N8U-FK-Hmr" id="q58-gM-Jke"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -955,6 +978,6 @@
         <image name="weather" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EuX-5m-NHh"/>
+        <segue reference="1fg-uj-6Tq"/>
     </inferredMetricsTieBreakers>
 </document>

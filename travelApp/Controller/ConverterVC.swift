@@ -25,19 +25,13 @@ class ConverterVC: UIViewController {
     private var httpClient = HTTPClient()
     private let defaults = UserDefaults.standard
     private let rateManager = RateManager()
-    private var dateManager: DateManager { //
-        var dateManager = DateManager()
-        dateManager.apiTimeStamp = defaults.integer(forKey: K.timeStamp)
-        dateManager.presentDate = Int(Date().timeIntervalSince1970)
-        return dateManager
-    }
+    private var dateManager: DateManager { setDateManager() }
     private var currencyList: [Rate] { setCurrencyList() }
     
     // MARK: - ViewLifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegates()
         setUpKeyboardBehaviour()
         setLabels()
         performRequestDaily()
@@ -65,7 +59,8 @@ class ConverterVC: UIViewController {
             setAlertVc(with: K.oneByHour)
             return
         }
-        httpClient.request(baseUrl: K.baseURLfixer, parameters: [K.fixerQuery]){ self.manageResult(with: $0) }
+        httpClient.request(baseUrl: K.baseURLfixer, parameters: [K.fixerQuery]) { [unowned self] result in
+            self.manageResult(with: result) }
     }
     
     // MARK: - @objc method
@@ -75,12 +70,12 @@ class ConverterVC: UIViewController {
     func updateDefaultCurrency(notification: Notification) {
         guard let currency = notification.userInfo?[K.currency] as? String else { return }
         currencyLabels.last?.text = currency
-        currentRatesLabel.text = K.currentRates + (currencyLabels.last?.text)!
+        currentRatesLabel.text = K.currentRates + (currencyLabels.last?.text ?? "")
         performRequestDaily()
     }
     
     // MARK: - Methods
-    
+
     private func isTextUsable(from sender: UITextField) -> Bool {
         guard sender.text?.isEmpty == false,
             let text = sender.text else {
@@ -122,7 +117,8 @@ class ConverterVC: UIViewController {
     
     private func performRequestDaily() {
         if dateManager.didOneDayHasPass {
-            httpClient.request(baseUrl: K.baseURLfixer, parameters: [K.fixerQuery]) { self.manageResult(with: $0) }
+            httpClient.request(baseUrl: K.baseURLfixer, parameters: [K.fixerQuery]) { [unowned self] result in
+                self.manageResult(with: result) }
         }
     }
     
@@ -167,11 +163,12 @@ class ConverterVC: UIViewController {
         setUpToolbar(for: textFields)
         tableView.keyboardDismissMode = .onDrag
     }
-    
-    private func setDelegates() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        searchBar.delegate = self
+
+    private func setDateManager() -> DateManager {
+        var dateManager = DateManager()
+        dateManager.apiTimeStamp = defaults.integer(forKey: K.timeStamp)
+        dateManager.presentDate = Int(Date().timeIntervalSince1970)
+        return dateManager
     }
     
     private func setLabels() {
@@ -182,7 +179,7 @@ class ConverterVC: UIViewController {
     private func setLastUpdateLabel() {
         guard dateManager.apiTimeStamp != 0 else { return }
         let date = dateManager.lastUpdateDate
-        self.lastUpdateLabel.text = K.lastUpdate + date + K.refresh
+        lastUpdateLabel.text = K.lastUpdate + date + K.refresh
     }
 }
 
