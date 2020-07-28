@@ -28,20 +28,12 @@ class TranslatorVC: UIViewController {
         hideKeyboardWhenTappedAround()
         setPlaceholders()
         requestLanguages()
-        languageLabels.last?.text = defaults.string(forKey: "language") ?? "English"
+        languageLabels.last?.text = defaults.string(forKey: K.language) ?? K.defaultLanguage
 
         NotificationCenter.default.addObserver(self, selector: #selector(updateDefaultLanguage(notification:)), name: .updateLanguage, object: nil)
     }
     
     // MARK: - IBAction methods
-
-    @objc
-    func updateDefaultLanguage(notification: Notification) {
-        guard let language = notification.userInfo?["language"] as? String else { return }
-        print(language)
-        languageLabels.last?.text = language
-        textViews.forEach { $0.text.removeAll() }
-    }
     
     @IBAction func detectButtonTapped(_ sender: UIButton) {
         guard let textToDetext = textViews.first?.text else { return }
@@ -63,6 +55,16 @@ class TranslatorVC: UIViewController {
         requestTranslation(with: parameters)
     }
     @IBAction func clearButtonTapped(_ sender: UIButton) {
+        textViews.forEach { $0.text.removeAll() }
+    }
+
+    // MARK: - @objc method
+
+    @objc
+    func updateDefaultLanguage(notification: Notification) {
+        guard let language = notification.userInfo?[K.language] as? String else { return }
+        print(language)
+        languageLabels.last?.text = language
         textViews.forEach { $0.text.removeAll() }
     }
     
@@ -103,7 +105,7 @@ class TranslatorVC: UIViewController {
     // MARK: - Methods
     
     private func requestLanguages() {
-        let deviceLanguage = Locale.current.languageCode ?? "en"
+        let deviceLanguage = Locale.current.languageCode ?? K.defaultLanguages
         httpClient.request(baseUrl: K.baseURLlanguages, parameters: [K.googleQuery, (K.target, deviceLanguage)]) { [unowned self] result in
             self.manageResult(dataType: LanguageData.self, with: result)}
     }
@@ -121,9 +123,9 @@ class TranslatorVC: UIViewController {
     }
     
     private func languageLabelsAreNotEmpty() -> Bool {
-        guard languageLabels.first?.text != "N/A",
-            languageLabels.last?.text != "N/A" else {
-                setAlertVc(with: "At least one language is missing for translation, please set your languages")
+        guard languageLabels.first?.text != K.NA,
+            languageLabels.last?.text != K.NA else {
+                setAlertVc(with: K.missingLanguages)
                 return false
         }
         return true
@@ -131,11 +133,11 @@ class TranslatorVC: UIViewController {
     
     private func isTranslationPossible() -> Bool {
         guard textViews.first?.textColor != UIColor.lightGray else {
-            setAlertVc(with: "Type a text to translate.")
+            setAlertVc(with: K.missingText)
             return false
         }
-        guard languageLabels.last?.text != "N/A" else {
-            setAlertVc(with: "Choose a language to translate to.")
+        guard languageLabels.last?.text != K.NA else {
+            setAlertVc(with: K.missingTranslateLanguage)
             return false
         }
         return true
@@ -146,12 +148,12 @@ class TranslatorVC: UIViewController {
             let language = languageLabels.last?.text else { return [] }
         let targetLanguage = getLanguageCode(from: language)
         var parameters = [K.googleQuery, (K.query, textToTranslate), (K.target, targetLanguage), K.textFormat]
-        guard languageLabels.first?.text != "N/A",
+        guard languageLabels.first?.text != K.NA,
             let sourceLanguage = languageLabels.first?.text else {
                 return parameters
         }
         let sourceLanguageCode = getLanguageCode(from: sourceLanguage)
-        parameters.append(("source", sourceLanguageCode))
+        parameters.append((K.source, sourceLanguageCode))
         return parameters
     }
     
@@ -161,15 +163,15 @@ class TranslatorVC: UIViewController {
     }
     
     private func getLanguageCode(from language: String) -> String {
-        return languages.first(where: { $0.name == language })?.language ?? ""
+        return languages.first(where: { $0.name == language })?.language ?? K.emptyString
     }
     
     private func getLanguageName(from code: String) -> String {
-        return languages.first(where: { $0.language == code })?.name ?? "N/A"
+        return languages.first(where: { $0.language == code })?.name ?? K.NA
     }
     
     private func setPlaceholders() {
-        textViews.first?.text = "Type text to translate here..."
+        textViews.first?.text = K.typeHere
         textViews.first?.textColor = UIColor.lightGray
     }
     
@@ -186,9 +188,9 @@ class TranslatorVC: UIViewController {
 extension TranslatorVC: UITextViewDelegate {
     // dismiss keyboard when return key is tapped
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        guard text == "\n" else { return true }
+        guard text == K.returnKey else { return true }
         textView.resignFirstResponder()
-        if languageLabels.last?.text != "N/A" { translateButtonTapped(nil) }
+        if languageLabels.last?.text != K.NA { translateButtonTapped(nil) }
         return false
     }
     
@@ -202,7 +204,7 @@ extension TranslatorVC: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Type text to translate here..."
+            textView.text = K.typeHere
             textView.textColor = UIColor.lightGray
             textViews.last?.text.removeAll()
         }

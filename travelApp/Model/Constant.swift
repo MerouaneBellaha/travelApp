@@ -55,6 +55,7 @@ struct K {
     static let query = "q"
     static let queryLat = "lat"
     static let queryLon = "lon"
+    static let source = "source"
 
     // MARK: - Predicate
 
@@ -68,19 +69,34 @@ struct K {
     static let taskName = "taskName"
     static let timeStamp = "timeStamp"
     static let rate = "rate"
-    static let currency = "currency"
+    static let currency = "Currency"
     static let city = "city"
-    static let defaultCity = "New york"
+    static let language = "Language"
+    static let weather = "Weather"
+    static let background = "background"
 
+    // MARK: - Defaults
+
+    static let defaultLanguages = "en"
+    static let defaultCurrency = "USD"
+    static let defaultLanguage = "English"
+    static let defaultCity = "New york"
 
     // MARK: - cells
 
     static let taskCell = "taskCell"
     static let rateCell = "rateCell"
+    static let settingCell = "settingCell"
+    static let languageCell = "languageCell"
+
+    // MARK: - Segues
+
+    static let toSettingsTVC = "toSettingsTVC"
 
     // MARK: - Basic
 
-    static let USD = "USD"
+    /// ""
+    static let emptyString = ""
     /// "."
     static let point = "."
     /// "Add a task by pressing +"
@@ -116,10 +132,24 @@ struct K {
     /// "Current rates for 1 "
     static let currentRates = "Current rates for 1 "
     /// "\n\n\n"
-    static let space = "\n\n\n"
+    static let spaces = "\n\n\n"
+    /// "\n"
+    static let returnKey = "\n"
     /// "Please wait..."
     static let wait = "Please wait..."
     /// "We're getting your local forecast."
     static let localForecast = "We're getting your local forecast."
+    /// "N/A"
+    static let NA = "N/A"
+    /// "At least one language is missing for translation, please set your languages"
+    static let missingLanguages = "At least one language is missing for translation, please set your languages"
+    /// "Type a text to translate."
+    static let missingText = "Type a text to translate."
+    /// "Choose a language to translate to."
+    static let missingTranslateLanguage = "Choose a language to translate to."
+    /// "Type text to translate here..."
+    static let typeHere = "Type text to translate here..."
+    /// "no match found"
+    static let noMatch = "no match found"
 
 }

@@ -13,14 +13,20 @@ protocol SettingProtocol: class {
     func didUpdateCurrency(with currency: String)
 }
 
-class SettingsTableVC: UITableViewController {
+final class SettingsTableVC: UITableViewController {
+
+    // MARK: - IBOutlet properties
 
     @IBOutlet weak var searchBar: UISearchBar!
+
+    // MARK: - Properties
 
     weak var delegate: SettingProtocol?
     var senderIndexPathRow: Int?
     var content: [String] = []
     var displayedContent: [String] { setDisplayedContent() }
+
+    // MARK: - ViewLifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,14 +34,7 @@ class SettingsTableVC: UITableViewController {
         hideKeyboardWhenTappedAround()
     }
 
-//    private func setContent() -> [String] {
-//        if searchBar.text?.isEmpty == true {
-//            return content
-//        } else {
-//            guard let textToSearch = searchBar.text else { return [] }
-//            return content.filter { $0.contains(textToSearch) }
-//        }
-//    }
+    // MARK: - Methods
 
     private func setDisplayedContent() -> [String] {
         if searchBar.text?.isEmpty == true {
@@ -45,6 +44,8 @@ class SettingsTableVC: UITableViewController {
             return content.filter { $0.contains(textToSearch) }
         }
     }
+
+    // MARK: - tableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayedContent.count
@@ -56,6 +57,8 @@ class SettingsTableVC: UITableViewController {
         return cell
     }
 
+    // MARK: - tableViewDelegate
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chosenContent = content[indexPath.row]
         if senderIndexPathRow == 0 {
@@ -66,6 +69,8 @@ class SettingsTableVC: UITableViewController {
         self.dismiss(animated: true)
     }
 }
+
+// MARK: - UISearchBarDelegate
 
 extension SettingsTableVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

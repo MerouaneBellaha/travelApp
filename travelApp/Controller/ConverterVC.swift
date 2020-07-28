@@ -71,7 +71,7 @@ class ConverterVC: UIViewController {
         guard let currency = notification.userInfo?[K.currency] as? String else { return }
         print(currency)
         currencyLabels.last?.text = currency
-        currentRatesLabel.text = K.currentRates + (currencyLabels.last?.text ?? "")
+        currentRatesLabel.text = K.currentRates + (currencyLabels.last?.text ?? K.emptyString)
         performRequestDaily()
     }
     
@@ -173,7 +173,7 @@ class ConverterVC: UIViewController {
     }
     
     private func setLabels() {
-        currencyLabels.last?.text = defaults.string(forKey: K.currency) ?? K.USD
+        currencyLabels.last?.text = defaults.string(forKey: K.currency) ?? K.defaultCurrency
         currentRatesLabel.text = K.currentRates + (currencyLabels.last?.text)!
     }
     

@@ -25,13 +25,13 @@ class LanguagesTableVC: UITableViewController {
     var senderTag: Int?
     var languages: [Language] = []
     var diplayedLanguages: [Language] { setDisplayedLanguages() }
-    var chosenLanguage: String = ""
+    var chosenLanguage: String = K.emptyString
 
     // MARK: - ViewLifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
+        tableView.backgroundView = UIImageView(image: UIImage(named: K.background))
         hideKeyboardWhenTappedAround()
     }
 
@@ -49,12 +49,12 @@ class LanguagesTableVC: UITableViewController {
     // MARK: - UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        noLanguageLabel.text = diplayedLanguages.isEmpty ? "no language matching" : .none
+        noLanguageLabel.text = diplayedLanguages.isEmpty ? K.noMatch : .none
         return diplayedLanguages.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "languageCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.languageCell, for: indexPath)
         cell.textLabel?.text = diplayedLanguages[indexPath.row].name
         return cell
     }
