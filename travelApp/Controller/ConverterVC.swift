@@ -36,7 +36,7 @@ class ConverterVC: UIViewController {
         setLabels()
         performRequestDaily()
         setLastUpdateLabel()
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(updateDefaultCurrency(notification:)), name: .updateCurrency, object: nil)
     }
     
@@ -69,6 +69,7 @@ class ConverterVC: UIViewController {
     @objc
     func updateDefaultCurrency(notification: Notification) {
         guard let currency = notification.userInfo?[K.currency] as? String else { return }
+        print(currency)
         currencyLabels.last?.text = currency
         currentRatesLabel.text = K.currentRates + (currencyLabels.last?.text ?? "")
         performRequestDaily()
@@ -193,6 +194,8 @@ extension ConverterVC: UITableViewDelegate {
         currencyLabels.first?.text = currencyList[indexPath.row].currency
         defaults.set(currencyList[indexPath.row].currency, forKey: K.currency)
         textFields.forEach { $0.text?.removeAll() }
+        searchBar.text?.removeAll()
+        tableView.reloadData()
     }
 }
 

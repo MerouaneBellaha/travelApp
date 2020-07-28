@@ -29,6 +29,7 @@ final class SettingsVC: UIViewController {
     @IBAction func currencyButtonTapped(_ sender: UIButton) {
         guard let currency = currencyIsAvailable() else { return }
         NotificationCenter.default.post(name: .updateCurrency, object: nil, userInfo: [K.currency: currency])
+        defaults.removeObject(forKey: K.currency)
         defaults.set(currency, forKey: K.currency)
     }
 

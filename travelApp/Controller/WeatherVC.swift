@@ -20,6 +20,7 @@ class WeatherVC: UIViewController {
     @IBOutlet var temperaturesLabels: [UILabel]!
     @IBOutlet var weatherIcons: [UIImageView]!
     @IBOutlet weak var overlay: UIView!
+    @IBOutlet weak var topForecastView: UIStackView!
     
     // MARK: - Properties
 
@@ -114,6 +115,7 @@ extension WeatherVC: CLLocationManagerDelegate {
         let lat = String(currentLocation.coordinate.latitude)
         activityIndicator.dismiss(animated: true)
         overlay.isHidden = true
+        topForecastView.isHidden = false
         httpClient.request(baseUrl: K.baseURLweather,
                            parameters: [K.weatherQuery, K.metric, (K.queryLat, lat), (K.queryLon, lon)]) { [unowned self] result in
             self.manageResult(with: result)
@@ -129,6 +131,7 @@ extension WeatherVC: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         guard let city = place.name else { return }
         overlay.isHidden = true
+        topForecastView.isHidden = false
         dismiss(animated: true) {
             self.httpClient.request(baseUrl: K.baseURLweather,
                                     parameters: [K.weatherQuery, K.metric, (K.query, city)]) { [unowned self] result in

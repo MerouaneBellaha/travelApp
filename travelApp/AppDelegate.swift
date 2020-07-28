@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fatalError("Can't reach the Storyboard / mainVc")
         }
 
+//        tabBarController.tabBar.shadowImage = UIImage()
+//        tabBarController.tabBar.backgroundImage = UIImage()
+//        tabBarController.tabBar.backgroundColor = UIColor.white
+
         guard let secondNavController = tabBarController.viewControllers?.last as? UINavigationController,
             let settingsVc = secondNavController.topViewController as? SettingsVC else {
             fatalError("Can't reach the Storyboard / settingsVC")
