@@ -26,12 +26,12 @@ class LanguagesTableVC: UITableViewController {
     var languages: [Language] = []
     var diplayedLanguages: [Language] { setDisplayedLanguages() }
     var chosenLanguage: String = ""
-//    var senderVC: UIViewController!
 
     // MARK: - ViewLifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
         hideKeyboardWhenTappedAround()
     }
 
@@ -64,12 +64,7 @@ class LanguagesTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chosenLanguage = diplayedLanguages[indexPath.row].name
         guard let senderTag = senderTag else { return }
-        //
-        print(senderTag, chosenLanguage)
         delegate?.didUpdateLanguage(for: senderTag, with: chosenLanguage)
-//        (senderVC as? TranslatorVC)?.languageLabels[senderTag].text = chosenLanguage
-//        senderVC = nil
-        //
         navigationController?.popViewController(animated: true)
     }
 }

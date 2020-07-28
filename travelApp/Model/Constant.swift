@@ -83,8 +83,8 @@ struct K {
     static let USD = "USD"
     /// "."
     static let point = "."
-    /// "no Task"
-    static let noTask = "no Task"
+    /// "Add a task by pressing +"
+    static let noTask = "Add a task by pressing +"
 
     // MARK: - Formats
 

@@ -38,6 +38,7 @@
 		CB925B3B24BF60B90049774F /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3A24BF60B90049774F /* NotificationName.swift */; };
 		CB925B3D24BF80B60049774F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3C24BF80B60049774F /* CoreDataManager.swift */; };
 		CB925B3F24BF80D70049774F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3E24BF80D70049774F /* CoreDataStack.swift */; };
+		CBB009CA24CF16F500E8B883 /* UITabBarController + appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB009C924CF16F500E8B883 /* UITabBarController + appearance.swift */; };
 		CBC5FE7E24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5FE7D24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift */; };
 		CBEBF39C24C9E92C00A06E93 /* RateManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEBF39B24C9E92C00A06E93 /* RateManagerTest.swift */; };
 		CBEF0C4824C472F9008535E1 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEF0C4724C472F9008535E1 /* WeatherModel.swift */; };
@@ -95,6 +96,7 @@
 		CB925B3A24BF60B90049774F /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		CB925B3C24BF80B60049774F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		CB925B3E24BF80D70049774F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		CBB009C924CF16F500E8B883 /* UITabBarController + appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController + appearance.swift"; sourceTree = "<group>"; };
 		CBC5FE7D24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell + animateCellBackground.swift"; sourceTree = "<group>"; };
 		CBEBF39B24C9E92C00A06E93 /* RateManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateManagerTest.swift; sourceTree = "<group>"; };
 		CBEF0C4724C472F9008535E1 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				CB925B3A24BF60B90049774F /* NotificationName.swift */,
 				CBC5FE7D24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift */,
 				CBFB8BA824C3C4E000318370 /* UIViewController + setKeyboard.swift */,
+				CBB009C924CF16F500E8B883 /* UITabBarController + appearance.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB6BF2C024BDDBE40065F64E /* ConverterVC.swift in Sources */,
+				CBB009CA24CF16F500E8B883 /* UITabBarController + appearance.swift in Sources */,
 				CB05346D24C70F13005AF631 /* DateManager.swift in Sources */,
 				CB307E6B24CC428F009E425C /* LanguagesTableVC.swift in Sources */,
 				CB7F047724C318B90084D64E /* Constant.swift in Sources */,
