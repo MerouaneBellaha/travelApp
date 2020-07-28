@@ -34,6 +34,7 @@
 		CB7F047724C318B90084D64E /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F047624C318B90084D64E /* Constant.swift */; };
 		CB8F7C4724BE38950080570D /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4624BE38950080570D /* RequestError.swift */; };
 		CB8F7C4924BE38C80080570D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7C4824BE38C80080570D /* Data.swift */; };
+		CB90764A24D0B6810077DB23 /* SettingsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB90764924D0B6810077DB23 /* SettingsTableVC.swift */; };
 		CB925B3924BF36E20049774F /* UIViewController + setAlertVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */; };
 		CB925B3B24BF60B90049774F /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3A24BF60B90049774F /* NotificationName.swift */; };
 		CB925B3D24BF80B60049774F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3C24BF80B60049774F /* CoreDataManager.swift */; };
@@ -92,6 +93,7 @@
 		CB7F047624C318B90084D64E /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		CB8F7C4624BE38950080570D /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		CB8F7C4824BE38C80080570D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		CB90764924D0B6810077DB23 /* SettingsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableVC.swift; sourceTree = "<group>"; };
 		CB925B3824BF36E20049774F /* UIViewController + setAlertVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + setAlertVc.swift"; sourceTree = "<group>"; };
 		CB925B3A24BF60B90049774F /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		CB925B3C24BF80B60049774F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				CB6BF2D724BDE5090065F64E /* WeatherVC.swift */,
 				CB6BF2D924BDE52F0065F64E /* ToDoVC.swift */,
 				CB6BF2DB24BDE54D0065F64E /* SettingsVC.swift */,
+				CB90764924D0B6810077DB23 /* SettingsTableVC.swift */,
 				CB925B3724BF36C40049774F /* Extensions */,
 			);
 			path = Controller;
@@ -470,6 +473,7 @@
 				CB05347324C7922A005AF631 /* RateManager.swift in Sources */,
 				CB7F047324C310390084D64E /* HTTPEngine.swift in Sources */,
 				CB925B3D24BF80B60049774F /* CoreDataManager.swift in Sources */,
+				CB90764A24D0B6810077DB23 /* SettingsTableVC.swift in Sources */,
 				CB6BF2C624BDDBE40065F64E /* travelApp.xcdatamodeld in Sources */,
 				CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */,
 				CB8F7C4924BE38C80080570D /* Data.swift in Sources */,

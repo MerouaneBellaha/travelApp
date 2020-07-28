@@ -19,6 +19,7 @@ class TranslatorVC: UIViewController {
     
     private var httpClient = HTTPClient()
     private var languages: [Language] = []
+    private var defaults = UserDefaults.standard
     
     // MARK: - ViewLifeCycle
     
@@ -27,9 +28,20 @@ class TranslatorVC: UIViewController {
         hideKeyboardWhenTappedAround()
         setPlaceholders()
         requestLanguages()
+        languageLabels.last?.text = defaults.string(forKey: "language") ?? "English"
+
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDefaultLanguage(notification:)), name: .updateLanguage, object: nil)
     }
     
     // MARK: - IBAction methods
+
+    @objc
+    func updateDefaultLanguage(notification: Notification) {
+        guard let language = notification.userInfo?["language"] as? String else { return }
+        print(language)
+        languageLabels.last?.text = language
+        textViews.forEach { $0.text.removeAll() }
+    }
     
     @IBAction func detectButtonTapped(_ sender: UIButton) {
         guard let textToDetext = textViews.first?.text else { return }
