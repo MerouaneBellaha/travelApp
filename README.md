@@ -1,4 +1,4 @@
-✈️ # travelApp  
+# travelApp ✈️ 
   
 An app for travelers. Through a tabBar, you access a currency convertor (usable offline), a weather forecast display, a translator and a to do list.  
   
