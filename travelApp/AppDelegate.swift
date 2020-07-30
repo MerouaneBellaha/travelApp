@@ -24,12 +24,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Can't reach the Storyboard / toDoVC")
         }
 
+        tabBarController.viewControllers?.forEach { navigationController in
+            (navigationController as? UINavigationController)?.topViewController?.setSwipe()
+        }
+
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
         mainVC.coreDataManager = CoreDataManager(with: appDelegate.coreDataStack)
         settingsVc.coreDataManager = CoreDataManager(with: appDelegate.coreDataStack)
         toDoVC.coreDataManager = CoreDataManager(with: appDelegate.coreDataStack)
 
         GMSPlacesClient.provideAPIKey(K.googleKey)
+
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.2215721905, green: 0.3624178171, blue: 0.4913087487, alpha: 1)
 
         return true
     }

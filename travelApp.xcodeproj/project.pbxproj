@@ -40,6 +40,8 @@
 		CB925B3D24BF80B60049774F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3C24BF80B60049774F /* CoreDataManager.swift */; };
 		CB925B3F24BF80D70049774F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB925B3E24BF80D70049774F /* CoreDataStack.swift */; };
 		CBB009CA24CF16F500E8B883 /* UITabBarController + appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB009C924CF16F500E8B883 /* UITabBarController + appearance.swift */; };
+		CBC1BFE124D2CBBD0090F495 /* UIViewController + setSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1BFE024D2CBBD0090F495 /* UIViewController + setSwipe.swift */; };
+		CBC1BFE324D2CC0A0090F495 /* GMSViewController + set + appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1BFE224D2CC0A0090F495 /* GMSViewController + set + appearance.swift */; };
 		CBC5FE7E24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5FE7D24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift */; };
 		CBEBF39C24C9E92C00A06E93 /* RateManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEBF39B24C9E92C00A06E93 /* RateManagerTest.swift */; };
 		CBEF0C4824C472F9008535E1 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEF0C4724C472F9008535E1 /* WeatherModel.swift */; };
@@ -99,6 +101,8 @@
 		CB925B3C24BF80B60049774F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		CB925B3E24BF80D70049774F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		CBB009C924CF16F500E8B883 /* UITabBarController + appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController + appearance.swift"; sourceTree = "<group>"; };
+		CBC1BFE024D2CBBD0090F495 /* UIViewController + setSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + setSwipe.swift"; sourceTree = "<group>"; };
+		CBC1BFE224D2CC0A0090F495 /* GMSViewController + set + appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GMSViewController + set + appearance.swift"; sourceTree = "<group>"; };
 		CBC5FE7D24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell + animateCellBackground.swift"; sourceTree = "<group>"; };
 		CBEBF39B24C9E92C00A06E93 /* RateManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateManagerTest.swift; sourceTree = "<group>"; };
 		CBEF0C4724C472F9008535E1 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
@@ -278,6 +282,8 @@
 				CBC5FE7D24C3920C00B671A3 /* UITableViewCell + animateCellBackground.swift */,
 				CBFB8BA824C3C4E000318370 /* UIViewController + setKeyboard.swift */,
 				CBB009C924CF16F500E8B883 /* UITabBarController + appearance.swift */,
+				CBC1BFE024D2CBBD0090F495 /* UIViewController + setSwipe.swift */,
+				CBC1BFE224D2CC0A0090F495 /* GMSViewController + set + appearance.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -478,10 +484,12 @@
 				CB6BF2BC24BDDBE40065F64E /* AppDelegate.swift in Sources */,
 				CB8F7C4924BE38C80080570D /* Data.swift in Sources */,
 				CB925B3F24BF80D70049774F /* CoreDataStack.swift in Sources */,
+				CBC1BFE324D2CC0A0090F495 /* GMSViewController + set + appearance.swift in Sources */,
 				CB6BF2DA24BDE52F0065F64E /* ToDoVC.swift in Sources */,
 				CBEF0C4824C472F9008535E1 /* WeatherModel.swift in Sources */,
 				CB7F047524C318550084D64E /* HTTPClient.swift in Sources */,
 				CB6BF2DC24BDE54D0065F64E /* SettingsVC.swift in Sources */,
+				CBC1BFE124D2CBBD0090F495 /* UIViewController + setSwipe.swift in Sources */,
 				CB8F7C4724BE38950080570D /* RequestError.swift in Sources */,
 				CBFB8BA924C3C4E000318370 /* UIViewController + setKeyboard.swift in Sources */,
 				CB6BF2D624BDE4340065F64E /* TranslatorVC.swift in Sources */,

@@ -69,10 +69,10 @@ struct K {
     static let taskName = "taskName"
     static let timeStamp = "timeStamp"
     static let rate = "rate"
-    static let currency = "Currency"
+    static let currency = "currency"
     static let city = "city"
-    static let language = "Language"
-    static let weather = "Weather"
+
+
     static let background = "background"
 
     // MARK: - Defaults
@@ -82,12 +82,17 @@ struct K {
     static let defaultLanguage = "English"
     static let defaultCity = "New york"
 
+    static let weather = "Weather"
+    static let language = "Language"
+    static let settingCurrency = "Currency"
+
     // MARK: - cells
 
     static let taskCell = "taskCell"
     static let rateCell = "rateCell"
     static let settingCell = "settingCell"
     static let languageCell = "languageCell"
+    static let contentCell = "contentCell"
 
     // MARK: - Segues
 
