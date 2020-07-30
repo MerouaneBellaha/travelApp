@@ -30,6 +30,7 @@ extension UIViewController {
         present(alert, animated: true)
     }
 
+    /// set an alert with an activity indicator and no button (to display when data are loading)
     func setActivityAlert(withTitle title: String, message: String, activityIndicatorColor: UIColor = UIColor.black, presentedActivityController: @escaping ((_ success: UIAlertController) -> Void)) {
         let alertController = UIAlertController(title: title, message: (message + K.spaces), preferredStyle: .alert)
         let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)

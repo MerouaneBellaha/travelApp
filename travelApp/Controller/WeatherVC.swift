@@ -88,9 +88,16 @@ class WeatherVC: UIViewController {
 
     private func presentSearchPlacesVC() {
         let searchPlaces = GMSAutocompleteViewController()
-        let filter = GMSAutocompleteFilter()
-        filter.type = .city
-        searchPlaces.autocompleteFilter = .some(filter)
+        searchPlaces.setup()
+        searchPlaces.appearanceSetup()
+//        searchPlaces.tableCellBackgroundColor = #colorLiteral(red: 0.2215721905, green: 0.3624178171, blue: 0.4913087487, alpha: 1)
+//        searchPlaces.primaryTextHighlightColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//        searchPlaces.primaryTextColor = UIColor.lightGray
+//        searchPlaces.secondaryTextColor = UIColor.lightGray
+//
+//        let filter = GMSAutocompleteFilter()
+//        filter.type = .city
+//        searchPlaces.autocompleteFilter = .some(filter)
         searchPlaces.delegate = self
         present(searchPlaces, animated: true)
     }

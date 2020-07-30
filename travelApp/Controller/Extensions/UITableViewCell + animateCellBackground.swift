@@ -10,11 +10,13 @@ import UIKit
 
 extension UITableViewCell {
     func animateCellBackground() {
-        UIView.animate(withDuration: 0.5) {
-            self.backgroundColor = #colorLiteral(red: 0.7067675508, green: 0.8084433675, blue: 0.6078547835, alpha: 1)
-        }
-        UIView.animate(withDuration: 0.3) {
-            self.backgroundColor = .clear
+
+        UIView.animate(withDuration: 0.3, animations: {
+           self.backgroundColor = #colorLiteral(red: 0.2711130977, green: 0.7006032263, blue: 0.570782236, alpha: 1)
+        }) { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.backgroundColor = .none
+            }
         }
     }
 }

@@ -30,7 +30,7 @@ final class SettingsTableVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
+        tableView.backgroundView = UIImageView(image: UIImage(named: K.background))
         hideKeyboardWhenTappedAround()
     }
 
@@ -40,7 +40,8 @@ final class SettingsTableVC: UITableViewController {
         if searchBar.text?.isEmpty == true {
             return content
         } else {
-            guard let textToSearch = searchBar.text else { return [] }
+            let searchedText = senderIndexPathRow == 0 ? searchBar.text?.uppercased() : searchBar.text?.capitalized
+            guard let textToSearch = searchedText else { return [] }
             return content.filter { $0.contains(textToSearch) }
         }
     }
@@ -52,7 +53,7 @@ final class SettingsTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "contentCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.contentCell, for: indexPath)
         cell.textLabel?.text = displayedContent[indexPath.row]
         return cell
     }
@@ -60,7 +61,7 @@ final class SettingsTableVC: UITableViewController {
     // MARK: - tableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let chosenContent = content[indexPath.row]
+        let chosenContent = displayedContent[indexPath.row]
         if senderIndexPathRow == 0 {
             delegate?.didUpdateCurrency(with: chosenContent)
         } else {

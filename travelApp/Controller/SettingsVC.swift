@@ -23,7 +23,7 @@ final class SettingsVC: UIViewController {
     private var languages: [String]?
     private var currencies: [String] { setCurrencies() }
     private var settingsCategories: [(String, String)] {
-        [(K.currency, defaults.string(forKey: K.currency) ?? K.defaultCurrency),
+        [(K.settingCurrency, defaults.string(forKey: K.currency) ?? K.defaultCurrency),
          (K.language, defaults.string(forKey: K.language) ?? K.defaultLanguage),
          (K.weather, defaults.string(forKey: K.city) ?? K.defaultCity)]
     }
@@ -71,9 +71,11 @@ final class SettingsVC: UIViewController {
 
     private func presentSearchPlacesVC() {
         let searchPlaces = GMSAutocompleteViewController()
-        let filter = GMSAutocompleteFilter()
-        filter.type = .city
-        searchPlaces.autocompleteFilter = .some(filter)
+        searchPlaces.setup()
+        searchPlaces.appearanceSetup()
+//        let filter = GMSAutocompleteFilter()
+//        filter.type = .city
+//        searchPlaces.autocompleteFilter = .some(filter)
         searchPlaces.delegate = self
         present(searchPlaces, animated: true)
     }
