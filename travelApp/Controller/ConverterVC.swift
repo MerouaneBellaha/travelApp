@@ -69,7 +69,6 @@ class ConverterVC: UIViewController {
     @objc
     func updateDefaultCurrency(notification: Notification) {
         guard let currency = notification.userInfo?[K.currency] as? String else { return }
-        print(currency)
         currencyLabels.last?.text = currency
         currentRatesLabel.text = K.currentRates + (currencyLabels.last?.text ?? K.emptyString)
         performRequestDaily()
@@ -131,7 +130,6 @@ class ConverterVC: UIViewController {
             }
         case .success(let convertedCurrency):
             DispatchQueue.main.async {
-                print(convertedCurrency.rates)
                 self.coreDataManager?.deleteItems(entity: Rate.self)
                 self.defaults.set(convertedCurrency.timestamp, forKey: K.timeStamp)
                 convertedCurrency.rates.forEach { item in

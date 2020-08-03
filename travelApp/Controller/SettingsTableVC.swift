@@ -61,6 +61,7 @@ final class SettingsTableVC: UITableViewController {
     // MARK: - tableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.animateCellBackground()
         let chosenContent = displayedContent[indexPath.row]
         if senderIndexPathRow == 0 {
             delegate?.didUpdateCurrency(with: chosenContent)

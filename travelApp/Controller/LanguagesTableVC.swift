@@ -62,6 +62,7 @@ class LanguagesTableVC: UITableViewController {
     // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.animateCellBackground()
         chosenLanguage = diplayedLanguages[indexPath.row].name
         guard let senderTag = senderTag else { return }
         delegate?.didUpdateLanguage(for: senderTag, with: chosenLanguage)
