@@ -73,9 +73,6 @@ final class SettingsVC: UIViewController {
         let searchPlaces = GMSAutocompleteViewController()
         searchPlaces.setup()
         searchPlaces.appearanceSetup()
-//        let filter = GMSAutocompleteFilter()
-//        filter.type = .city
-//        searchPlaces.autocompleteFilter = .some(filter)
         searchPlaces.delegate = self
         present(searchPlaces, animated: true)
     }
@@ -133,6 +130,8 @@ extension SettingsVC: UITableViewDelegate {
 // MARK: - GMSAutocompleteViewControllerDelegate
 
 extension SettingsVC: GMSAutocompleteViewControllerDelegate {
+
+
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         guard let city = place.name else { return }
         defaults.removeObject(forKey: K.city)

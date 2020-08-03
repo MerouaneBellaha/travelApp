@@ -15,13 +15,27 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="P4W-C9-jHc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="P4W-C9-jHc" secondAttribute="bottom" id="6nI-XB-AJ5"/>
+                            <constraint firstItem="P4W-C9-jHc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AgO-UR-1pv"/>
+                            <constraint firstItem="P4W-C9-jHc" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Axp-Fs-0d6"/>
+                            <constraint firstItem="P4W-C9-jHc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ufx-ZG-Q4N"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="launchScreen" width="1161" height="2514"/>
+    </resources>
 </document>

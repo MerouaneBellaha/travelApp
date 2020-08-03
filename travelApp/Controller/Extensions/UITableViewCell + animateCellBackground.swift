@@ -12,7 +12,7 @@ extension UITableViewCell {
     func animateCellBackground() {
 
         UIView.animate(withDuration: 0.3, animations: {
-           self.backgroundColor = #colorLiteral(red: 0.2711130977, green: 0.7006032263, blue: 0.570782236, alpha: 1)
+            self.backgroundColor = #colorLiteral(red: 0.2711130977, green: 0.7006032263, blue: 0.570782236, alpha: 1)
         }) { _ in
             UIView.animate(withDuration: 0.3) {
                 self.backgroundColor = .none

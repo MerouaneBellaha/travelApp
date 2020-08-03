@@ -11,5 +11,4 @@ import UIKit
 extension Notification.Name {
     static let updateCurrency = Notification.Name("updateCurrency")
     static let updateLanguage = Notification.Name("updateLanguage")
-
 }

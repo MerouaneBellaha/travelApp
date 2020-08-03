@@ -63,7 +63,6 @@ class TranslatorVC: UIViewController {
     @objc
     func updateDefaultLanguage(notification: Notification) {
         guard let language = notification.userInfo?[K.language] as? String else { return }
-        print(language)
         languageLabels.last?.text = language
         textViews.forEach { $0.text.removeAll() }
     }

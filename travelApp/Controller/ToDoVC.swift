@@ -45,7 +45,6 @@ class ToDoVC: UIViewController {
     }
 
     private func setTaskList() -> [Task] {
-        // -> Ternaire
         if searchBar.text?.isEmpty == true {
             return coreDataManager?.loadItems(entity: Task.self, sortBy: K.taskName) ?? []
         } else {
