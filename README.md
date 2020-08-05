@@ -18,7 +18,7 @@ Fixing some design element, a bit of refacto
   
 # **MVC Architecture**  
   
-![](/travelAppArchi.png)
+![](/travelAppArchitecture.png)
   
   
 
