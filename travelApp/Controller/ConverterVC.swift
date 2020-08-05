@@ -190,7 +190,7 @@ extension ConverterVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.animateCellBackground()
         currencyLabels.first?.text = currencyList[indexPath.row].currency
-        defaults.set(currencyList[indexPath.row].currency, forKey: K.currency)
+//        defaults.set(currencyList[indexPath.row].currency, forKey: K.currency)
         textFields.forEach { $0.text?.removeAll() }
         searchBar.text?.removeAll()
         tableView.reloadData()

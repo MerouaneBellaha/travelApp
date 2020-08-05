@@ -91,6 +91,7 @@ extension SettingsVC: SettingProtocol {
     func didUpdateCurrency(with currency: String) {
         defaults.removeObject(forKey: K.currency)
         defaults.set(currency, forKey: K.currency)
+        defaults.synchronize()
         tableView.reloadData()
         NotificationCenter.default.post(name: .updateCurrency, object: nil, userInfo: [K.currency: currency])
     }
