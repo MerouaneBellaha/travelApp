@@ -14,4 +14,12 @@ An app for travelers. Through a tabBar, you access a currency convertor (usable 
 • Design: custom tabBar, navBar + tabBar setup  
   
 **What's left to do**:  
-Fixing some design element, a bit of refacto
+Fixing some design element, a bit of refacto  
+  
+# **MVC Architecture**  
+  
+![](/travelAppArchi.png)
+  
+  
+
+
