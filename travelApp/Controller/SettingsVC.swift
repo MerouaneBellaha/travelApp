@@ -13,7 +13,7 @@ final class SettingsVC: UIViewController {
 
     // MARK: - IBOutlet properties
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Properties
 
@@ -131,7 +131,6 @@ extension SettingsVC: UITableViewDelegate {
 // MARK: - GMSAutocompleteViewControllerDelegate
 
 extension SettingsVC: GMSAutocompleteViewControllerDelegate {
-
 
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         guard let city = place.name else { return }

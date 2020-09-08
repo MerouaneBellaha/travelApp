@@ -17,14 +17,14 @@ final class SettingsTableVC: UITableViewController {
 
     // MARK: - IBOutlet properties
 
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet private weak var searchBar: UISearchBar!
 
     // MARK: - Properties
 
     weak var delegate: SettingProtocol?
     var senderIndexPathRow: Int?
     var content: [String] = []
-    var displayedContent: [String] { setDisplayedContent() }
+    private var displayedContent: [String] { setDisplayedContent() }
 
     // MARK: - ViewLifeCycle
 

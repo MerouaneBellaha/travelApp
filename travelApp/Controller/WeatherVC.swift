@@ -10,17 +10,17 @@ import UIKit
 import CoreLocation
 import GooglePlaces
 
-class WeatherVC: UIViewController {
+final class WeatherVC: UIViewController {
 
     // MARK: - IBOutlet properties
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet var cityLabels: [UILabel]!
-    @IBOutlet var conditionLabels: [UILabel]!
-    @IBOutlet var temperaturesLabels: [UILabel]!
-    @IBOutlet var weatherIcons: [UIImageView]!
-    @IBOutlet weak var overlay: UIView!
-    @IBOutlet weak var topForecastView: UIStackView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private var cityLabels: [UILabel]!
+    @IBOutlet private var conditionLabels: [UILabel]!
+    @IBOutlet private var temperaturesLabels: [UILabel]!
+    @IBOutlet private var weatherIcons: [UIImageView]!
+    @IBOutlet private weak var overlay: UIView!
+    @IBOutlet private weak var topForecastView: UIStackView!
     
     // MARK: - Properties
 

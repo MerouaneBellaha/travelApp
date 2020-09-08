@@ -12,20 +12,20 @@ protocol LanguagesProtocol: class {
     func didUpdateLanguage(for tag: Int, with language: String)
 }
 
-class LanguagesTableVC: UITableViewController {
+final class LanguagesTableVC: UITableViewController {
 
     // MARK: - IBOutlet properties
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var noLanguageLabel: UILabel!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var noLanguageLabel: UILabel!
 
     // MARK: - Properties
 
     weak var delegate: LanguagesProtocol?
     var senderTag: Int?
     var languages: [Language] = []
-    var diplayedLanguages: [Language] { setDisplayedLanguages() }
-    var chosenLanguage: String = K.emptyString
+    private var diplayedLanguages: [Language] { setDisplayedLanguages() }
+    private var chosenLanguage: String = K.emptyString
 
     // MARK: - ViewLifeCycle
 

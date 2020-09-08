@@ -9,12 +9,10 @@
 import Foundation
 
 enum RequestError: Error {
-    case incorrectUrl, noData, incorrectResponse, undecodableData, error
+    case noData, incorrectResponse, undecodableData, error
     
     var description: String {
         switch self {
-        case .incorrectUrl:
-            return "Incorrect URL"
         case .noData:
             return "Can't reach the server, please retry."
         case .incorrectResponse:

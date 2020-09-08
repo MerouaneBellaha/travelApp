@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ToDoVC: UIViewController {
+final class ToDoVC: UIViewController {
 
     // MARK: - IBOutlet properties
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var noTaskLabel: UILabel!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var noTaskLabel: UILabel!
 
 
     // MARK: - Properties
@@ -31,14 +31,14 @@ class ToDoVC: UIViewController {
 
     // MARK: - IBAction methods
 
-    @IBAction func addTaskTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func addTaskTapped(_ sender: UIBarButtonItem) {
         setAlertTextField { [unowned self] text in
             self.coreDataManager?.createItem(entity: Task.self) { $0.taskName = text }
             self.tableView.reloadData()
         }
     }
 
-    @IBAction func resetTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func resetTapped(_ sender: UIBarButtonItem) {
         // Add an Alert controller to confirm clear all tasks
         coreDataManager?.deleteItems(entity: Task.self)
         tableView.reloadData()

@@ -10,10 +10,10 @@ import Foundation
 
 struct WeatherModel {
 
-    let weatherData: WeatherData?
-    var conditionId: Int?
+    private let weatherData: WeatherData?
+    private var conditionId: Int?
+    private var temperature: Double?
     let cityName: String?
-    var temperature: Double?
     let description: String?
 
     init(weatherData: WeatherData?) {

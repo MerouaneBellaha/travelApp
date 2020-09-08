@@ -8,16 +8,16 @@
 
 import UIKit
 
-class ConverterVC: UIViewController {
+final class ConverterVC: UIViewController {
     
     // MARK: - IBOutlet properties
     
-    @IBOutlet weak var lastUpdateLabel: UILabel!
-    @IBOutlet var currencyLabels: [UILabel]!
-    @IBOutlet var textFields: [UITextField]!
-    @IBOutlet weak var currentRatesLabel: UILabel!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var lastUpdateLabel: UILabel!
+    @IBOutlet private var currencyLabels: [UILabel]!
+    @IBOutlet private var textFields: [UITextField]!
+    @IBOutlet private weak var currentRatesLabel: UILabel!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var tableView: UITableView!
     
     // MARK: - Properties
     
@@ -47,14 +47,14 @@ class ConverterVC: UIViewController {
     
     // MARK: - IBAction methods
     
-    @IBAction func textFieldDidChange(_ sender: UITextField) {
+    @IBAction private func textFieldDidChange(_ sender: UITextField) {
         guard isTextUsable(from: sender) else { return }
         guard let amount = Double(sender.text!) else { return }
         let result = performConversion(with: amount, senderTag: sender.tag)
         textFields.first(where: { $0.tag != sender.tag })?.text = result
     }
     
-    @IBAction func refreshRatesTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func refreshRatesTapped(_ sender: UIBarButtonItem) {
         guard dateManager.didOneHourHasPass else {
             setAlertVc(with: K.oneByHour)
             return
@@ -67,7 +67,7 @@ class ConverterVC: UIViewController {
     
     // retrieve currency chosen in settings tab
     @objc
-    func updateDefaultCurrency(notification: Notification) {
+    private func updateDefaultCurrency(notification: Notification) {
         guard let currency = notification.userInfo?[K.currency] as? String else { return }
         currencyLabels.last?.text = currency
         currentRatesLabel.text = K.currentRates + (currencyLabels.last?.text ?? K.emptyString)

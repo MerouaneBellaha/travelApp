@@ -18,7 +18,7 @@ struct DateManager {
     init(presentDate: Int? = nil, apiTimeStamp: Int? = nil) {
         self.presentDate = presentDate ?? 0
         self.apiTimeStamp = apiTimeStamp ?? 0
-        }
+    }
 
     var didOneHourHasPass: Bool {
         return (presentDate - apiTimeStamp) > hourInSeconds ? true : false
