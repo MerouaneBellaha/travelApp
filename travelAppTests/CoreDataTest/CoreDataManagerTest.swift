@@ -54,6 +54,13 @@ class CoreDataManagerTest: XCTestCase {
         XCTAssertTrue(coreDataManager.loadItems(entity: Task.self).count == 1)
     }
 
+    func testGivenCoreDataContainsMoreThanOneItem_WhenLoadingItemsWithPredicate_ThenCoreDataManagerShouldGiveOnlyThePredicateItem() {
+        coreDataManager.createItem(entity: Task.self) { $0.taskName = "A task" }
+        coreDataManager.createItem(entity: Task.self) { $0.taskName = "A task 2" }
 
+        XCTAssertTrue(coreDataManager.loadItems(entity: Task.self, predicate: .text("2")).count == 1)
+        XCTAssertFalse(coreDataManager.loadItems(entity: Task.self, predicate: .text("2")).count == 2)
+
+    }
 
 }

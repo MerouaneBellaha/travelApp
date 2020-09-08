@@ -8,12 +8,12 @@
 
 import UIKit
 
-class TranslatorVC: UIViewController {
+final class TranslatorVC: UIViewController {
     
     // MARK: - IBOutlet properties
     
-    @IBOutlet var languageLabels: [UILabel]!
-    @IBOutlet var textViews: [UITextView]!
+    @IBOutlet private var languageLabels: [UILabel]!
+    @IBOutlet private var textViews: [UITextView]!
     
     // MARK: - Properties
     
@@ -35,33 +35,33 @@ class TranslatorVC: UIViewController {
     
     // MARK: - IBAction methods
     
-    @IBAction func detectButtonTapped(_ sender: UIButton) {
+    @IBAction private func detectButtonTapped(_ sender: UIButton) {
         guard let textToDetext = textViews.first?.text else { return }
         httpClient.request(baseUrl: K.baseURLdetect, parameters: [K.googleQuery, (K.query, textToDetext)]) { [unowned self] result in
             self.manageResult(dataType: DetectData.self, with: result)
         }
     }
     
-    @IBAction func swapButtonTapped(_ sender: UIButton) {
+    @IBAction private func swapButtonTapped(_ sender: UIButton) {
         guard languageLabelsAreNotEmpty() else { return }
         swapLanguageLabelsText()
         swapTextViewsText()
     }
-    
-    
-    @IBAction func translateButtonTapped(_ sender: UIButton?) {
+
+    @IBAction private func translateButtonTapped(_ sender: UIButton?) {
         guard isTranslationPossible() else { return }
         let parameters = getTranslationParameters()
         requestTranslation(with: parameters)
     }
-    @IBAction func clearButtonTapped(_ sender: UIButton) {
+
+    @IBAction private func clearButtonTapped(_ sender: UIButton) {
         textViews.forEach { $0.text.removeAll() }
     }
 
     // MARK: - @objc method
 
     @objc
-    func updateDefaultLanguage(notification: Notification) {
+    private func updateDefaultLanguage(notification: Notification) {
         guard let language = notification.userInfo?[K.language] as? String else { return }
         languageLabels.last?.text = language
         textViews.forEach { $0.text.removeAll() }

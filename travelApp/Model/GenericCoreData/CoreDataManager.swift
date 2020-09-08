@@ -27,8 +27,8 @@ final class CoreDataManager {
 
     // MARK: - Properties
 
-    var context: NSManagedObjectContext
-    var coreDataStack: CoreDataStack
+    private var context: NSManagedObjectContext
+    private var coreDataStack: CoreDataStack
 
     // MARK: - Init
 
