@@ -1,5 +1,5 @@
 //
-//  UITabBarController + appearance.swift
+//  CustomTabBar.swift
 //  travelApp
 //
 //  Created by Merouane Bellaha on 27/07/2020.
@@ -8,9 +8,14 @@
 
 import UIKit
 
-extension UITabBarController {
-    override open func viewDidLoad() {
+class CustomTabBar: UITabBarController {
+
+    override func viewDidLoad() {
         super.viewDidLoad()
+        setTabBar()
+    }
+
+    private func setTabBar() {
         tabBar.clipsToBounds = true
         tabBar.barTintColor = #colorLiteral(red: 0.1575194299, green: 0.2418842614, blue: 0.3167798817, alpha: 1)
         let layer = CAShapeLayer()
