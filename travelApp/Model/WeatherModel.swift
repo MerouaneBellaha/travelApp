@@ -11,8 +11,8 @@ import Foundation
 struct WeatherModel {
 
     private let weatherData: WeatherData?
-    private var conditionId: Int?
-    private var temperature: Double?
+    var conditionId: Int?
+    var temperature: Double?
     let cityName: String?
     let description: String?
 

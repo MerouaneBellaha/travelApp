@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N5g-h3-nF8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N5g-h3-nF8">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Custom Tab Bar-->
         <scene sceneID="6cl-H4-SaH">
             <objects>
-                <tabBarController interfaceStyle="light" id="N5g-h3-nF8" sceneMemberID="viewController">
+                <tabBarController interfaceStyle="light" id="N5g-h3-nF8" customClass="CustomTabBar" customModule="travelApp" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="LAV-8K-TIr"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="bgu-Ub-Ctd">
@@ -1120,6 +1120,9 @@
             <point key="canvasLocation" x="3096" y="1938"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="1fg-uj-6Tq"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="1267" height="2534"/>
         <image name="cloud" width="147" height="98"/>
@@ -1131,7 +1134,4 @@
         <image name="translate.icon" width="25" height="25"/>
         <image name="weather.icon" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="1fg-uj-6Tq"/>
-    </inferredMetricsTieBreakers>
 </document>
